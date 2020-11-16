@@ -1,0 +1,78 @@
+projects:
+  - LMS  
+
+LMS:
+  dev_eui: "00DE745EAFBDE7FF"
+  app_eui: "70B3D57ED0035688"
+  dev_addr: "2603125F"  
+  nwks_key: "135DE31ED86C11588D4845D08CCB107A"
+  apps_key: "CCF4DFD4BC8BA0BBD55BE994767304E9"
+  app_key: "84D319CEE44C523F6340F5BB82A213B5"
+  sampling_period: 60
+  sensor_list:
+    - latitude
+    - longitude
+    - altitude
+    - speed
+    - motion    
+    - battery_voltage
+  latitude:
+    data_type: float32
+    min_value: -27.804380
+    max_value: -27.804390
+  longitude:
+    data_type: float32
+    min_value: -50.337870
+    max_value: -50.337880
+  altitude:    
+    data_type: uint16
+    min_value: 850
+    max_value: 1000
+  speed:
+    data_type: uint8
+    min_value: 0
+    max_value: 5
+  motion:    
+    data_type: uint8
+    min_value: 0
+    max_value: 1  
+  battery_voltage:    
+    data_type: float_uint16
+    min_value: 2.8
+    max_value: 4.8
+
+VRMS:
+  dev_eui: "00DE745EAFBDE7FF"
+  app_eui: "70B3D57ED003589D"
+  dev_addr: "26031A97"  
+  nwks_key: "71E7D02189BFDED1592009C86AD33E60"
+  apps_key: "DD03A9563F0045E5549D62CBD296F225"  
+  app_key: "BE45CF73E8BF7090F115EE0E930FA1C9"
+  sampling_period: 60
+  sensor_list:
+    - battery_voltage    
+  battery_voltage:    
+    data_type: float_uint16
+    min_value: 10.0
+    max_value: 15.0
+
+lora:
+  base_band: "AU920"
+  class: "A"
+  tx_power: 14
+  uplink_dr: "DR0"  
+  chan0_freq: 917.2
+  chan0_dr: "DR0"
+  chan1_freq: 917.9
+  chan1_dr: "DR0"
+  rxwin2_freq: 923.3
+  rxwin2_dr: "DR8"
+  adr: "ON"
+  auth_mode: "LWOTAA"
+  repeat: 3
+  retry: 4
+
+serial:
+  port: "/dev/ttyUSB0"
+  baudrate: 9600
+  
