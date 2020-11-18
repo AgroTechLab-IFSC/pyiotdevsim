@@ -23,10 +23,14 @@ for the JavaScript code in this file
 var NAVTREE =
 [
   [ "pyIoTDevSim", "index.html", [
+    [ "RHF76-052", "rhf76_052.html", null ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
       [ "Class Index", "classes.html", null ],
       [ "Class Hierarchy", "hierarchy.html", "hierarchy" ]
+    ] ],
+    [ "Files", "files.html", [
+      [ "File List", "files.html", "files_dup" ]
     ] ]
   ] ]
 ];
