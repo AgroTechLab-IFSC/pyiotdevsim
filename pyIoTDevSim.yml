@@ -1,14 +1,14 @@
 projects:
-  - LMS  
+  - CattleTracker  
 
-LMS:
-  dev_eui: "00DE745EAFBDE7FF"
-  app_eui: "70B3D57ED0035688"
+CattleTracker:
+  dev_eui: "0002E84456BF29D4"
+  app_eui: "70B3D57ED003A356"
   dev_addr: "2603125F"  
   nwks_key: "135DE31ED86C11588D4845D08CCB107A"
   apps_key: "CCF4DFD4BC8BA0BBD55BE994767304E9"
-  app_key: "84D319CEE44C523F6340F5BB82A213B5"
-  sampling_period: 60
+  app_key: "550D3540D601D3927759116187DCFB1D"
+  sampling_period: 300
   sensor_list:
     - latitude
     - longitude
@@ -67,7 +67,7 @@ lora:
   chan1_dr: "DR0"
   rxwin2_freq: 923.3
   rxwin2_dr: "DR8"
-  adr: "ON"
+  adr: "OFF"
   auth_mode: "LWOTAA"
   repeat: 3
   retry: 4
