@@ -1,25 +1,76 @@
 import logging
 import threading
+import lora_constants
+import sys
+
 
 class LoRa:
     def __init__(self, _loraCfg, _serialPort):
         self.lock = threading.Lock()
+
+        # Get and check LoRa base band
         self.base_band = _loraCfg.get("base_band")
+        if self.base_band not in lora_constants.lora_baseband_ref:
+            logging.error("Base band parameter in LoRa configuration file is not valid")
+            sys.exit("\tERROR: Base band parameter in LoRa configuration file is not valid!!!")
+
+        # Get and check LoRa class
         self.lora_class = _loraCfg.get("lora_class")
+        if self.lora_class not in lora_constants.lora_class_ref:
+            logging.error("Class parameter in LoRa configuration file is not valid")
+            sys.exit("\tERROR: Class parameter in LoRa configuration file is not valid!!!")
+
+        # Get and check LoRa transmission power
         self.tx_power = _loraCfg.get("tx_power")
+        if self.base_band == "EU434" or self.base_band == "EU868":
+            if self.tx_power not in lora_constants.lora_tx_power_868_ref:
+                logging.error("Transmission power parameter in LoRa configuration file is not valid")
+                sys.exit("\tERROR: Transmission power parameter in LoRa configuration file is not valid!!!")
+        elif self.base_band == "US915" or self.base_band == "AU920":
+            if self.tx_power not in lora_constants.lora_tx_power_915_ref:
+                logging.error("Transmission power parameter in LoRa configuration file is not valid")
+                sys.exit("\tERROR: Transmission power parameter in LoRa configuration file is not valid!!!")
+
+        # Get and check LoRa uplink DR
         self.uplink_dr = _loraCfg.get("uplink_dr")
+        if self.base_band == "EU434" or self.base_band == "EU868":
+            if self.uplink_dr not in lora_constants.lora_dr_868_ref:
+                logging.error("Uplink data rate parameter in LoRa configuration file is not valid")
+                sys.exit("\tERROR: Uplink data rate parameter in LoRa configuration file is not valid!!!")
+        if self.base_band == "US915" or self.base_band == "AU920":
+            if self.uplink_dr not in lora_constants.lora_dr_915_ref:
+                logging.error("Uplink data rate parameter in LoRa configuration file is not valid")
+                sys.exit("\tERROR: Uplink data rate parameter in LoRa configuration file is not valid!!!")
+
         self.chan0_freq = _loraCfg.get("chan0_freq")
         self.chan0_dr = _loraCfg.get("chan0_dr")
         self.chan1_freq = _loraCfg.get("chan1_freq")
         self.chan1_dr = _loraCfg.get("chan1_dr")
         self.rxwin2_freq = _loraCfg.get("rxwin2_freq")
         self.rxwin2_dr = _loraCfg.get("rxwin2_dr")
+
+        # Get and check ADR (Automatic Data Rate)
         self.adr = _loraCfg.get("adr")
+        if self.adr not in lora_constants.lora_adr_ref:
+            logging.error("ADR parameter in LoRa configuration file is not valid")
+            sys.exit("\tERROR: ADR parameter in LoRa configuration file is not valid!!!")
+
         self.auth_mode = _loraCfg.get("auth_mode")
         self.repeat = _loraCfg.get("repeat")
         self.retry = _loraCfg.get("retry")
         self.serialPort = _serialPort
+        self.max_payload = 0
+        # if (self.lora.uplink_dr == "DR0"):
+        #     self.max_payload = 11
+        # elif (self.lora.uplink_dr == "DR1"):
+        #     self.max_payload = 53
+        # elif (self.lora.uplink_dr == "DR2"):
+        #     self.max_payload = 126
+        # elif (self.lora.uplink_dr == "DR3" or self.lora.uplink_dr == "DR4"):
+        #     self.max_payload = 242
     
+    
+
     def checkLoRa(self):
         self.serialPort.write(b"AT\n")
         response = self.serialPort.readline().decode("UTF-8")        

@@ -12,7 +12,7 @@ class Project(threading.Thread):
         threading.Thread.__init__(self)        
         self.name = name
         self.config = cfg
-        self.lora = loraObj               
+        self.lora = loraObj        
 
     def run(self):
         # Waits for a random time to unsynchronize the threads
@@ -59,7 +59,7 @@ class Project(threading.Thread):
                     size = 4
 
                 # Check if data is putted into the same message or a new is created
-                if (count + size <= 10):
+                if (count + size <= self.max_payload):
                     count += size
                 else:                    
                     tx_queue.append(payload)

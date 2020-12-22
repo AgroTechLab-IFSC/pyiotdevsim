@@ -60,11 +60,11 @@ lora:
   base_band: "AU920"
   class: "A"
   tx_power: 14
-  uplink_dr: "DR0"  
+  uplink_dr: "DR1"  
   chan0_freq: 917.2
-  chan0_dr: "DR0"
+  chan0_dr: "DR1"
   chan1_freq: 917.9
-  chan1_dr: "DR0"
+  chan1_dr: "DR1"
   rxwin2_freq: 923.3
   rxwin2_dr: "DR8"
   adr: "OFF"

@@ -1,5 +1,5 @@
 ## @mainpage
-#  pyIoTDevSim is a IoT device simulator. It uses a real LoRa interface (connected to serial port) to sent simulated
+#  pyIoTDevSim is a IoT device simulator that uses a real LoRa interface (connected to serial port) to sent simulated
 #  IoT data to Thingsboard server throw TTN infrastructure.<br>
 # ![SCHEME schematic connection](../figs/scheme.png)<br>
 # 
@@ -62,7 +62,7 @@ pyLoRa_configFile = 'pyIoTDevSim.yml'
 def main():
     print("Starting pyLoRa", pyLoRa_version)
     logging.info("Starting pyLoRa %s", pyLoRa_version)    
-    logging.info("Opening configuration file %s", pyLoRa_configFile)
+    logging.info("Reading configuration file %s", pyLoRa_configFile)
     print("\tReading configuration file... ", end='')
     cfgObj = config.Config(pyLoRa_configFile)    
     print("[OK]")

@@ -15,13 +15,13 @@ class Config:
         self.projects = self.tree["projects"]
         logging.info("%s project(s) found: %s", len(self.projects), self.projects)
 
-        # Getting LORA information
+        # Getting LoRa information
         logging.debug("Getting 'lora' key information")
         if "lora" not in self.tree:
             logging.error("Not 'lora' key found on configuration file")
             sys.exit("ERROR: Not 'lora' key found on configuration file!!!")
         self.configLoRa = self._loadLoRaConfig()
-
+        
         # Getting SERIAL information
         logging.debug("Getting 'serial' key information")
         if "serial" not in self.tree:
@@ -41,6 +41,7 @@ class Config:
             sys.exit("ERROR: Configuration file not found!!!")
     
     def _loadLoRaConfig(self):
+        # Get LoRa configuration parameters from file
         _loraCfg = {
             "base_band": self.tree["lora"]["base_band"],
             "lora_class": self.tree["lora"]["class"],
@@ -56,7 +57,7 @@ class Config:
             "auth_mode": self.tree["lora"]["auth_mode"],
             "repeat": self.tree["lora"]["repeat"],
             "retry": self.tree["lora"]["retry"]
-        }
+        }       
         return _loraCfg    
 
     def getLoRaConfig(self):
