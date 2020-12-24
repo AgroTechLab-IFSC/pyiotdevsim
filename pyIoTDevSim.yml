@@ -26,8 +26,8 @@ CattleTracker:
     max_value: -50.337880
   altitude:    
     data_type: uint16
-    min_value: 850
-    max_value: 1000
+    min_value: 870
+    max_value: 900
   speed:
     data_type: uint8
     min_value: 0
@@ -59,7 +59,7 @@ VRMS:
 lora:
   base_band: "AU920"
   class: "A"
-  tx_power: 14
+  tx_power: 8
   uplink_dr: "DR1"  
   chan0_freq: 917.2
   chan0_dr: "DR1"

@@ -59,7 +59,7 @@ class Project(threading.Thread):
                     size = 4
 
                 # Check if data is putted into the same message or a new is created
-                if (count + size <= self.max_payload):
+                if (count + size <= self.lora.max_payload):
                     count += size
                 else:                    
                     tx_queue.append(payload)
@@ -101,7 +101,7 @@ class Project(threading.Thread):
             logging.debug("%s message(s) putted into the transmission queue", len(tx_queue))    
 
             # Sent messages putted into the queue
-            port = 1
+            port = self.lora.initial_port
             for msg in tx_queue:
                 # self.lora.sendNoAckMsgHex(port, msg)
                 self.lora.sendAckMsgHex(port, msg)

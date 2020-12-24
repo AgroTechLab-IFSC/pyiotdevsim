@@ -14,3 +14,6 @@ lora_dr_915_ref = ["DR0", "DR1", "DR2", "DR3", "DR4"]
 
 # ADR (Automatic Data Rate)
 lora_adr_ref = ["ON", "OFF"]
+
+# Authentication mode
+lora_auth_mode_ref = ["LWOTAA", "LWABP", "TEST"]

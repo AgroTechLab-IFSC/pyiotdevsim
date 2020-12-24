@@ -37,10 +37,33 @@ class LoRa:
             if self.uplink_dr not in lora_constants.lora_dr_868_ref:
                 logging.error("Uplink data rate parameter in LoRa configuration file is not valid")
                 sys.exit("\tERROR: Uplink data rate parameter in LoRa configuration file is not valid!!!")
+            
+            # Define the maximum payload based on DR and base band
+            if (self.uplink_dr == "DR0" or self.uplink_dr == "DR1" or self.uplink_dr == "DR2"):
+                self.max_payload = 51
+            elif (self.uplink_dr == "DR3"):
+                self.max_payload = 115
+            if (self.uplink_dr == "DR4" or self.uplink_dr == "DR5" or self.uplink_dr == "DR6" or self.uplink_dr == "DR7"):
+                self.max_payload = 242                
+
         if self.base_band == "US915" or self.base_band == "AU920":
             if self.uplink_dr not in lora_constants.lora_dr_915_ref:
                 logging.error("Uplink data rate parameter in LoRa configuration file is not valid")
-                sys.exit("\tERROR: Uplink data rate parameter in LoRa configuration file is not valid!!!")
+                sys.exit("\tERROR: Uplink data rate parameter in LoRa configuration file is not valid!!!")       
+
+            # Define the maximum payload based on DR and base band
+            if (self.uplink_dr == "DR0"):
+                self.max_payload = 11
+                self.initial_port = 1
+            elif (self.uplink_dr == "DR1"):
+                self.max_payload = 53
+                self.initial_port = 10
+            elif (self.uplink_dr == "DR2"):
+                self.max_payload = 126
+                self.initial_port = 20
+            elif (self.uplink_dr == "DR3" or self.uplink_dr == "DR4"):
+                self.max_payload = 242
+                self.initial_port = 30
 
         self.chan0_freq = _loraCfg.get("chan0_freq")
         self.chan0_dr = _loraCfg.get("chan0_dr")
@@ -55,20 +78,15 @@ class LoRa:
             logging.error("ADR parameter in LoRa configuration file is not valid")
             sys.exit("\tERROR: ADR parameter in LoRa configuration file is not valid!!!")
 
+        # Get and check Authentication Mode
         self.auth_mode = _loraCfg.get("auth_mode")
+        if self.auth_mode not in lora_constants.lora_auth_mode_ref:
+            logging.error("Authentication mode parameter in LoRa configuration file is not valid")
+            sys.exit("\tERROR: Authentication mode parameter in LoRa configuration file is not valid!!!")
+
         self.repeat = _loraCfg.get("repeat")
         self.retry = _loraCfg.get("retry")
-        self.serialPort = _serialPort
-        self.max_payload = 0
-        # if (self.lora.uplink_dr == "DR0"):
-        #     self.max_payload = 11
-        # elif (self.lora.uplink_dr == "DR1"):
-        #     self.max_payload = 53
-        # elif (self.lora.uplink_dr == "DR2"):
-        #     self.max_payload = 126
-        # elif (self.lora.uplink_dr == "DR3" or self.lora.uplink_dr == "DR4"):
-        #     self.max_payload = 242
-    
+        self.serialPort = _serialPort        
     
 
     def checkLoRa(self):
