@@ -7,28 +7,32 @@ class Config:
         self.configFile = _cfgFile
         self.tree = self._readConfigFile()
 
-        # Getting PROJECTS information
+        # Getting SYSTEM session
+        logging.debug("Getting 'system' key information")
+        if "system" not in self.tree:
+            logging.error("Not 'system' key found on configuration file")
+            sys.exit("ERROR: Not 'system' key found on configuration file!!!")            
+            if "serial" not in self.tree:
+                logging.error("Not 'serial' key found on configuration file")
+                sys.exit("ERROR: Not 'serial' key found on configuration file!!!")
+        self.debugLevel = self.tree["system"]["debug_level"]
+        self.loraModule = self.tree["system"]["lora_module"]
+        self.serialPort = self.tree["system"]["serial"]["port"]
+        self.serialBaudrate = self.tree["system"]["serial"]["baudrate"]
+        self.loraBaseBand = self.tree["system"]["lora"]["base_band"]
+        self.loraSubBand = self.tree["system"]["lora"]["sub_band"]
+        self.loraClass = self.tree["system"]["lora"]["class"]
+        self.loraRXWin2Freq = self.tree["system"]["lora"]["rxwin2_freq"]
+        self.loraRXWin2DR = self.tree["system"]["lora"]["rxwin2_dr"]
+        self.loraAuthMode = self.tree["system"]["lora"]["auth_mode"]
+
+        # Getting PROJECTS session
         logging.debug("Getting 'projects' key information")
         if "projects" not in self.tree:
             logging.error("Not 'projects' key found on configuration file")
             sys.exit("ERROR: Not 'projects' key found on configuration file!!!")
         self.projects = self.tree["projects"]
-        logging.info("%s project(s) found: %s", len(self.projects), self.projects)
-
-        # Getting LoRa information
-        logging.debug("Getting 'lora' key information")
-        if "lora" not in self.tree:
-            logging.error("Not 'lora' key found on configuration file")
-            sys.exit("ERROR: Not 'lora' key found on configuration file!!!")
-        self.configLoRa = self._loadLoRaConfig()
-        
-        # Getting SERIAL information
-        logging.debug("Getting 'serial' key information")
-        if "serial" not in self.tree:
-            logging.error("Not 'serial' key found on configuration file")
-            sys.exit("ERROR: Not 'serial' key found on configuration file!!!")
-        self.serialPort = self.tree["serial"]["port"]
-        self.serialBaudrate = self.tree["serial"]["baudrate"]
+        logging.info("%s project(s) found: %s", len(self.projects), self.projects)        
 
     def _readConfigFile(self):
         try:
@@ -40,45 +44,56 @@ class Config:
             logging.error("Configuration file not found!!!")
             sys.exit("ERROR: Configuration file not found!!!")
     
-    def _loadLoRaConfig(self):
-        # Get LoRa configuration parameters from file
-        _loraCfg = {
-            "base_band": self.tree["lora"]["base_band"],
-            "lora_class": self.tree["lora"]["class"],
-            "tx_power": self.tree["lora"]["tx_power"],
-            "uplink_dr": self.tree["lora"]["uplink_dr"],
-            "chan0_freq": self.tree["lora"]["chan0_freq"],
-            "chan0_dr": self.tree["lora"]["chan0_dr"],
-            "chan1_freq": self.tree["lora"]["chan1_freq"],
-            "chan1_dr": self.tree["lora"]["chan1_dr"],
-            "rxwin2_freq": self.tree["lora"]["rxwin2_freq"],
-            "rxwin2_dr": self.tree["lora"]["rxwin2_dr"],
-            "adr": self.tree["lora"]["adr"],
-            "auth_mode": self.tree["lora"]["auth_mode"],
-            "repeat": self.tree["lora"]["repeat"],
-            "retry": self.tree["lora"]["retry"]
-        }       
-        return _loraCfg    
+    def getLoRaModule(self):
+        return self.loraModule
 
-    def getLoRaConfig(self):
-        return self.configLoRa
-    
     def getSerialPort(self):
         return str(self.serialPort)
     
     def getSerialBaudrate(self):
         return self.serialBaudrate
     
+    def getDebugLevel(self):
+        return self.debugLevel
+    
+    def getLoRaBaseBand(self):
+        return self.loraBaseBand
+
+    def getLoRaSubBand(self):
+        return self.loraSubBand
+    
+    def getLoRaClass(self):
+        return self.loraClass
+
+    def getLoRaRXWin2Freq(self):
+        return self.loraRXWin2Freq
+    
+    def getLoRaRXWin2DR(self):
+        return self.loraRXWin2DR
+
+    def getLoRaAuthMode(self):
+        return self.loraAuthMode
+
     def getProjectConfig(self, _projectName):
-        projectConfig = {
-            "dev_eui": self.tree[_projectName]["dev_eui"],
-            "app_eui": self.tree[_projectName]["app_eui"],
-            "app_key": self.tree[_projectName]["app_key"],
-            "apps_key": self.tree[_projectName]["apps_key"],
-            "nwks_key": self.tree[_projectName]["nwks_key"],
-            "dev_addr": self.tree[_projectName]["dev_addr"],
+        projectConfig = {            
             "sampling_period": self.tree[_projectName]["sampling_period"],
-            "sensor_list": self.tree[_projectName]["sensor_list"]                    
+            "sensor_list": self.tree[_projectName]["sensor_list"],
+            "dev_eui": self.tree[_projectName]["ttn"]["dev_eui"],
+            "app_eui": self.tree[_projectName]["ttn"]["app_eui"],
+            "app_key": self.tree[_projectName]["ttn"]["app_key"],
+            "apps_key": self.tree[_projectName]["ttn"]["apps_key"],
+            "nwks_key": self.tree[_projectName]["ttn"]["nwks_key"],
+            "dev_addr": self.tree[_projectName]["ttn"]["dev_addr"],            
+            "tx_power": self.tree[_projectName]["lora"]["tx_power"],
+            "uplink_dr": self.tree[_projectName]["lora"]["uplink_dr"],
+            "chan0_freq": self.tree[_projectName]["lora"]["chan0_freq"],
+            "chan0_dr": self.tree[_projectName]["lora"]["chan0_dr"],
+            "chan1_freq": self.tree[_projectName]["lora"]["chan1_freq"],
+            "chan1_dr": self.tree[_projectName]["lora"]["chan1_dr"],            
+            "adr": self.tree[_projectName]["lora"]["adr"],            
+            "repeat": self.tree[_projectName]["lora"]["repeat"],
+            "retry": self.tree[_projectName]["lora"]["retry"],
+            "initial_port": self.tree[_projectName]["lora"]["initial_port"]
         }        
         for id in self.tree[_projectName]["sensor_list"]:
             projectConfig[id] = {                

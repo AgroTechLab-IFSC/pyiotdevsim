@@ -25,7 +25,10 @@
 var NAVTREE =
 [
   [ "pyIoTDevSim", "index.html", [
+    [ "Features list", "feature_list.html", null ],
+    [ "Configuration file details", "config_file.html", null ],
     [ "RHF76-052", "rhf76_052.html", null ],
+    [ "RHF0M003", "rhf0m003.html", null ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
       [ "Class Index", "classes.html", null ],

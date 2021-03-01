@@ -1,78 +1,206 @@
-projects:
-  - CattleTracker  
+system:
+  debug_level: "DEBUG"
+  lora_module: "RHF76-052"
+  serial:
+    port: "/dev/ttyUSB0"
+    baudrate: 9600
+  lora:
+    base_band: "AU920"
+    sub_band: 2
+    class: "A"
+    rxwin2_freq: 923.3
+    rxwin2_dr: "DR8"
+    auth_mode: "LWABP"
 
-CattleTracker:
-  dev_eui: "0002E84456BF29D4"
-  app_eui: "70B3D57ED003A356"
-  dev_addr: "2603125F"  
-  nwks_key: "135DE31ED86C11588D4845D08CCB107A"
-  apps_key: "CCF4DFD4BC8BA0BBD55BE994767304E9"
-  app_key: "550D3540D601D3927759116187DCFB1D"
-  sampling_period: 300
-  sensor_list:
-    - latitude
-    - longitude
-    - altitude
-    - speed
-    - motion    
-    - battery_voltage
-  latitude:
-    data_type: float32
-    min_value: -27.804380
-    max_value: -27.804390
-  longitude:
-    data_type: float32
-    min_value: -50.337870
-    max_value: -50.337880
-  altitude:    
-    data_type: uint16
-    min_value: 870
-    max_value: 900
-  speed:
-    data_type: uint8
-    min_value: 0
-    max_value: 5
-  motion:    
-    data_type: uint8
-    min_value: 0
-    max_value: 1  
-  battery_voltage:    
-    data_type: float_uint16
-    min_value: 2.8
-    max_value: 4.8
+projects: 
+  - AgroTech4All_ATS-01
+  - AgroTech4All_ATS-02
 
-VRMS:
-  dev_eui: "00DE745EAFBDE7FF"
-  app_eui: "70B3D57ED003589D"
-  dev_addr: "26031A97"  
-  nwks_key: "71E7D02189BFDED1592009C86AD33E60"
-  apps_key: "DD03A9563F0045E5549D62CBD296F225"  
-  app_key: "BE45CF73E8BF7090F115EE0E930FA1C9"
-  sampling_period: 60
+# CattleTracker:
+#   sampling_period: 20
+#   ttn:
+#     dev_eui: "0002E84456BF29D4"
+#     app_eui: "70B3D57ED003A356"
+#     dev_addr: "260B334F"  
+#     nwks_key: "D36428DDFDA568A7FCC2CBC4F0FBF0C0"
+#     apps_key: "9819F012352F328C1A2E2FF87AF846FB"
+#     app_key: "550D3540D601D3927759116187DCFB1D"
+#   lora: 
+#     tx_power: 8
+#     uplink_dr: "DR0"  
+#     chan0_freq: 917.2
+#     chan0_dr: "DR1"
+#     chan1_freq: 917.9
+#     chan1_dr: "DR1"
+#     rxwin2_freq: 923.3
+#     rxwin2_dr: "DR8"
+#     adr: "OFF"
+#     auth_mode: "LWABP"
+#     repeat: 2
+#     retry: 2
+#   sensor_list:
+#     - latitude
+#     - longitude
+#     - altitude
+#     - speed
+#     - motion    
+#     - battery_voltage
+#   latitude:
+#     data_type: float32
+#     min_value: -27.804380
+#     max_value: -27.804390
+#   longitude:
+#     data_type: float32
+#     min_value: -50.337870
+#     max_value: -50.337880
+#   altitude:    
+#     data_type: uint16
+#     min_value: 870
+#     max_value: 900
+#   speed:
+#     data_type: uint8
+#     min_value: 0
+#     max_value: 5
+#   motion:    
+#     data_type: uint8
+#     min_value: 0
+#     max_value: 1  
+#   battery_voltage:    
+#     data_type: float_uint16
+#     min_value: 2.8
+#     max_value: 4.8
+
+AgroTech4All_ATS-01:
+  sampling_period: 30
+  ttn:
+    dev_eui: "4786E6ED003E0037"
+    app_eui: "70B3D57ED003A356"
+    dev_addr: "260B508A"  
+    nwks_key: "144B91BFF70E72505BC9B73D7B3D23B0"
+    apps_key: "F5B369CB9FFB255C0481DD3C03AC9FA8"
+    app_key: "550D3540D601D3927759116187DCFB1D"
+  lora:    
+    tx_power: 20
+    uplink_dr: "DR0"  
+    chan0_freq: 917.2
+    chan0_dr: "DR0"
+    chan1_freq: 917.9
+    chan1_dr: "DR0"    
+    adr: "OFF"    
+    repeat: 2
+    retry: 2
+    initial_port: 10
   sensor_list:
+    - air_temperature
+    - air_humidity
+    - light_intensity
+    - uv_index
     - battery_voltage    
+  air_temperature:
+    data_type: float32_compressed
+    min_value: 22.0
+    max_value: 24.0  
+  air_humidity:
+    data_type: uint8
+    min_value: 75
+    max_value: 80  
+  light_intensity:
+    data_type: uint16
+    min_value: 35000
+    max_value: 38000  
+  uv_index:    
+    data_type: uint8
+    min_value: 9
+    max_value: 10  
   battery_voltage:    
     data_type: float_uint16
-    min_value: 10.0
-    max_value: 15.0
+    min_value: 4.8
+    max_value: 5.2  
 
-lora:
-  base_band: "AU920"
-  class: "A"
-  tx_power: 8
-  uplink_dr: "DR1"  
-  chan0_freq: 917.2
-  chan0_dr: "DR1"
-  chan1_freq: 917.9
-  chan1_dr: "DR1"
-  rxwin2_freq: 923.3
-  rxwin2_dr: "DR8"
-  adr: "OFF"
-  auth_mode: "LWOTAA"
-  repeat: 3
-  retry: 4
-
-serial:
-  port: "/dev/ttyUSB0"
-  baudrate: 9600
+AgroTech4All_ATS-02:
+  sampling_period: 30
+  ttn:
+    dev_eui: "00DE745EAFBDE7FF"
+    app_eui: "70B3D57ED003589D"
+    dev_addr: "260B2B76"  
+    nwks_key: "C61EFADE6A6529E01F1D232C11294657"
+    apps_key: "865C74052E7D882CB934D3057915E828"
+    app_key: "865C74052E7D882CB934D3057915E828"
+  lora:
+    tx_power: 20
+    uplink_dr: "DR1"  
+    chan0_freq: 917.2
+    chan0_dr: "DR0"
+    chan1_freq: 917.9
+    chan1_dr: "DR0"    
+    adr: "OFF"    
+    repeat: 2
+    retry: 2
+    initial_port: 10  
+  sensor_list:
+    - air_temperature
+    - air_humidity
+    - light_intensity
+    - uv_index
+    - soil_moisture1
+    - soil_moisture2
+    - soil_temperature
+    - leaf_humidity1
+    - leaf_humidity2
+    - anemometer
+    - pluviometer
+    - wind_sock
+    - battery_voltage    
+  air_temperature:
+    data_type: float32_compressed
+    min_value: 21.0
+    max_value: 23.0  
+  air_humidity:
+    data_type: uint8
+    min_value: 75
+    max_value: 80  
+  light_intensity:
+    data_type: uint16
+    min_value: 35000
+    max_value: 38000  
+  uv_index:    
+    data_type: uint8
+    min_value: 9
+    max_value: 10  
+  soil_moisture1:
+    data_type: uint8
+    min_value: 73
+    max_value: 78 
+  soil_moisture2:
+    data_type: uint8
+    min_value: 75
+    max_value: 80 
+  soil_temperature:
+    data_type: float32_compressed
+    min_value: 18.0
+    max_value: 20.0 
+  leaf_humidity1:
+    data_type: uint8
+    min_value: 60
+    max_value: 63 
+  leaf_humidity2:
+    data_type: uint8
+    min_value: 65
+    max_value: 68
+  anemometer:
+    data_type: uint8
+    min_value: 5
+    max_value: 8 
+  pluviometer:
+    data_type: float_uint16
+    min_value: 0.0
+    max_value: 2.0 
+  wind_sock:
+    data_type: uint8
+    min_value: 5
+    max_value: 8 
+  battery_voltage:    
+    data_type: float_uint16
+    min_value: 4.8
+    max_value: 5.2  
   

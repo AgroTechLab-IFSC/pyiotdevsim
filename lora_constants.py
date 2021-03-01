@@ -1,5 +1,5 @@
 # Base bands
-lora_baseband_ref = ["EU434", "EU868", "US915", "AU920"]
+lora_baseband_ref = ["EU434", "EU868", "US915", "AU915", "AU920"]
 
 # Class
 lora_class_ref = ["A", "B", "C"]
