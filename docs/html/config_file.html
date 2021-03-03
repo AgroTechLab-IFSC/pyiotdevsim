@@ -88,44 +88,92 @@ $(document).ready(function(){initNavTree('config_file.html',''); initResizable()
 <div class="title">Configuration file details </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>The pyIoTDevSim uses a YAML format configuration file.</p><ul>
-<li>Added RHF0M003 module compatibility;</li>
-<li>Moved LoRa session to Project session as a subsession (like TTN);</li>
-<li>Included sub-band parameter;</li>
-<li>Change module configuration (disable all channels of sub-bands not used);</li>
+<div class="textblock"><p>The pyIoTDevSim.yml is the configuration file searched by pyIoTDevSim to sets system, LoRa and projects parameters.<br  />
+ It uses a YAML format and all sections and keys parameters must be defined in lower case mode.<br  />
+ Two main sections are defined:</p><ul>
+<li><code>system</code></li>
+<li><code>projects</code></li>
 </ul>
-<p><b>Version 0.1.0 (16/11/2020):</b></p><ul>
-<li>Added RHF72-056 module compatibility;</li>
-<li>Multiproject capability (one thread by project);</li>
-<li>Configuration by YAML file;<ul>
-<li>Project session (with TTN subsession);</li>
-<li>LoRa session;</li>
-<li>Serial session;</li>
-</ul>
-</li>
-<li>Payload sent using HEX format;</li>
-<li>Data types:<ul>
-<li>UINT8;</li>
-<li>UINT16;</li>
-<li>FLOAT_UINT16;</li>
-<li>FLOAT_COMPRESSED;</li>
-<li>FLOAT32;</li>
-</ul>
-</li>
-<li>LOG generation;</li>
-</ul>
-<p><br  />
-<br  />
- <b>AgroTechLab (<em>Laboratório de Desenvolvimento de Tecnologias para o Agronegócio</em>)</b><br  />
- <b>IFSC (<em>Instituto Federal de Santa Catarina</em>)</b><br  />
- Rua Heitor Vila Lobos, 222 - São Francisco<br  />
- Lages/SC - Brazil<br  />
- CEP: 88.506-400<br  />
- </p><table style="width:100%">
-<tr>
-<td><a href="https://agrotechlab.lages.ifsc.edu.br/"><img src="../figs/agrotechlab_logo.png" alt="AgroTechLab" class="inline"/></a> </td><td><a href="https://www.thethingsnetwork.org/community/lages/"><img src="../figs/ttn_lages.png" alt="TTN/Lages" class="inline"/></a> </td><td><a href="https://www.ifsc.edu.br/web/campus-lages"><img src="../figs/ifsc_logo.png" alt="IFSC/Lages" class="inline"/></a>  </td></tr>
-</table>
-</div></div><!-- contents -->
+<p>The <code>system</code> section layout defines common LoRa parameters, LoRa module interface and the debug level used. An example is showed bellow: </p><div class="fragment"><div class="line">system:</div>
+<div class="line">  debug_level: &quot;DEBUG&quot;</div>
+<div class="line">  lora_module: &quot;RHF76-052&quot;</div>
+<div class="line">  serial:</div>
+<div class="line">    port: &quot;/dev/ttyUSB0&quot;</div>
+<div class="line">    baudrate: 9600</div>
+<div class="line">  lora:</div>
+<div class="line">    base_band: &quot;AU920&quot;</div>
+<div class="line">    sub_band: 2</div>
+<div class="line">    class: &quot;A&quot;</div>
+<div class="line">    rxwin2_freq: 923.3</div>
+<div class="line">    rxwin2_dr: &quot;DR8&quot;</div>
+<div class="line">    auth_mode: &quot;LWABP&quot;</div>
+</div><!-- fragment --><p>The <code>projects</code> section will list the projects enabled to run. An example is showed bellow (in this case Project C is defined but not will be enabled): </p><div class="fragment"><div class="line">projects: </div>
+<div class="line">  - Project_A</div>
+<div class="line">  - Project_B</div>
+<div class="line">  # - Project_C</div>
+</div><!-- fragment --><p>Each project listed into the <code>projects</code> section must have a section with its name and the following parameters: </p><div class="fragment"><div class="line">Project_A:</div>
+<div class="line">  sampling_period: 30</div>
+<div class="line">  ttn:</div>
+<div class="line">    dev_eui: &quot;0123456789ABCDEF&quot;</div>
+<div class="line">    app_eui: &quot;0123456789ABCDEF&quot;</div>
+<div class="line">    dev_addr: &quot;01234567&quot;  </div>
+<div class="line">    nwks_key: &quot;0123456789ABCDEF0123456789ABCDEF&quot;</div>
+<div class="line">    apps_key: &quot;0123456789ABCDEF0123456789ABCDEF&quot;</div>
+<div class="line">    app_key: &quot;0123456789ABCDEF0123456789ABCDEF&quot;</div>
+<div class="line">  lora:    </div>
+<div class="line">    tx_power: 20</div>
+<div class="line">    uplink_dr: &quot;DR0&quot;  </div>
+<div class="line">    chan0_freq: 917.2</div>
+<div class="line">    chan0_dr: &quot;DR0&quot;</div>
+<div class="line">    chan1_freq: 917.9</div>
+<div class="line">    chan1_dr: &quot;DR0&quot;    </div>
+<div class="line">    adr: &quot;OFF&quot;    </div>
+<div class="line">    repeat: 2</div>
+<div class="line">    retry: 2</div>
+<div class="line">    initial_port: 10</div>
+<div class="line">  sensor_list:</div>
+<div class="line">    - air_temperature</div>
+<div class="line">    - air_humidity</div>
+<div class="line">    - light_intensity</div>
+<div class="line">    - uv_index</div>
+<div class="line">    - battery_voltage    </div>
+<div class="line">  air_temperature:</div>
+<div class="line">    data_type: float32_compressed</div>
+<div class="line">    min_value: 22.0</div>
+<div class="line">    max_value: 24.0  </div>
+<div class="line">  air_humidity:</div>
+<div class="line">    data_type: uint8</div>
+<div class="line">    min_value: 75</div>
+<div class="line">    max_value: 80  </div>
+<div class="line">  light_intensity:</div>
+<div class="line">    data_type: uint16</div>
+<div class="line">    min_value: 35000</div>
+<div class="line">    max_value: 38000  </div>
+<div class="line">  uv_index:    </div>
+<div class="line">    data_type: uint8</div>
+<div class="line">    min_value: 9</div>
+<div class="line">    max_value: 10  </div>
+<div class="line">  battery_voltage:    </div>
+<div class="line">    data_type: float_uint16</div>
+<div class="line">    min_value: 4.8</div>
+<div class="line">    max_value: 5.2  </div>
+</div><!-- fragment --><br><br><br><hr>
+<table style="margin-left: auto; margin-right: auto;">        
+    <tr>
+        <td>
+            <a href="https://agrotechlab.lages.ifsc.edu.br/"><img src="../figs/agrotechlab_logo.png" alt="AgroTechLab" width="100%"></a>
+        </td>
+        <td></td>
+        <td>
+            <a href="https://www.ifsc.edu.br/web/campus-lages"><img src="../figs/ifsc_logo.png" alt="IFSC/Lages" width="70%"></a>
+        </td>
+        <td></td>
+        <td>
+            <a href="https://www.thethingsnetwork.org/community/lages/"><img src="../figs/ttn_lages.png" alt="TTN/Lages" width="70%"></a>
+        </td>
+    </tr>
+</table>      
+ </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->
 <!-- start footer part -->

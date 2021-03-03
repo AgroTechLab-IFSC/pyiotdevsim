@@ -4,22 +4,11 @@
 # ![SCHEME schematic connection](../figs/scheme.png)<br>
 # 
 #  A complete features list is found @subpage feature_list "here" and the configuration file it is detailed @subpage config_file "here".<br>
-#  The following LoRaWAN modules are supported:
+#  At the moment, only the following LoRaWAN modules are supported:
 #   - <b>@subpage rhf76_052</b> (since v0.1.0)
 #   - <b>@subpage rhf0m003</b> (since v0.2.0)
-# 
-#  <br><br>
-#  <b>AgroTechLab (<i>Laboratório de Desenvolvimento de Tecnologias para o Agronegócio</i>)</b><br>
-#  <b>IFSC (<i>Instituto Federal de Santa Catarina</i>)</b><br>
-#  Rua Heitor Vila Lobos, 222 - São Francisco<br>
-#  Lages/SC - Brazil<br>
-#  CEP: 88.506-400<br>
-#  <table style="width:100%">
-#   <tr>
-#       <td><a href="https://agrotechlab.lages.ifsc.edu.br/"><img src="../figs/agrotechlab_logo.png" alt="AgroTechLab"></a></td>
-#       <td><a href="https://www.thethingsnetwork.org/community/lages/"><img src="../figs/ttn_lages.png" alt="TTN/Lages"></a></td>
-#       <td><a href="https://www.ifsc.edu.br/web/campus-lages"><img src="../figs/ifsc_logo.png" alt="IFSC/Lages"></a></td>
-#   </tr>
+# <br>
+# @htmlinclude agrotechlab_footer.html
 
 ## @page feature_list Features list
 # <b>Version 0.2.0 (26/02/2021):</b>
@@ -43,61 +32,31 @@
 #     - FLOAT_COMPRESSED;
 #     - FLOAT32;
 #   - LOG generation;
-# 
-#  <br><br>
-#  <b>AgroTechLab (<i>Laboratório de Desenvolvimento de Tecnologias para o Agronegócio</i>)</b><br>
-#  <b>IFSC (<i>Instituto Federal de Santa Catarina</i>)</b><br>
-#  Rua Heitor Vila Lobos, 222 - São Francisco<br>
-#  Lages/SC - Brazil<br>
-#  CEP: 88.506-400<br>
-#  <table style="width:100%">
-#   <tr>
-#       <td><a href="https://agrotechlab.lages.ifsc.edu.br/"><img src="../figs/agrotechlab_logo.png" alt="AgroTechLab"></a></td>
-#       <td><a href="https://www.thethingsnetwork.org/community/lages/"><img src="../figs/ttn_lages.png" alt="TTN/Lages"></a></td>
-#       <td><a href="https://www.ifsc.edu.br/web/campus-lages"><img src="../figs/ifsc_logo.png" alt="IFSC/Lages"></a></td>
-#   </tr>
+# @htmlinclude agrotechlab_footer.html
 
 ## @page config_file Configuration file details
-# The pyIoTDevSim uses a YAML format configuration file.
-#   - Added RHF0M003 module compatibility;
-#   - Moved LoRa session to Project session as a subsession (like TTN);
-#   - Included sub-band parameter;
-#   - Change module configuration (disable all channels of sub-bands not used);
+# The pyIoTDevSim.yml is the configuration file searched by pyIoTDevSim to sets system, LoRa and projects parameters.<br>
+# It uses a YAML format and all sections and keys parameters must be defined in lower case mode.<br>
+# Two main sections are defined:
+#   - <code>system</code>
+#   - <code>projects</code>
 # 
-# <b>Version 0.1.0 (16/11/2020):</b>
-#   - Added RHF72-056 module compatibility;
-#   - Multiproject capability (one thread by project);
-#   - Configuration by YAML file;
-#     - Project session (with TTN subsession);
-#     - LoRa session;
-#     - Serial session;
-#   - Payload sent using HEX format;
-#   - Data types:
-#     - UINT8;
-#     - UINT16;
-#     - FLOAT_UINT16;
-#     - FLOAT_COMPRESSED;
-#     - FLOAT32;
-#   - LOG generation;
-# 
-#  <br><br>
-#  <b>AgroTechLab (<i>Laboratório de Desenvolvimento de Tecnologias para o Agronegócio</i>)</b><br>
-#  <b>IFSC (<i>Instituto Federal de Santa Catarina</i>)</b><br>
-#  Rua Heitor Vila Lobos, 222 - São Francisco<br>
-#  Lages/SC - Brazil<br>
-#  CEP: 88.506-400<br>
-#  <table style="width:100%">
-#   <tr>
-#       <td><a href="https://agrotechlab.lages.ifsc.edu.br/"><img src="../figs/agrotechlab_logo.png" alt="AgroTechLab"></a></td>
-#       <td><a href="https://www.thethingsnetwork.org/community/lages/"><img src="../figs/ttn_lages.png" alt="TTN/Lages"></a></td>
-#       <td><a href="https://www.ifsc.edu.br/web/campus-lages"><img src="../figs/ifsc_logo.png" alt="IFSC/Lages"></a></td>
-#   </tr>
+# The <code>system</code> section layout defines common LoRa parameters, LoRa module interface and the debug level used. An example is showed bellow: 
+# @include system.yml
+#
+# The <code>projects</code> section will list the projects enabled to run. An example is showed bellow (in this case Project C is defined but not will be enabled):
+# @include projects.yml
+#
+# Each project listed into the <code>projects</code> section must have a section with its name and the following parameters:
+# @include projectA.yml
+#
+# @htmlinclude agrotechlab_footer.html
 
 ## @page rhf76_052 RHF76-052
-# RisingHF LoRaWAN module based on RHF76-052AM chip. It is a low power，low cost and small size module embedded with LoRa® chip SX1276 
-# of Semtech, and ultra-low power MCU STM32L051/052xx of ST. The application of LoraWAN® module is targeted at wireless sensor network，
+# RisingHF LoRaWAN&reg; module based on RHF76-052AM chip. It is a low power，low cost and small size module embedded with LoRa&reg; chip SX1276 
+# of Semtech&reg;, and ultra-low power MCU STM32L051/052xx of ST. The application of LoraWAN&reg; module is targeted at wireless sensor network，
 # AMR and others IoT devices powered by battery which need low power consumption to extend the battery life.<br>
-# RHF76-052AM key features are listed below, details can be found into [datasheet](../datasheets/rhf76052_datasheet.pdf):
+# RHF76-052AM key features are listed below, details can be found into [datasheet](../datasheets/rhf76052.pdf):
 #  - Supply voltage: 3.3V; 
 #  - Operating voltage: 3.3V;
 #  - Low power consumption: 1.45uA sleep current in WOR mode;
@@ -105,53 +64,30 @@
 #   - Low frequency band: 20 dBm @ 434MHz/470MHz;
 #   - High frequency band: 14 dBm @ 868MHz/915MHz;
 #  - User-friendly interface: 
-#   - AT commands (documentations [here](../datasheets/ATCommands_v31.pdf) and [here](../datasheets/ATCommands_v42.pdf));
+#   - AT commands (documentations [here](../datasheets/PS01509_v3.1.pdf) and [here](../datasheets/PS01509_v4.2.pdf));
 #   - SPI/USART/I2C/USB, 2 × ADC，10 × GPIOs;
 #  - Support LoRaWAN® protocol;
 # 
 #  ![PROMINI schematic connection](../figs/rhf76052_pinout.png)
-# 
-#  <br><br>
-#  <b>AgroTechLab (<i>Laboratório de Desenvolvimento de Tecnologias para o Agronegócio</i>)</b><br>
-#  <b>IFSC (<i>Instituto Federal de Santa Catarina</i>)</b><br>
-#  Rua Heitor Vila Lobos, 222 - São Francisco<br>
-#  Lages/SC - Brazil<br>
-#  CEP: 88.506-400<br>
-#  <table style="width:100%">
-#   <tr>
-#       <td><a href="https://agrotechlab.lages.ifsc.edu.br/"><img src="../figs/agrotechlab_logo.png" alt="AgroTechLab"></a></td>
-#       <td><a href="https://www.thethingsnetwork.org/community/lages/"><img src="../figs/ttn_lages.png" alt="TTN/Lages"></a></td>
-#       <td><a href="https://www.ifsc.edu.br/web/campus-lages"><img src="../figs/ifsc_logo.png" alt="IFSC/Lages"></a></td>
-#   </tr>
+# @htmlinclude agrotechlab_footer.html
 
 ## @page rhf0m003 RHF0M003
-#  RisingHF LoRaWAN module based on RHF0M003-HF20 chip. It is a low power，low cost and small size module embedded with LoRa® chip SX1276 
-# of Semtech, and ultra-low power MCU STM32L051/052xx of ST. The application of LoraWAN® module is targeted at wireless sensor network，
-# AMR and others IoT devices powered by battery which need low power consumption to extend the battery life.<br>
-# RHF76-052AM key features are listed below, details can be found into [datasheet](../datasheets/rhf76052_datasheet.pdf):
+#  RisingHF LoRaWAN&reg; module based on RHF0M003 chip. It is a low cost, low power and ultra-small size module, embedded with Semtech’s LoRa&reg; 
+# propriety chip SX127x and ST’s ultra-low power MCU STM32L07x. RHF0M003 LoraWAN&reg; module is targeted application at wireless sensor network，
+# AMR, wearable devices and others IOT devices powered by battery which need low power consumption to extend the battery life.<br>
+# RHF0M003 key features are listed below, details can be found into [datasheet](../datasheets/rhf0m003.pdf):
 #  - Supply voltage: 3.3V; 
 #  - Operating voltage: 3.3V;
-#  - Low power consumption: 1.45uA sleep current in WOR mode;
+#  - Low power consumption: 1.4uA sleep current in WOR mode;
 #  - Dual band design:
-#   - Low frequency band: 434MHz/470MHz;
-#   - High frequency band: 868MHz/915MHz;
+#   - Low frequency band (LF20): 20 dBm at 434MHz/470MHz;
+#   - High frequency band (HF20): 20 dBm at 868MHz/915MHz;
 #  - User-friendly interface: 
-#   - AT commands (documentations [here](../datasheets/ATCommands_v31.pdf) and [here](../datasheets/ATCommands_v42.pdf));
-#   - SPI/USART/I2C/USB, 2 × ADC，10 × GPIOs;
-#  - Support LoRaWAN® protocol;
-#  ![PROMINI schematic connection](../figs/rhf76052_pinout.png)
-#  <br><br>
-#  <b>AgroTechLab (<i>Laboratório de Desenvolvimento de Tecnologias para o Agronegócio</i>)</b><br>
-#  <b>IFSC (<i>Instituto Federal de Santa Catarina</i>)</b><br>
-#  Rua Heitor Vila Lobos, 222 - São Francisco<br>
-#  Lages/SC - Brazil<br>
-#  CEP: 88.506-400<br>
-#  <table style="width:100%">
-#   <tr>
-#       <td><a href="https://agrotechlab.lages.ifsc.edu.br/"><img src="../figs/agrotechlab_logo.png" alt="AgroTechLab"></a></td>
-#       <td><a href="https://www.thethingsnetwork.org/community/lages/"><img src="../figs/ttn_lages.png" alt="TTN/Lages"></a></td>
-#       <td><a href="https://www.ifsc.edu.br/web/campus-lages"><img src="../figs/ifsc_logo.png" alt="IFSC/Lages"></a></td>
-#   </tr>
+#   - AT commands (documentations [here](../datasheets/PS01509_v4.2.pdf) and [here](../datasheets/PS01709_v1.2.pdf));
+#   - LPUART/USART/I2C/USB, 2 × ADC，10 × GPIOs;
+#  - Support LoRaWAN® protocol;<br>
+#  ![PROMINI schematic connection](../figs/rhf0m003_pinout.png)
+# @htmlinclude agrotechlab_footer.html
 
 ## @file pyiotdevsim.py
 #  @author Robson Costa (<mailto:robson.costa@ifsc.edu.br>)

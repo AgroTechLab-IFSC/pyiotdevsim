@@ -1,3 +1,16 @@
+## @file project.py
+#  @author Robson Costa (<mailto:robson.costa@ifsc.edu.br>)
+#  @brief Project class.
+#  @version 0.2.0
+#  @since 16/11/2020
+#  @date 01/03/2021
+#  @copyright Copyright &copy; 2020 - 2021 <a href="https://agrotechlab.lages.ifsc.edu.br" target="_blank">AgroTechLab</a>.\n
+#  ![LICENSE license](../figs/license.png)<br>
+#  Licensed under the CC BY-NC-SA (<i>Creative Commons Attribution-NonCommercial-ShareAlike</i>) 4.0 International Unported License (the <em>"License"</em>). You may not
+#  use this file except in compliance with the License. You may obtain a copy of the License <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode" target="_blank">here</a>.
+#  Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an <em>"as is" basis, 
+#  without warranties or  conditions of any kind</em>, either express or implied. See the License for the specific language governing permissions 
+#  and limitations under the License.
 import threading
 import logging
 import time
@@ -7,16 +20,39 @@ import struct
 import binascii
 
 class Project(threading.Thread):
+    """! The Project class.
+    Manages the project operations. It's created a thread to each project configured.
+    """
 
     def __init__(self, name, cfg, loraObj, loraBaseBand, loraAuthMode):
+        """! The class constructor.
+        @param name The project name.
+        @param cfg The project configuration.
+        @param loraObj The LoRa object.
+        @param loraBaseBand The LoRa base-band.
+        @param loraAuthMode The LoRa authentication mode.
+        @return An instance of the Project class.
+        """  
         threading.Thread.__init__(self)        
+        
+        ## Projec name
         self.name = name
+
+        ## Projec configuration
         self.config = cfg
+
+        ## LoRa object
         self.lora = loraObj
+
+        ## LoRa base band
         self.baseBand = loraBaseBand  
+
+        ## LoRa authentication mode
         self.authMode = loraAuthMode      
 
     def run(self):
+        """! The run method.        
+        """  
         # Waits for a random time to unsynchronize the threads
         time.sleep(random.randint(5,10))
 

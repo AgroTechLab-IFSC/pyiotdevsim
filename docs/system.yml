@@ -1,0 +1,13 @@
+system:
+  debug_level: "DEBUG"
+  lora_module: "RHF76-052"
+  serial:
+    port: "/dev/ttyUSB0"
+    baudrate: 9600
+  lora:
+    base_band: "AU920"
+    sub_band: 2
+    class: "A"
+    rxwin2_freq: 923.3
+    rxwin2_dr: "DR8"
+    auth_mode: "LWABP"

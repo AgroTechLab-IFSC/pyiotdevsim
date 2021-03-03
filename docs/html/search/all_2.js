@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['lora_3',['LoRa',['../classlora_1_1_lo_ra.html',1,'lora']]]
+  ['baseband_2',['baseBand',['../classproject_1_1_project.html#ae61c3594cdf0bcf4601e073a687f7914',1,'project::Project']]]
 ];

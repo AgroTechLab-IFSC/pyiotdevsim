@@ -1,0 +1,46 @@
+Project_A:
+  sampling_period: 30
+  ttn:
+    dev_eui: "0123456789ABCDEF"
+    app_eui: "0123456789ABCDEF"
+    dev_addr: "01234567"  
+    nwks_key: "0123456789ABCDEF0123456789ABCDEF"
+    apps_key: "0123456789ABCDEF0123456789ABCDEF"
+    app_key: "0123456789ABCDEF0123456789ABCDEF"
+  lora:    
+    tx_power: 20
+    uplink_dr: "DR0"  
+    chan0_freq: 917.2
+    chan0_dr: "DR0"
+    chan1_freq: 917.9
+    chan1_dr: "DR0"    
+    adr: "OFF"    
+    repeat: 2
+    retry: 2
+    initial_port: 10
+  sensor_list:
+    - air_temperature
+    - air_humidity
+    - light_intensity
+    - uv_index
+    - battery_voltage    
+  air_temperature:
+    data_type: float32_compressed
+    min_value: 22.0
+    max_value: 24.0  
+  air_humidity:
+    data_type: uint8
+    min_value: 75
+    max_value: 80  
+  light_intensity:
+    data_type: uint16
+    min_value: 35000
+    max_value: 38000  
+  uv_index:    
+    data_type: uint8
+    min_value: 9
+    max_value: 10  
+  battery_voltage:    
+    data_type: float_uint16
+    min_value: 4.8
+    max_value: 5.2  

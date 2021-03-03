@@ -92,105 +92,856 @@ $(document).ready(function(){initNavTree('classlora_1_1_lo_ra.html',''); initRes
 <div class="title">lora.LoRa Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>The <a class="el" href="classlora_1_1_lo_ra.html" title="The LoRa class.">LoRa</a> class.  
+ <a href="classlora_1_1_lo_ra.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a3eb1c96f44f7669822e4ab13e7e3534a"><td class="memItemLeft" align="right" valign="top"><a id="a3eb1c96f44f7669822e4ab13e7e3534a"></a>
-def&#160;</td><td class="memItemRight" valign="bottom"><b>__init__</b> (self, _loraCfg, _serialPort)</td></tr>
-<tr class="separator:a3eb1c96f44f7669822e4ab13e7e3534a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab3dba8ec23467b491f55831232539305"><td class="memItemLeft" align="right" valign="top"><a id="ab3dba8ec23467b491f55831232539305"></a>
-def&#160;</td><td class="memItemRight" valign="bottom"><b>checkLoRa</b> (self)</td></tr>
+<tr class="memitem:a837fdec38c86ac41d19081dbfac3c098"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlora_1_1_lo_ra.html#a837fdec38c86ac41d19081dbfac3c098">__init__</a> (self, _loraModule, _serialPortObj)</td></tr>
+<tr class="memdesc:a837fdec38c86ac41d19081dbfac3c098"><td class="mdescLeft">&#160;</td><td class="mdescRight">The class constructor.  <a href="classlora_1_1_lo_ra.html#a837fdec38c86ac41d19081dbfac3c098">More...</a><br /></td></tr>
+<tr class="separator:a837fdec38c86ac41d19081dbfac3c098"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab3dba8ec23467b491f55831232539305"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlora_1_1_lo_ra.html#ab3dba8ec23467b491f55831232539305">checkLoRa</a> (self)</td></tr>
+<tr class="memdesc:ab3dba8ec23467b491f55831232539305"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if <a class="el" href="classlora_1_1_lo_ra.html" title="The LoRa class.">LoRa</a> module is connected and ready to use.  <a href="classlora_1_1_lo_ra.html#ab3dba8ec23467b491f55831232539305">More...</a><br /></td></tr>
 <tr class="separator:ab3dba8ec23467b491f55831232539305"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7b525166f344b5893f36e9719cec7857"><td class="memItemLeft" align="right" valign="top"><a id="a7b525166f344b5893f36e9719cec7857"></a>
-def&#160;</td><td class="memItemRight" valign="bottom"><b>setupLoRa</b> (self)</td></tr>
-<tr class="separator:a7b525166f344b5893f36e9719cec7857"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7c9f79ef4b8bf489e86cbf370e4f9941"><td class="memItemLeft" align="right" valign="top"><a id="a7c9f79ef4b8bf489e86cbf370e4f9941"></a>
-def&#160;</td><td class="memItemRight" valign="bottom"><b>setDevEUI</b> (self, devEUI)</td></tr>
+<tr class="memitem:aeba379c2035f60bb2a06e2fa096c1e4d"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlora_1_1_lo_ra.html#aeba379c2035f60bb2a06e2fa096c1e4d">getLoRaMaxPayload</a> (self, loraBaseBand, loraUPDatarate)</td></tr>
+<tr class="memdesc:aeba379c2035f60bb2a06e2fa096c1e4d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the maximum payload size based on base band and uplink data rate.  <a href="classlora_1_1_lo_ra.html#aeba379c2035f60bb2a06e2fa096c1e4d">More...</a><br /></td></tr>
+<tr class="separator:aeba379c2035f60bb2a06e2fa096c1e4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c9a1f96e95c30d64f365f490bfd27c8"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlora_1_1_lo_ra.html#a9c9a1f96e95c30d64f365f490bfd27c8">setLoRaRX1Win</a> (self)</td></tr>
+<tr class="memdesc:a9c9a1f96e95c30d64f365f490bfd27c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable RX window 1.  <a href="classlora_1_1_lo_ra.html#a9c9a1f96e95c30d64f365f490bfd27c8">More...</a><br /></td></tr>
+<tr class="separator:a9c9a1f96e95c30d64f365f490bfd27c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac0df5359b111b6af2bc97099ec86b837"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlora_1_1_lo_ra.html#ac0df5359b111b6af2bc97099ec86b837">setLoRaRX2Win</a> (self, loraRX2Frequency, loraRX2Datarate)</td></tr>
+<tr class="memdesc:ac0df5359b111b6af2bc97099ec86b837"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the RX window 2 parameters.  <a href="classlora_1_1_lo_ra.html#ac0df5359b111b6af2bc97099ec86b837">More...</a><br /></td></tr>
+<tr class="separator:ac0df5359b111b6af2bc97099ec86b837"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a842239c1caea0a7060e49b4553d0db4d"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlora_1_1_lo_ra.html#a842239c1caea0a7060e49b4553d0db4d">setLoRaAuthMode</a> (self, loraAuthMode)</td></tr>
+<tr class="memdesc:a842239c1caea0a7060e49b4553d0db4d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the authentication mode.  <a href="classlora_1_1_lo_ra.html#a842239c1caea0a7060e49b4553d0db4d">More...</a><br /></td></tr>
+<tr class="separator:a842239c1caea0a7060e49b4553d0db4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa37939f91be7a79521be9d8ce4d905fe"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlora_1_1_lo_ra.html#aa37939f91be7a79521be9d8ce4d905fe">setLoRaADR</a> (self, loraADR)</td></tr>
+<tr class="memdesc:aa37939f91be7a79521be9d8ce4d905fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable or disable ADR (Automatic Data Rate).  <a href="classlora_1_1_lo_ra.html#aa37939f91be7a79521be9d8ce4d905fe">More...</a><br /></td></tr>
+<tr class="separator:aa37939f91be7a79521be9d8ce4d905fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8abdf946f91125328d5171c3fdc4abc8"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlora_1_1_lo_ra.html#a8abdf946f91125328d5171c3fdc4abc8">setLoRaUPDatarate</a> (self, loraUPDatarate)</td></tr>
+<tr class="memdesc:a8abdf946f91125328d5171c3fdc4abc8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the uplink data rate.  <a href="classlora_1_1_lo_ra.html#a8abdf946f91125328d5171c3fdc4abc8">More...</a><br /></td></tr>
+<tr class="separator:a8abdf946f91125328d5171c3fdc4abc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b2b284ebb7f8ec005a02ef66cca45b9"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlora_1_1_lo_ra.html#a0b2b284ebb7f8ec005a02ef66cca45b9">setLoRaTXPower</a> (self, loraTXPower)</td></tr>
+<tr class="memdesc:a0b2b284ebb7f8ec005a02ef66cca45b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the transmission power (in dBm).  <a href="classlora_1_1_lo_ra.html#a0b2b284ebb7f8ec005a02ef66cca45b9">More...</a><br /></td></tr>
+<tr class="separator:a0b2b284ebb7f8ec005a02ef66cca45b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea2a6db829240b92dee573da75b18725"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlora_1_1_lo_ra.html#aea2a6db829240b92dee573da75b18725">setLoRaClass</a> (self, loraClass)</td></tr>
+<tr class="memdesc:aea2a6db829240b92dee573da75b18725"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the <a class="el" href="classlora_1_1_lo_ra.html" title="The LoRa class.">LoRa</a> class.  <a href="classlora_1_1_lo_ra.html#aea2a6db829240b92dee573da75b18725">More...</a><br /></td></tr>
+<tr class="separator:aea2a6db829240b92dee573da75b18725"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8371f6d1d3eff5fc12d29179e614de3a"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlora_1_1_lo_ra.html#a8371f6d1d3eff5fc12d29179e614de3a">setLoRaSubBand</a> (self, loraSubBand)</td></tr>
+<tr class="memdesc:a8371f6d1d3eff5fc12d29179e614de3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the sub-band.  <a href="classlora_1_1_lo_ra.html#a8371f6d1d3eff5fc12d29179e614de3a">More...</a><br /></td></tr>
+<tr class="separator:a8371f6d1d3eff5fc12d29179e614de3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1a3d18dc5dcd7ef114c847c40a4c4f1"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlora_1_1_lo_ra.html#ab1a3d18dc5dcd7ef114c847c40a4c4f1">setLoRaBaseBand</a> (self, loraBaseBand)</td></tr>
+<tr class="memdesc:ab1a3d18dc5dcd7ef114c847c40a4c4f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the base-band.  <a href="classlora_1_1_lo_ra.html#ab1a3d18dc5dcd7ef114c847c40a4c4f1">More...</a><br /></td></tr>
+<tr class="separator:ab1a3d18dc5dcd7ef114c847c40a4c4f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c9f79ef4b8bf489e86cbf370e4f9941"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlora_1_1_lo_ra.html#a7c9f79ef4b8bf489e86cbf370e4f9941">setDevEUI</a> (self, devEUI)</td></tr>
+<tr class="memdesc:a7c9f79ef4b8bf489e86cbf370e4f9941"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the device EUI.  <a href="classlora_1_1_lo_ra.html#a7c9f79ef4b8bf489e86cbf370e4f9941">More...</a><br /></td></tr>
 <tr class="separator:a7c9f79ef4b8bf489e86cbf370e4f9941"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a04212dd90e87940003671319f2f4a38b"><td class="memItemLeft" align="right" valign="top"><a id="a04212dd90e87940003671319f2f4a38b"></a>
-def&#160;</td><td class="memItemRight" valign="bottom"><b>setAppEUI</b> (self, appEUI)</td></tr>
+<tr class="memitem:a04212dd90e87940003671319f2f4a38b"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlora_1_1_lo_ra.html#a04212dd90e87940003671319f2f4a38b">setAppEUI</a> (self, appEUI)</td></tr>
+<tr class="memdesc:a04212dd90e87940003671319f2f4a38b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the application EUI.  <a href="classlora_1_1_lo_ra.html#a04212dd90e87940003671319f2f4a38b">More...</a><br /></td></tr>
 <tr class="separator:a04212dd90e87940003671319f2f4a38b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acee8d45d1ed4deb17149cb9f9952b2f1"><td class="memItemLeft" align="right" valign="top"><a id="acee8d45d1ed4deb17149cb9f9952b2f1"></a>
-def&#160;</td><td class="memItemRight" valign="bottom"><b>setDevAddr</b> (self, devAddr)</td></tr>
+<tr class="memitem:acee8d45d1ed4deb17149cb9f9952b2f1"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlora_1_1_lo_ra.html#acee8d45d1ed4deb17149cb9f9952b2f1">setDevAddr</a> (self, devAddr)</td></tr>
+<tr class="memdesc:acee8d45d1ed4deb17149cb9f9952b2f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the device address.  <a href="classlora_1_1_lo_ra.html#acee8d45d1ed4deb17149cb9f9952b2f1">More...</a><br /></td></tr>
 <tr class="separator:acee8d45d1ed4deb17149cb9f9952b2f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afca85912b991424c3ab298ef5550914c"><td class="memItemLeft" align="right" valign="top"><a id="afca85912b991424c3ab298ef5550914c"></a>
-def&#160;</td><td class="memItemRight" valign="bottom"><b>setNwkSKey</b> (self, nwkSKey)</td></tr>
+<tr class="memitem:afca85912b991424c3ab298ef5550914c"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlora_1_1_lo_ra.html#afca85912b991424c3ab298ef5550914c">setNwkSKey</a> (self, nwkSKey)</td></tr>
+<tr class="memdesc:afca85912b991424c3ab298ef5550914c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the network session key.  <a href="classlora_1_1_lo_ra.html#afca85912b991424c3ab298ef5550914c">More...</a><br /></td></tr>
 <tr class="separator:afca85912b991424c3ab298ef5550914c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a64d9eb6baddec72c7d556251f5e51309"><td class="memItemLeft" align="right" valign="top"><a id="a64d9eb6baddec72c7d556251f5e51309"></a>
-def&#160;</td><td class="memItemRight" valign="bottom"><b>setAppSKey</b> (self, appSKey)</td></tr>
+<tr class="memitem:a64d9eb6baddec72c7d556251f5e51309"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlora_1_1_lo_ra.html#a64d9eb6baddec72c7d556251f5e51309">setAppSKey</a> (self, appSKey)</td></tr>
+<tr class="memdesc:a64d9eb6baddec72c7d556251f5e51309"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the application session key.  <a href="classlora_1_1_lo_ra.html#a64d9eb6baddec72c7d556251f5e51309">More...</a><br /></td></tr>
 <tr class="separator:a64d9eb6baddec72c7d556251f5e51309"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a89ce45d69925fe732e6f73525c2d5b6f"><td class="memItemLeft" align="right" valign="top"><a id="a89ce45d69925fe732e6f73525c2d5b6f"></a>
-def&#160;</td><td class="memItemRight" valign="bottom"><b>setAppKey</b> (self, appKey)</td></tr>
+<tr class="memitem:a89ce45d69925fe732e6f73525c2d5b6f"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlora_1_1_lo_ra.html#a89ce45d69925fe732e6f73525c2d5b6f">setAppKey</a> (self, appKey)</td></tr>
+<tr class="memdesc:a89ce45d69925fe732e6f73525c2d5b6f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the application key.  <a href="classlora_1_1_lo_ra.html#a89ce45d69925fe732e6f73525c2d5b6f">More...</a><br /></td></tr>
 <tr class="separator:a89ce45d69925fe732e6f73525c2d5b6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a542882bd30bd281790e681cefc2e2070"><td class="memItemLeft" align="right" valign="top"><a id="a542882bd30bd281790e681cefc2e2070"></a>
-def&#160;</td><td class="memItemRight" valign="bottom"><b>sendJoinRequest</b> (self)</td></tr>
+<tr class="memitem:a542882bd30bd281790e681cefc2e2070"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlora_1_1_lo_ra.html#a542882bd30bd281790e681cefc2e2070">sendJoinRequest</a> (self)</td></tr>
+<tr class="memdesc:a542882bd30bd281790e681cefc2e2070"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends a join request.  <a href="classlora_1_1_lo_ra.html#a542882bd30bd281790e681cefc2e2070">More...</a><br /></td></tr>
 <tr class="separator:a542882bd30bd281790e681cefc2e2070"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adefa4c0a18f92def12e70567ce06fc3a"><td class="memItemLeft" align="right" valign="top"><a id="adefa4c0a18f92def12e70567ce06fc3a"></a>
-def&#160;</td><td class="memItemRight" valign="bottom"><b>sendNoAckMsgHex</b> (self, _loraPort, _loraMsg)</td></tr>
+<tr class="memitem:adefa4c0a18f92def12e70567ce06fc3a"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlora_1_1_lo_ra.html#adefa4c0a18f92def12e70567ce06fc3a">sendNoAckMsgHex</a> (self, _loraPort, _loraMsg)</td></tr>
+<tr class="memdesc:adefa4c0a18f92def12e70567ce06fc3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends unconfirmed hexadecimal messages.  <a href="classlora_1_1_lo_ra.html#adefa4c0a18f92def12e70567ce06fc3a">More...</a><br /></td></tr>
 <tr class="separator:adefa4c0a18f92def12e70567ce06fc3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a02966ee343a2b5beaee05521fff6f249"><td class="memItemLeft" align="right" valign="top"><a id="a02966ee343a2b5beaee05521fff6f249"></a>
-def&#160;</td><td class="memItemRight" valign="bottom"><b>sendAckMsgHex</b> (self, _loraPort, _loraMsg)</td></tr>
+<tr class="memitem:a02966ee343a2b5beaee05521fff6f249"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlora_1_1_lo_ra.html#a02966ee343a2b5beaee05521fff6f249">sendAckMsgHex</a> (self, _loraPort, _loraMsg)</td></tr>
+<tr class="memdesc:a02966ee343a2b5beaee05521fff6f249"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends confirmed hexadecimal messages.  <a href="classlora_1_1_lo_ra.html#a02966ee343a2b5beaee05521fff6f249">More...</a><br /></td></tr>
 <tr class="separator:a02966ee343a2b5beaee05521fff6f249"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:aa4b63bff31409da719e6362534fa0058"><td class="memItemLeft" align="right" valign="top"><a id="aa4b63bff31409da719e6362534fa0058"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>lock</b></td></tr>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlora_1_1_lo_ra.html#aa4b63bff31409da719e6362534fa0058">lock</a></td></tr>
+<tr class="memdesc:aa4b63bff31409da719e6362534fa0058"><td class="mdescLeft">&#160;</td><td class="mdescRight">Semaphore to use <a class="el" href="classlora_1_1_lo_ra.html" title="The LoRa class.">LoRa</a> object. <br /></td></tr>
 <tr class="separator:aa4b63bff31409da719e6362534fa0058"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a98c60315543ef220a73ab26be5c2e053"><td class="memItemLeft" align="right" valign="top"><a id="a98c60315543ef220a73ab26be5c2e053"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>base_band</b></td></tr>
-<tr class="separator:a98c60315543ef220a73ab26be5c2e053"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a500c9bedfff7876ee9bdb7cc979870ff"><td class="memItemLeft" align="right" valign="top"><a id="a500c9bedfff7876ee9bdb7cc979870ff"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>lora_class</b></td></tr>
-<tr class="separator:a500c9bedfff7876ee9bdb7cc979870ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0cdc6c11d59b51a48ffac5aa3f6aa7b9"><td class="memItemLeft" align="right" valign="top"><a id="a0cdc6c11d59b51a48ffac5aa3f6aa7b9"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>tx_power</b></td></tr>
-<tr class="separator:a0cdc6c11d59b51a48ffac5aa3f6aa7b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5528f62daa119b40e78aa6165197b0be"><td class="memItemLeft" align="right" valign="top"><a id="a5528f62daa119b40e78aa6165197b0be"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>uplink_dr</b></td></tr>
-<tr class="separator:a5528f62daa119b40e78aa6165197b0be"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7603e1e052387ff76dcbc39ba2333dfa"><td class="memItemLeft" align="right" valign="top"><a id="a7603e1e052387ff76dcbc39ba2333dfa"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>max_payload</b></td></tr>
-<tr class="separator:a7603e1e052387ff76dcbc39ba2333dfa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac00b28861014e4c06489a84dda0b2630"><td class="memItemLeft" align="right" valign="top"><a id="ac00b28861014e4c06489a84dda0b2630"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>initial_port</b></td></tr>
-<tr class="separator:ac00b28861014e4c06489a84dda0b2630"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a191b6b9893e92fe327b72a23136cecaa"><td class="memItemLeft" align="right" valign="top"><a id="a191b6b9893e92fe327b72a23136cecaa"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>chan0_freq</b></td></tr>
-<tr class="separator:a191b6b9893e92fe327b72a23136cecaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af92470a423f3a77be85ed060be6e4443"><td class="memItemLeft" align="right" valign="top"><a id="af92470a423f3a77be85ed060be6e4443"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>chan0_dr</b></td></tr>
-<tr class="separator:af92470a423f3a77be85ed060be6e4443"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adb0d1ba42da95303b0a0478ffe54ceca"><td class="memItemLeft" align="right" valign="top"><a id="adb0d1ba42da95303b0a0478ffe54ceca"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>chan1_freq</b></td></tr>
-<tr class="separator:adb0d1ba42da95303b0a0478ffe54ceca"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a17c7d5a9e676b731ae082259ec8d7cf9"><td class="memItemLeft" align="right" valign="top"><a id="a17c7d5a9e676b731ae082259ec8d7cf9"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>chan1_dr</b></td></tr>
-<tr class="separator:a17c7d5a9e676b731ae082259ec8d7cf9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad03d182c09de363bf668b2aeb6eb1635"><td class="memItemLeft" align="right" valign="top"><a id="ad03d182c09de363bf668b2aeb6eb1635"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>rxwin2_freq</b></td></tr>
-<tr class="separator:ad03d182c09de363bf668b2aeb6eb1635"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0f029a69b5c2eb7897afad34175797cc"><td class="memItemLeft" align="right" valign="top"><a id="a0f029a69b5c2eb7897afad34175797cc"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>rxwin2_dr</b></td></tr>
-<tr class="separator:a0f029a69b5c2eb7897afad34175797cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a364c5c1234118ee39bb406652e9de182"><td class="memItemLeft" align="right" valign="top"><a id="a364c5c1234118ee39bb406652e9de182"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>adr</b></td></tr>
-<tr class="separator:a364c5c1234118ee39bb406652e9de182"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7ed4625327333dfe46dbc859e5d2543f"><td class="memItemLeft" align="right" valign="top"><a id="a7ed4625327333dfe46dbc859e5d2543f"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>auth_mode</b></td></tr>
-<tr class="separator:a7ed4625327333dfe46dbc859e5d2543f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a40acfca3071247554b1f24d6f105d5e1"><td class="memItemLeft" align="right" valign="top"><a id="a40acfca3071247554b1f24d6f105d5e1"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>repeat</b></td></tr>
-<tr class="separator:a40acfca3071247554b1f24d6f105d5e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6aa8a7869b7eaf3dd2f26b1ce4601d47"><td class="memItemLeft" align="right" valign="top"><a id="a6aa8a7869b7eaf3dd2f26b1ce4601d47"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>retry</b></td></tr>
-<tr class="separator:a6aa8a7869b7eaf3dd2f26b1ce4601d47"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6740712e3353169e5f8abd717a1f3f50"><td class="memItemLeft" align="right" valign="top"><a id="a6740712e3353169e5f8abd717a1f3f50"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlora_1_1_lo_ra.html#a6740712e3353169e5f8abd717a1f3f50">loraModule</a></td></tr>
+<tr class="memdesc:a6740712e3353169e5f8abd717a1f3f50"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classlora_1_1_lo_ra.html" title="The LoRa class.">LoRa</a> module type. <br /></td></tr>
+<tr class="separator:a6740712e3353169e5f8abd717a1f3f50"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a96cace669017a4f74684486c4eb4b160"><td class="memItemLeft" align="right" valign="top"><a id="a96cace669017a4f74684486c4eb4b160"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>serialPort</b></td></tr>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlora_1_1_lo_ra.html#a96cace669017a4f74684486c4eb4b160">serialPort</a></td></tr>
+<tr class="memdesc:a96cace669017a4f74684486c4eb4b160"><td class="mdescLeft">&#160;</td><td class="mdescRight">Serial object. <br /></td></tr>
 <tr class="separator:a96cace669017a4f74684486c4eb4b160"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>The <a class="el" href="classlora_1_1_lo_ra.html" title="The LoRa class.">LoRa</a> class. </p>
+<p>Manages the <a class="el" href="classlora_1_1_lo_ra.html" title="The LoRa class.">LoRa</a> operations communicating with <a class="el" href="classlora_1_1_lo_ra.html" title="The LoRa class.">LoRa</a> modules. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a837fdec38c86ac41d19081dbfac3c098"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a837fdec38c86ac41d19081dbfac3c098">&#9670;&nbsp;</a></span>__init__()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def lora.LoRa.__init__ </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>_loraModule</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>_serialPortObj</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The class constructor. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">_loraModule</td><td>The type of <a class="el" href="classlora_1_1_lo_ra.html" title="The LoRa class.">LoRa</a> module. </td></tr>
+    <tr><td class="paramname">_serialPortObj</td><td>The serial port object. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>An instance of the <a class="el" href="classlora_1_1_lo_ra.html" title="The LoRa class.">LoRa</a> class based on a specified lora module initialized at specified serial port. </dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="ab3dba8ec23467b491f55831232539305"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab3dba8ec23467b491f55831232539305">&#9670;&nbsp;</a></span>checkLoRa()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def lora.LoRa.checkLoRa </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Check if <a class="el" href="classlora_1_1_lo_ra.html" title="The LoRa class.">LoRa</a> module is connected and ready to use. </p>
+<dl class="section return"><dt>Returns</dt><dd>True - if successfuly </dd>
+<dd>
+False - if failed </dd></dl>
+
+</div>
+</div>
+<a id="aeba379c2035f60bb2a06e2fa096c1e4d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeba379c2035f60bb2a06e2fa096c1e4d">&#9670;&nbsp;</a></span>getLoRaMaxPayload()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def lora.LoRa.getLoRaMaxPayload </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>loraBaseBand</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>loraUPDatarate</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the maximum payload size based on base band and uplink data rate. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">loraBaseBand</td><td>base band </td></tr>
+    <tr><td class="paramname">loraUPDatarate</td><td>uplink data rate </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Maximum payload size. <br  />
+ </dd></dl>
+
+</div>
+</div>
+<a id="a02966ee343a2b5beaee05521fff6f249"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a02966ee343a2b5beaee05521fff6f249">&#9670;&nbsp;</a></span>sendAckMsgHex()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def lora.LoRa.sendAckMsgHex </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>_loraPort</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>_loraMsg</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sends confirmed hexadecimal messages. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">_loraPort</td><td>port </td></tr>
+    <tr><td class="paramname">_loraMsg</td><td>hexadecimal message <br  />
+ </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a542882bd30bd281790e681cefc2e2070"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a542882bd30bd281790e681cefc2e2070">&#9670;&nbsp;</a></span>sendJoinRequest()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def lora.LoRa.sendJoinRequest </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sends a join request. </p>
+<dl class="section return"><dt>Returns</dt><dd>True - if successfuly joined. </dd>
+<dd>
+False - if joined failed. </dd></dl>
+
+</div>
+</div>
+<a id="adefa4c0a18f92def12e70567ce06fc3a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adefa4c0a18f92def12e70567ce06fc3a">&#9670;&nbsp;</a></span>sendNoAckMsgHex()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def lora.LoRa.sendNoAckMsgHex </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>_loraPort</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>_loraMsg</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sends unconfirmed hexadecimal messages. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">_loraPort</td><td>port </td></tr>
+    <tr><td class="paramname">_loraMsg</td><td>hexadecimal message <br  />
+ </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a04212dd90e87940003671319f2f4a38b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a04212dd90e87940003671319f2f4a38b">&#9670;&nbsp;</a></span>setAppEUI()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def lora.LoRa.setAppEUI </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>appEUI</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the application EUI. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">appEUI</td><td>application EUI </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a89ce45d69925fe732e6f73525c2d5b6f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a89ce45d69925fe732e6f73525c2d5b6f">&#9670;&nbsp;</a></span>setAppKey()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def lora.LoRa.setAppKey </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>appKey</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the application key. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">appKey</td><td>application key. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a64d9eb6baddec72c7d556251f5e51309"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a64d9eb6baddec72c7d556251f5e51309">&#9670;&nbsp;</a></span>setAppSKey()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def lora.LoRa.setAppSKey </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>appSKey</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the application session key. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">appSKey</td><td>application session key. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="acee8d45d1ed4deb17149cb9f9952b2f1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acee8d45d1ed4deb17149cb9f9952b2f1">&#9670;&nbsp;</a></span>setDevAddr()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def lora.LoRa.setDevAddr </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>devAddr</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the device address. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">devAddr</td><td>device address </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a7c9f79ef4b8bf489e86cbf370e4f9941"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7c9f79ef4b8bf489e86cbf370e4f9941">&#9670;&nbsp;</a></span>setDevEUI()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def lora.LoRa.setDevEUI </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>devEUI</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the device EUI. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">devEUI</td><td>device EUI </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aa37939f91be7a79521be9d8ce4d905fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa37939f91be7a79521be9d8ce4d905fe">&#9670;&nbsp;</a></span>setLoRaADR()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def lora.LoRa.setLoRaADR </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>loraADR</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Enable or disable ADR (Automatic Data Rate). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">loraADR</td><td>enable (ON) or disable (OFF) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a842239c1caea0a7060e49b4553d0db4d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a842239c1caea0a7060e49b4553d0db4d">&#9670;&nbsp;</a></span>setLoRaAuthMode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def lora.LoRa.setLoRaAuthMode </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>loraAuthMode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the authentication mode. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">loraAuthMode</td><td>authentication mode <br  />
+ </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ab1a3d18dc5dcd7ef114c847c40a4c4f1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab1a3d18dc5dcd7ef114c847c40a4c4f1">&#9670;&nbsp;</a></span>setLoRaBaseBand()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def lora.LoRa.setLoRaBaseBand </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>loraBaseBand</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the base-band. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">loraBaseBand</td><td>base-band </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aea2a6db829240b92dee573da75b18725"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aea2a6db829240b92dee573da75b18725">&#9670;&nbsp;</a></span>setLoRaClass()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def lora.LoRa.setLoRaClass </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>loraClass</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the <a class="el" href="classlora_1_1_lo_ra.html" title="The LoRa class.">LoRa</a> class. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">loraClass</td><td><a class="el" href="classlora_1_1_lo_ra.html" title="The LoRa class.">LoRa</a> class </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a9c9a1f96e95c30d64f365f490bfd27c8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9c9a1f96e95c30d64f365f490bfd27c8">&#9670;&nbsp;</a></span>setLoRaRX1Win()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def lora.LoRa.setLoRaRX1Win </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Enable RX window 1. </p>
+<p><br  />
+ </p>
+
+</div>
+</div>
+<a id="ac0df5359b111b6af2bc97099ec86b837"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac0df5359b111b6af2bc97099ec86b837">&#9670;&nbsp;</a></span>setLoRaRX2Win()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def lora.LoRa.setLoRaRX2Win </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>loraRX2Frequency</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>loraRX2Datarate</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the RX window 2 parameters. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">loraRX2Frequency</td><td>RX window 2 frequency </td></tr>
+    <tr><td class="paramname">loraRX2Datarate</td><td>RX window 2 data rate <br  />
+ </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a8371f6d1d3eff5fc12d29179e614de3a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8371f6d1d3eff5fc12d29179e614de3a">&#9670;&nbsp;</a></span>setLoRaSubBand()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def lora.LoRa.setLoRaSubBand </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>loraSubBand</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the sub-band. </p>
+<p>This will disable all channels not belonging to the specified sub-band. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">loraSubBand</td><td>sub-band </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a0b2b284ebb7f8ec005a02ef66cca45b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0b2b284ebb7f8ec005a02ef66cca45b9">&#9670;&nbsp;</a></span>setLoRaTXPower()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def lora.LoRa.setLoRaTXPower </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>loraTXPower</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the transmission power (in dBm). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">loraTXPower</td><td>transmission power (in dBm) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a8abdf946f91125328d5171c3fdc4abc8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8abdf946f91125328d5171c3fdc4abc8">&#9670;&nbsp;</a></span>setLoRaUPDatarate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def lora.LoRa.setLoRaUPDatarate </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>loraUPDatarate</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the uplink data rate. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">loraUPDatarate</td><td>uplink data rate </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="afca85912b991424c3ab298ef5550914c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afca85912b991424c3ab298ef5550914c">&#9670;&nbsp;</a></span>setNwkSKey()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def lora.LoRa.setNwkSKey </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>nwkSKey</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the network session key. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nwkSKey</td><td>network session key. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>/home/robson/GDrive/workspaces/agrotechlab/toolbox/pyiotdevsim/lora.py</li>
+<li><a class="el" href="lora_8py.html">lora.py</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
