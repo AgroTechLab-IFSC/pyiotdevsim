@@ -49,6 +49,30 @@
 #
 # Each project listed into the <code>projects</code> section must have a section with its name and the following parameters:
 # @include projectA.yml
+# Into subsection <code>sensor_list</code> must be defined the sensor list used by project. Each sensor must have a subsection with its name.
+# This subsection must have <code>data_type</code>, <code>min_value</code> and <code>max_value</code>. Sensor values are randomly generated
+# between values defines into <code>min_value</code> and <code>max_value</code>. The <code>data_type</code> will define the data type and size
+# used to compose LoRa message (all messages are sent using hexadecimal format). The following data types can be used:
+#   - <code>uint8</code>
+#      - <b>range:</b> 0 to 255
+#      - <b>size:</b> 1 byte
+#   - <code>uint16</code>
+#      - <b>range:</b> 0 to 65535
+#      - <b>size:</b> 2 bytes
+#   - <code>float_uint16</code>
+#      - <b>range:</b> 0 to 655.35
+#      - <b>size:</b> 2 bytes
+#      - <b>limitation:</b> only 2 digits of precision
+#      - <b>operation:</b> value * 100
+#   - <code>float32_compressed</code>
+#      - <b>range:</b> 0 to 655.35
+#      - <b>size:</b> 3 bytes
+#      - <b>limitation:</b> byte 0 is the sign (AA = + / AF = -); only 2 digits of precision
+#      - <b>operation:</b> value * 100
+#   - <code>float32</code>
+#      - <b>range:</b> -3.4E+38 to +3.4E+38
+#      - <b>size:</b> 4 bytes
+#      - <b>operation:</b> sign bit, 8 bits exponent, 23 bits mantissa
 #
 # @htmlinclude agrotechlab_footer.html
 
