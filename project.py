@@ -112,16 +112,16 @@ class Project(threading.Thread):
                 if self.config[id]["data_type"] == "uint8":
                     value = random.randint(self.config[id]["min_value"], self.config[id]["max_value"])                    
                     payload += "{:02x}".format(value)
-                    print("Value {:d} = {:02x}".format(value, value))
+                    # print("Value {:d} = {:02x}".format(value, value))
                 elif self.config[id]["data_type"] == "uint16":
                     value = random.randint(self.config[id]["min_value"], self.config[id]["max_value"])                    
                     payload += "{:04x}".format(value)
-                    print("Value {:d} = {:04x}".format(value, value))   
+                    # print("Value {:d} = {:04x}".format(value, value))   
                 elif self.config[id]["data_type"] == "float_uint16":
                     valueb = round(random.uniform(self.config[id]["min_value"], self.config[id]["max_value"]), 2)
                     value = int(valueb * 100)
                     payload += "{:04x}".format(value)
-                    print("Value {} -> {:d} = {:04x}".format(valueb, value, value))                
+                    # print("Value {} -> {:d} = {:04x}".format(valueb, value, value))                
                 elif self.config[id]["data_type"] == "float32_compressed":
                     # Generates random value between [min_value] and [max_value]
                     valueb = round(random.uniform(self.config[id]["min_value"], self.config[id]["max_value"]), 2)
@@ -136,14 +136,13 @@ class Project(threading.Thread):
                         # From 0 to 655.35 and convert to positive
                         value = int(valueb * -100)
                     payload += "{:04x}".format(value)
-                    print("Value {} -> {} = {:04x}".format(valueb, value, value))
+                    # print("Value {} -> {} = {:04x}".format(valueb, value, value))
                 elif self.config[id]["data_type"] == "float32":
                     # Generates random value between [min_value] and [max_value]
                     value = round(random.uniform(self.config[id]["min_value"], self.config[id]["max_value"]), 6)
                     # Convert float64 of Python to float32
                     value = np.float32(value)                                                              
-                    payload += str(binascii.hexlify(struct.pack('<f', value)), "UTF-8")
-                    print("Value {:d} = {:04x}".format(value, value))                       
+                    payload += str(binascii.hexlify(struct.pack('<f', value)), "UTF-8")                                          
 
             # Put the last payload into the message queue            
             tx_queue.append(payload)

@@ -15,63 +15,62 @@ system:
 projects: 
   - AgroTech4All_ATS-01
   - AgroTech4All_ATS-02
+  - CattleTracker_CT-01
 
-# CattleTracker:
-#   sampling_period: 20
-#   ttn:
-#     dev_eui: "0002E84456BF29D4"
-#     app_eui: "70B3D57ED003A356"
-#     dev_addr: "260B334F"  
-#     nwks_key: "D36428DDFDA568A7FCC2CBC4F0FBF0C0"
-#     apps_key: "9819F012352F328C1A2E2FF87AF846FB"
-#     app_key: "550D3540D601D3927759116187DCFB1D"
-#   lora: 
-#     tx_power: 8
-#     uplink_dr: "DR0"  
-#     chan0_freq: 917.2
-#     chan0_dr: "DR1"
-#     chan1_freq: 917.9
-#     chan1_dr: "DR1"
-#     rxwin2_freq: 923.3
-#     rxwin2_dr: "DR8"
-#     adr: "OFF"
-#     auth_mode: "LWABP"
-#     repeat: 2
-#     retry: 2
-#   sensor_list:
-#     - latitude
-#     - longitude
-#     - altitude
-#     - speed
-#     - motion    
-#     - battery_voltage
-#   latitude:
-#     data_type: float32
-#     min_value: -27.804380
-#     max_value: -27.804390
-#   longitude:
-#     data_type: float32
-#     min_value: -50.337870
-#     max_value: -50.337880
-#   altitude:    
-#     data_type: uint16
-#     min_value: 870
-#     max_value: 900
-#   speed:
-#     data_type: uint8
-#     min_value: 0
-#     max_value: 5
-#   motion:    
-#     data_type: uint8
-#     min_value: 0
-#     max_value: 1  
-#   battery_voltage:    
-#     data_type: float_uint16
-#     min_value: 2.8
-#     max_value: 4.8
+CattleTracker_CT-01:
+  sampling_period: 300
+  ttn:
+    dev_eui: "4786E6ED003E0037"
+    app_eui: "70B3D57ED003A356"
+    dev_addr: "260B4175"  
+    nwks_key: "EA30BDB8F3B7A96C4FDC0967C6A2507A"
+    apps_key: "C790E6F41B3CE5C5138D16214D916CF1"
+    app_key: "C790E6F41B3CE5C5138D16214D916CF1"
+  lora:    
+    tx_power: 20
+    uplink_dr: "DR1"  
+    chan0_freq: 917.2
+    chan0_dr: "DR1"
+    chan1_freq: 917.9
+    chan1_dr: "DR1"    
+    adr: "OFF"    
+    repeat: 2
+    retry: 2
+    initial_port: 10
+  sensor_list:
+    - latitude
+    - longitude
+    - altitude
+    - speed
+    - motion    
+    - battery_voltage  
+  latitude:
+    data_type: float32
+    min_value: -27.803293
+    max_value: -27.804540
+  longitude:
+    data_type: float32
+    min_value: -50.336975
+    max_value: -50.339698
+  altitude:    
+    data_type: uint16
+    min_value: 900
+    max_value: 910
+  speed:
+    data_type: uint8
+    min_value: 0
+    max_value: 2
+  motion:    
+    data_type: uint8
+    min_value: 0
+    max_value: 1  
+  battery_voltage:    
+    data_type: float_uint16
+    min_value: 4.8
+    max_value: 5.2
 
 AgroTech4All_ATS-01:
-  sampling_period: 30
+  sampling_period: 300
   ttn:
     dev_eui: "4786E6ED003E0037"
     app_eui: "70B3D57ED003A356"
@@ -118,7 +117,7 @@ AgroTech4All_ATS-01:
     max_value: 5.2  
 
 AgroTech4All_ATS-02:
-  sampling_period: 30
+  sampling_period: 300
   ttn:
     dev_eui: "00DE745EAFBDE7FF"
     app_eui: "70B3D57ED003589D"

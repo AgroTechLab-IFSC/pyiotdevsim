@@ -129,7 +129,7 @@
 
 import sys
 import logging
-logging.basicConfig(filename="pyIoTDevSim.log", format='%(asctime)s %(levelname)s - %(message)s', level=logging.DEBUG)
+logging.basicConfig(filename="pyIoTDevSim.log", format='%(asctime)s %(levelname)s - %(message)s', level=logging.INFO)
 import serial
 import config
 import lora

@@ -423,12 +423,12 @@ class LoRa:
             pass
         else:
             logging.warning("LoRa port at LoRa module not configured")
-        logging.debug("Sending no ack hexadecimal message: %s", _loraMsg)
+        logging.info("Sending no ack hexadecimal message: %s", _loraMsg)
         cmd = "AT+MSGHEX=\""+_loraMsg+"\"\n"              
         self.serialPort.write(cmd.encode("UTF-8"))
         while True:
             response = self.serialPort.readline().decode("UTF-8")
-            print(response)
+            # print(response)
             if "Done" in response:            
                 break
 
@@ -445,11 +445,11 @@ class LoRa:
             pass
         else:
             logging.warning("LoRa port at LoRa module not configured")
-        logging.debug("Sending ack hexadecimal message: %s", _loraMsg)
+        logging.info("Sending ack hexadecimal message: %s", _loraMsg)
         cmd = "AT+CMSGHEX=\""+_loraMsg+"\"\n"        
         self.serialPort.write(cmd.encode("UTF-8"))
         while True:
             response = self.serialPort.readline().decode("UTF-8")
-            print(response)
+            # print(response)
             if "Done" in response:            
                 break    
