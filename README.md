@@ -30,14 +30,8 @@ It is a IoT device simulator that uses a real LoRaWAN&reg; module (connected to 
  The pyIoTDevSim.yml is the configuration file searched by pyIoTDevSim to sets system, LoRa and projects parameters.<br>
  It uses a YAML format and all sections and keys parameters must be defined in lower case mode.<br>
  Two main sections are defined:
-   - <code>system</code>
-   - <code>projects</code>
- 
- The <code>system</code> section layout defines common LoRa parameters, LoRa module interface and the debug level used. An example is showed bellow: 
- @include system.yml
-
- The <code>projects</code> section will list the projects enabled to run. An example is showed bellow (in this case Project C is defined but not will be enabled):
- @include projects.yml
+   - <code>system</code> (defines common LoRa parameters, LoRa module interface and the debug level used);
+   - <code>projects</code> (list the projects enabled to run);
 
  Each project listed into the <code>projects</code> section must have a section with its name and the following parameters:
  @include projectA.yml
@@ -66,16 +60,10 @@ It is a IoT device simulator that uses a real LoRaWAN&reg; module (connected to 
       - <b>size:</b> 4 bytes
       - <b>operation:</b> sign bit, 8 bits exponent, 23 bits mantissa
 
-## License
-  @author Robson Costa (<mailto:robson.costa@ifsc.edu.br>)
-  @brief Project main file.
-  @version 0.2.0
-  @since 16/11/2020
-  @date 01/03/2021
-  @copyright Copyright &copy; 2020 - 2021 <a href="https://agrotechlab.lages.ifsc.edu.br" target="_blank">AgroTechLab</a>.\n
-  ![LICENSE license](../figs/license.png)<br>
-  Licensed under the CC BY-NC-SA (<i>Creative Commons Attribution-NonCommercial-ShareAlike</i>) 4.0 International Unported License (the <em>"License"</em>). You may not
-  use this file except in compliance with the License. You may obtain a copy of the License <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode" target="_blank">here</a>.
-  Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an <em>"as is" basis, 
-  without warranties or  conditions of any kind</em>, either express or implied. See the License for the specific language governing permissions 
-  and limitations under the License.
+---
+AgroTechLab (*Laboratório de Desenvolvimento de Tecnologias para o Agronegócio*)  
+IFSC (*Instituto Federal de Santa Catarina*) - Câmpus Lages  
+Rua Heitor Vila Lobos, 225 - São Francisco  
+Lages/SC - Brazil  
+CEP: 88.506-400  
+https://agrotechlab.lages.ifsc.edu.br
