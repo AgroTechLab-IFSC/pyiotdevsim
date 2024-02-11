@@ -1,22 +1,16 @@
 #  pyIoTDevSim 
 It is a IoT device simulator that uses a real LoRaWAN&reg; module (connected to serial port) to sent simulated IoT data to TTN&reg; (<a href="https://www.thethingsnetwork.org" target="_blank">The Things Network</a>) infrastructure.<br>
-# ![SCHEME schematic connection](../figs/scheme.png)<br>
-# 
-A complete features list is found @subpage feature_list "here" and the configuration file it is detailed @subpage config_file "here".<br>
-   At the moment, only the following LoRaWAN modules are supported:
-   - <b>@subpage rhf76_052</b> (since v0.1.0)
-   - <b>@subpage rhf0m003</b> (since v0.2.0)
- <br>
- @htmlinclude agrotechlab_footer.html
 
-## @page feature_list Features list
-# <b>Version 0.2.0 (26/02/2021):</b>
+![SCHEME schematic connection]([https://github.com/AgroTechLab-IFSC/pyiotdevsim/tree/master/docs/figs/scheme.png])<br>
+ 
+
+## <b>Version 0.2.0 (26/02/2021):</b>
    - Added RHF0M003 module compatibility;
    - Moved LoRa session to Project session as a subsession (like TTN);
    - Included sub-band parameter;
    - Change module configuration (disable all channels of sub-bands not used);
  
-# <b>Version 0.1.0 (16/11/2020):</b>
+## <b>Version 0.1.0 (16/11/2020):</b>
    - Added RHF72-056 module compatibility;
    - Multiproject capability (one thread by project);
    - Configuration by YAML file;
@@ -31,9 +25,8 @@ A complete features list is found @subpage feature_list "here" and the configura
      - FLOAT_COMPRESSED;
      - FLOAT32;
    - LOG generation;
-# @htmlinclude agrotechlab_footer.html
 
-## @page config_file Configuration file details
+## Configuration file details
  The pyIoTDevSim.yml is the configuration file searched by pyIoTDevSim to sets system, LoRa and projects parameters.<br>
  It uses a YAML format and all sections and keys parameters must be defined in lower case mode.<br>
  Two main sections are defined:
@@ -110,18 +103,18 @@ A complete features list is found @subpage feature_list "here" and the configura
 #   - LPUART/USART/I2C/USB, 2 × ADC，10 × GPIOs;
 #  - Support LoRaWAN® protocol;<br>
 #  ![PROMINI schematic connection](../figs/rhf0m003_pinout.png)
-# @htmlinclude agrotechlab_footer.html
 
-## @file pyiotdevsim.py
-#  @author Robson Costa (<mailto:robson.costa@ifsc.edu.br>)
-#  @brief Project main file.
-#  @version 0.2.0
-#  @since 16/11/2020
-#  @date 01/03/2021
-#  @copyright Copyright &copy; 2020 - 2021 <a href="https://agrotechlab.lages.ifsc.edu.br" target="_blank">AgroTechLab</a>.\n
-#  ![LICENSE license](../figs/license.png)<br>
-#  Licensed under the CC BY-NC-SA (<i>Creative Commons Attribution-NonCommercial-ShareAlike</i>) 4.0 International Unported License (the <em>"License"</em>). You may not
-#  use this file except in compliance with the License. You may obtain a copy of the License <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode" target="_blank">here</a>.
-#  Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an <em>"as is" basis, 
-#  without warranties or  conditions of any kind</em>, either express or implied. See the License for the specific language governing permissions 
-#  and limitations under the License.
+
+## License
+  @author Robson Costa (<mailto:robson.costa@ifsc.edu.br>)
+  @brief Project main file.
+  @version 0.2.0
+  @since 16/11/2020
+  @date 01/03/2021
+  @copyright Copyright &copy; 2020 - 2021 <a href="https://agrotechlab.lages.ifsc.edu.br" target="_blank">AgroTechLab</a>.\n
+  ![LICENSE license](../figs/license.png)<br>
+  Licensed under the CC BY-NC-SA (<i>Creative Commons Attribution-NonCommercial-ShareAlike</i>) 4.0 International Unported License (the <em>"License"</em>). You may not
+  use this file except in compliance with the License. You may obtain a copy of the License <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode" target="_blank">here</a>.
+  Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an <em>"as is" basis, 
+  without warranties or  conditions of any kind</em>, either express or implied. See the License for the specific language governing permissions 
+  and limitations under the License.
