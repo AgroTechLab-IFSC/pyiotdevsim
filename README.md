@@ -1,7 +1,7 @@
 #  pyIoTDevSim 
 It is a IoT device simulator that uses a real LoRaWAN&reg; module (connected to serial port) to sent simulated IoT data to TTN&reg; (<a href="https://www.thethingsnetwork.org" target="_blank">The Things Network</a>) infrastructure.<br>
 
-![SCHEME schematic connection]([https://github.com/AgroTechLab-IFSC/pyiotdevsim/tree/master/docs/figs/scheme.png])<br>
+![SCHEME schematic connection](https://github.com/AgroTechLab-IFSC/pyiotdevsim/tree/master/docs/figs/scheme.png "Connection scheme")<br>
  
 
 ## <b>Version 0.2.0 (26/02/2021):</b>
@@ -65,45 +65,6 @@ It is a IoT device simulator that uses a real LoRaWAN&reg; module (connected to 
       - <b>range:</b> -3.4E+38 to +3.4E+38
       - <b>size:</b> 4 bytes
       - <b>operation:</b> sign bit, 8 bits exponent, 23 bits mantissa
-
- @htmlinclude agrotechlab_footer.html
-
-## @page rhf76_052 RHF76-052
-# RisingHF LoRaWAN&reg; module based on RHF76-052AM chip. It is a low power，low cost and small size module embedded with LoRa&reg; chip SX1276 
-# of Semtech&reg;, and ultra-low power MCU STM32L051/052xx of ST. The application of LoraWAN&reg; module is targeted at wireless sensor network，
-# AMR and others IoT devices powered by battery which need low power consumption to extend the battery life.<br>
-# RHF76-052AM key features are listed below, details can be found into [datasheet](../datasheets/rhf76052.pdf):
-#  - Supply voltage: 3.3V; 
-#  - Operating voltage: 3.3V;
-#  - Low power consumption: 1.45uA sleep current in WOR mode;
-#  - Dual band design:
-#   - Low frequency band: 20 dBm @ 434MHz/470MHz;
-#   - High frequency band: 14 dBm @ 868MHz/915MHz;
-#  - User-friendly interface: 
-#   - AT commands (documentations [here](../datasheets/PS01509_v3.1.pdf) and [here](../datasheets/PS01509_v4.2.pdf));
-#   - SPI/USART/I2C/USB, 2 × ADC，10 × GPIOs;
-#  - Support LoRaWAN® protocol;
-# 
-#  ![PROMINI schematic connection](../figs/rhf76052_pinout.png)
-# @htmlinclude agrotechlab_footer.html
-
-## @page rhf0m003 RHF0M003
-#  RisingHF LoRaWAN&reg; module based on RHF0M003 chip. It is a low cost, low power and ultra-small size module, embedded with Semtech’s LoRa&reg; 
-# propriety chip SX127x and ST’s ultra-low power MCU STM32L07x. RHF0M003 LoraWAN&reg; module is targeted application at wireless sensor network，
-# AMR, wearable devices and others IOT devices powered by battery which need low power consumption to extend the battery life.<br>
-# RHF0M003 key features are listed below, details can be found into [datasheet](../datasheets/rhf0m003.pdf):
-#  - Supply voltage: 3.3V; 
-#  - Operating voltage: 3.3V;
-#  - Low power consumption: 1.4uA sleep current in WOR mode;
-#  - Dual band design:
-#   - Low frequency band (LF20): 20 dBm at 434MHz/470MHz;
-#   - High frequency band (HF20): 20 dBm at 868MHz/915MHz;
-#  - User-friendly interface: 
-#   - AT commands (documentations [here](../datasheets/PS01509_v4.2.pdf) and [here](../datasheets/PS01709_v1.2.pdf));
-#   - LPUART/USART/I2C/USB, 2 × ADC，10 × GPIOs;
-#  - Support LoRaWAN® protocol;<br>
-#  ![PROMINI schematic connection](../figs/rhf0m003_pinout.png)
-
 
 ## License
   @author Robson Costa (<mailto:robson.costa@ifsc.edu.br>)
