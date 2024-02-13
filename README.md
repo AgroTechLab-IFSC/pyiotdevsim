@@ -1,7 +1,7 @@
 #  pyIoTDevSim 
 It is a IoT device simulator that uses a real LoRaWAN&reg; module (connected to serial port) to sent simulated IoT data to TTN&reg; (<a href="https://www.thethingsnetwork.org" target="_blank">The Things Network</a>) infrastructure.<br>
 
-![SCHEME schematic connection](https://github.com/AgroTechLab-IFSC/pyiotdevsim/tree/master/docs/figs/scheme.png "Connection scheme")<br>
+![SCHEME schematic connection](./docs/figs/scheme.png "Connection scheme")<br>
  
 
 ## <b>Version 0.2.0 (26/02/2021):</b>
