@@ -1,6 +1,6 @@
 var classconfig_1_1_config =
 [
-    [ "__init__", "classconfig_1_1_config.html#afcb8bed4332a963bacf5b15afebaa4fa", null ],
+    [ "__init__", "classconfig_1_1_config.html#a7e369f1f19c1a4ac3558da06afc53461", null ],
     [ "getDebugLevel", "classconfig_1_1_config.html#ac625832b2d9d717d0c7ed6aa68fe857e", null ],
     [ "getLoRaAuthMode", "classconfig_1_1_config.html#a401d82038e9d33559ff9461bd355f32c", null ],
     [ "getLoRaBaseBand", "classconfig_1_1_config.html#a1e901047d2828112c503866185693aad", null ],
@@ -9,7 +9,7 @@ var classconfig_1_1_config =
     [ "getLoRaRXWin2DR", "classconfig_1_1_config.html#a07a7c32f0b7ce344473f373abde39bb1", null ],
     [ "getLoRaRXWin2Freq", "classconfig_1_1_config.html#a05d19f5e62249f14275af94e33997707", null ],
     [ "getLoRaSubBand", "classconfig_1_1_config.html#a1689c00ba9d47a4b3666b608e9ddeb93", null ],
-    [ "getProjectConfig", "classconfig_1_1_config.html#a92a8e7c7278b775c77b28c4d3d290e09", null ],
+    [ "getProjectConfig", "classconfig_1_1_config.html#ad91107a3a2ec1c5487b8be3d948b4422", null ],
     [ "getSerialBaudrate", "classconfig_1_1_config.html#a37840054820411ecacd8b5041f2f344c", null ],
     [ "getSerialPort", "classconfig_1_1_config.html#a6344044bc15697f6b843bab4fb979c02", null ],
     [ "configFile", "classconfig_1_1_config.html#a3116421006d0e562a9e0a353388fa5ca", null ],

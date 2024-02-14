@@ -5,7 +5,7 @@ var indexSectionsWithContent =
   2: "clp",
   3: "_cgrs",
   4: "abcdlnpst",
-  5: "cfr"
+  5: "cfpr"
 };
 
 var indexSectionNames =

@@ -2,9 +2,9 @@
 #  @author Robson Costa (<mailto:robson.costa@ifsc.edu.br>)
 #  @brief Config class.
 #  @version 0.2.0
-#  @since 16/11/2020
-#  @date 01/03/2021
-#  @copyright Copyright &copy; 2020 - 2021 <a href="https://agrotechlab.lages.ifsc.edu.br" target="_blank">AgroTechLab</a>.\n
+#  @since 2020/11/16
+#  @date 2024/02/14
+#  @copyright Copyright &copy; since 2020 <a href="https://agrotechlab.lages.ifsc.edu.br" target="_blank">AgroTechLab</a>.\n
 #  ![LICENSE license](../figs/license.png)<br>
 #  Licensed under the CC BY-NC-SA (<i>Creative Commons Attribution-NonCommercial-ShareAlike</i>) 4.0 International Unported License (the <em>"License"</em>). You may not
 #  use this file except in compliance with the License. You may obtain a copy of the License <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode" target="_blank">here</a>.

@@ -1,14 +1,12 @@
 ## @mainpage
 #  pyIoTDevSim is a IoT device simulator that uses a real LoRaWAN&reg; module (connected to serial port) to sent simulated
-#  IoT data to TTN&reg; (<a href="https://www.thethingsnetwork.org" target="_blank">The Things Network</a>) infrastructure.<br>
+#  IoT data to TTN&reg; (<a href="https://www.thethingsnetwork.org">The Things Network</a>) infrastructure.<br><br>
 # ![SCHEME schematic connection](../figs/scheme.png)<br>
 # 
 #  A complete features list is found @subpage feature_list "here" and the configuration file it is detailed @subpage config_file "here".<br>
 #  At the moment, only the following LoRaWAN modules are supported:
 #   - <b>@subpage rhf76_052</b> (since v0.1.0)
 #   - <b>@subpage rhf0m003</b> (since v0.2.0)
-# <br>
-# @htmlinclude agrotechlab_footer.html
 
 ## @page feature_list Features list
 # <b>Version 0.2.0 (26/02/2021):</b>
@@ -32,7 +30,6 @@
 #     - FLOAT_COMPRESSED;
 #     - FLOAT32;
 #   - LOG generation;
-# @htmlinclude agrotechlab_footer.html
 
 ## @page config_file Configuration file details
 # The pyIoTDevSim.yml is the configuration file searched by pyIoTDevSim to sets system, LoRa and projects parameters.<br>
@@ -43,12 +40,13 @@
 # 
 # The <code>system</code> section layout defines common LoRa parameters, LoRa module interface and the debug level used. An example is showed bellow: 
 # @include system.yml
-#
+# 
 # The <code>projects</code> section will list the projects enabled to run. An example is showed bellow (in this case Project C is defined but not will be enabled):
 # @include projects.yml
 #
 # Each project listed into the <code>projects</code> section must have a section with its name and the following parameters:
 # @include projectA.yml
+
 # Into subsection <code>sensor_list</code> must be defined the sensor list used by project. Each sensor must have a subsection with its name.
 # This subsection must have <code>data_type</code>, <code>min_value</code> and <code>max_value</code>. Sensor values are randomly generated
 # between values defines into <code>min_value</code> and <code>max_value</code>. The <code>data_type</code> will define the data type and size
@@ -73,8 +71,6 @@
 #      - <b>range:</b> -3.4E+38 to +3.4E+38
 #      - <b>size:</b> 4 bytes
 #      - <b>operation:</b> sign bit, 8 bits exponent, 23 bits mantissa
-#
-# @htmlinclude agrotechlab_footer.html
 
 ## @page rhf76_052 RHF76-052
 # RisingHF LoRaWAN&reg; module based on RHF76-052AM chip. It is a low power，low cost and small size module embedded with LoRa&reg; chip SX1276 
@@ -93,7 +89,6 @@
 #  - Support LoRaWAN® protocol;
 # 
 #  ![PROMINI schematic connection](../figs/rhf76052_pinout.png)
-# @htmlinclude agrotechlab_footer.html
 
 ## @page rhf0m003 RHF0M003
 #  RisingHF LoRaWAN&reg; module based on RHF0M003 chip. It is a low cost, low power and ultra-small size module, embedded with Semtech’s LoRa&reg; 
@@ -111,15 +106,14 @@
 #   - LPUART/USART/I2C/USB, 2 × ADC，10 × GPIOs;
 #  - Support LoRaWAN® protocol;<br>
 #  ![PROMINI schematic connection](../figs/rhf0m003_pinout.png)
-# @htmlinclude agrotechlab_footer.html
 
 ## @file pyiotdevsim.py
 #  @author Robson Costa (<mailto:robson.costa@ifsc.edu.br>)
 #  @brief Project main file.
 #  @version 0.2.0
-#  @since 16/11/2020
-#  @date 01/03/2021
-#  @copyright Copyright &copy; 2020 - 2021 <a href="https://agrotechlab.lages.ifsc.edu.br" target="_blank">AgroTechLab</a>.\n
+#  @since 2020/11/16
+#  @date 2024/02/14
+#  @copyright Copyright &copy; since 2020 <a href="https://agrotechlab.lages.ifsc.edu.br" target="_blank">AgroTechLab</a>.\n
 #  ![LICENSE license](../figs/license.png)<br>
 #  Licensed under the CC BY-NC-SA (<i>Creative Commons Attribution-NonCommercial-ShareAlike</i>) 4.0 International Unported License (the <em>"License"</em>). You may not
 #  use this file except in compliance with the License. You may obtain a copy of the License <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode" target="_blank">here</a>.

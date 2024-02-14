@@ -1,13 +1,13 @@
-system:
-  debug_level: "DEBUG"
-  lora_module: "RHF76-052"
-  serial:
-    port: "/dev/ttyUSB0"
-    baudrate: 9600
-  lora:
-    base_band: "AU920"
-    sub_band: 2
-    class: "A"
-    rxwin2_freq: 923.3
-    rxwin2_dr: "DR8"
-    auth_mode: "LWABP"
+system:                             // parameters are the same to all projects;
+  debug_level: "DEBUG"              // pyIoTDevSim debug level;
+  lora_module: "RHF76-052"          // LoRa module;
+  serial:                           // subsection with serial parameters;
+    port: "/dev/ttyUSB0"            // serial port;
+    baudrate: 9600                  // serial baudrate;
+  lora:                             // subsection with LoRa parameters;
+    base_band: "AU920"              // LoRa base band;
+    sub_band: 2                     // LoRa sub band;
+    class: "A"                      // LoRa class;
+    rxwin2_freq: 923.3              // LoRa RX window 2 frequency;
+    rxwin2_dr: "DR8"                // LoRa RX window 2 datarate;
+    auth_mode: "LWABP"              // LoRa authentication mode;
