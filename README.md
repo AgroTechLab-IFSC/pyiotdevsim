@@ -54,28 +54,43 @@ It is a IoT device simulator that uses a real LoRaWAN&reg; module (connected to 
        - <code>max_value</code> - sensor maximum value (ie: -27.804540);
 
  Sensor values are randomly generated between values defines at <code>min_value</code> and <code>max_value</code>. To fixed values both parameters must be the same. The <code>data_type</code> will define the data type and payload size used to compose LoRa message (all messages are sent using hexadecimal format). The following data types can be used:
+   - <code>int8</code>
+      - <b>range:</b> -128 to 127
+      - <b>size:</b> 1 byte
    - <code>uint8</code>
       - <b>range:</b> 0 to 255
       - <b>size:</b> 1 byte
+   - <code>int16</code>
+      - <b>range:</b> -32768 to 32767
+      - <b>size:</b> 2 bytes
    - <code>uint16</code>
       - <b>range:</b> 0 to 65535
       - <b>size:</b> 2 bytes
+   - <code>int32</code>
+      - <b>range:</b> -2147483648 to 2147483647
+      - <b>size:</b> 4 bytes
+   - <code>uint32</code>
+      - <b>range:</b> 0 to 4294967295
+      - <b>size:</b> 4 bytes
    - <code>float_uint16</code>
       - <b>range:</b> 0 to 655.35
       - <b>size:</b> 2 bytes
       - <b>limitation:</b> only 2 digits of precision
       - <b>operation:</b> value * 100
-   - <code>float32_compressed</code>
-      - <b>range:</b> -655.35 to 655.35
-      - <b>size:</b> 3 bytes
-      - <b>limitation:</b> byte 0 is the sign (AA = + / AF = -); only 2 digits of precision
+   - <code>float_int15</code>
+      - <b>range:</b> -327.67 to 327.67
+      - <b>size:</b> 2 bytes
+      - <b>limitation:</b> 1 bit of sign and 15 bits of value; only 2 digits of precision
       - <b>operation:</b> value * 100
-   - <code>float32</code>
+   - <code>float</code>
       - <b>range:</b> -3.4E+38 to +3.4E+38
       - <b>size:</b> 4 bytes
       - <b>operation:</b> sign bit, 8 bits exponent, 23 bits mantissa
 
 ## Release Notes
+
+### <b>Version 0.3.0 (02/10/2024):</b>
+   - Updated data types;
 
 ### <b>Version 0.2.0 (26/02/2021):</b>
    - Added RHF0M003 module compatibility;

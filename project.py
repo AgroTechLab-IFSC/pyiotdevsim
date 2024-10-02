@@ -50,6 +50,15 @@ class Project(threading.Thread):
         ## LoRa authentication mode
         self.authMode = loraAuthMode      
 
+    def set_bit(self, number, position):
+        # Cria uma máscara com o bit na posição desejada setado para 1
+        mask = 1 << position
+
+        # Aplica a máscara usando OR bit a bit para setar o bit
+        result = number | mask
+
+        return result
+
     def run(self):
         """! The run method.        
         """  
@@ -92,13 +101,11 @@ class Project(threading.Thread):
             count = 0
             for id in self.config.get("sensor_list"):
                 # Define the data size             
-                if self.config[id]["data_type"] == "uint8":
+                if self.config[id]["data_type"] == "int8" or self.config[id]["data_type"] == "uint8":
                     size = 1
-                elif self.config[id]["data_type"] == "uint16" or self.config[id]["data_type"] == "float_uint16":
+                elif self.config[id]["data_type"] == "int16" or self.config[id]["data_type"] == "uint16" or self.config[id]["data_type"] == "float_int15" or self.config[id]["data_type"] == "float_uint16":
                     size = 2
-                elif self.config[id]["data_type"] == "float32_compressed":
-                    size = 3
-                elif self.config[id]["data_type"] == "float32":
+                elif self.config[id]["data_type"] == "int32" or self.config[id]["data_type"] == "uint32" or self.config[id]["data_type"] == "float":
                     size = 4
 
                 # Check if data is putted into the same message or a new is created
@@ -109,35 +116,95 @@ class Project(threading.Thread):
                     payload = ""
                     count = size
                 
-                if self.config[id]["data_type"] == "uint8":
-                    value = random.randint(self.config[id]["min_value"], self.config[id]["max_value"])                    
+                # INT8 (-128 ~ 127)
+                # UINT8 (0 ~ 255)
+                if self.config[id]["data_type"] == "int8" or self.config[id]["data_type"] == "uint8":
+                    min_value = self.config[id]["min_value"]
+                    max_value = self.config[id]["max_value"]
+                    if self.config[id]["data_type"] == "int8":
+                        if min_value < -128:
+                            min_value = -128
+                        if max_value > 127:
+                            max_value = 127
+                    if self.config[id]["data_type"] == "uint8":
+                        if min_value < 0:
+                            min_value = 0
+                        if max_value > 255:
+                            max_value = 255
+                    value = random.randint(min_value, max_value)                    
                     payload += "{:02x}".format(value)
                     # print("Value {:d} = {:02x}".format(value, value))
-                elif self.config[id]["data_type"] == "uint16":
-                    value = random.randint(self.config[id]["min_value"], self.config[id]["max_value"])                    
+                
+                # INT16 (-32768 ~ 32767)
+                # UINT16 (0 ~ 65535)
+                elif self.config[id]["data_type"] == "int16" or self.config[id]["data_type"] == "uint16":
+                    min_value = self.config[id]["min_value"]
+                    max_value = self.config[id]["max_value"]
+                    if self.config[id]["data_type"] == "int16":
+                        if min_value < -32768:
+                            min_value = -32768
+                        if max_value > 32767:
+                            max_value = 32767
+                    if self.config[id]["data_type"] == "uint16":
+                        if min_value < 0:
+                            min_value = 0
+                        if max_value > 65535:
+                            max_value = 65535
+                    value = random.randint(min_value, max_value)                    
                     payload += "{:04x}".format(value)
                     # print("Value {:d} = {:04x}".format(value, value))   
+                
+                # INT32 (-2147483648 ~ 2147483647)
+                # UINT32 (0 ~ 4294967295)
+                elif self.config[id]["data_type"] == "int32" or self.config[id]["data_type"] == "uint32":
+                    min_value = self.config[id]["min_value"]
+                    max_value = self.config[id]["max_value"]
+                    if self.config[id]["data_type"] == "int32":
+                        if min_value < -2147483648:
+                            min_value = -2147483648
+                        if max_value > 2147483647:
+                            max_value = 2147483647
+                    if self.config[id]["data_type"] == "uint32":
+                        if min_value < 0:
+                            min_value = 0
+                        if max_value > 4294967295:
+                            max_value = 4294967295
+                    value = random.randint(min_value, max_value)                    
+                    payload += "{:08x}".format(value)
+                    # print("Value {:d} = {:08x}".format(value, value))
+
+                # FLOAT_INT15 (-327.67 ~ 327.67)
+                elif self.config[id]["data_type"] == "float_int15":
+                    min_value = self.config[id]["min_value"]
+                    max_value = self.config[id]["max_value"]
+                    if min_value < -327.67:
+                        min_value = -327.67
+                    if max_value > 327.67:
+                        max_value = 327.67
+                    valueb = round(random.uniform(min_value, max_value), 2)
+                    if valueb >= 0:
+                        value = int(valueb * 100)
+                    else:
+                        value = int(valueb * -100)
+                        value = self.set_bit(value, 15)
+
+                    payload += "{:04x}".format(value)
+                    # print("Value {} -> {} = {:04x}".format(valueb, value, value))
+
+                # FLOAT_UINT16 (0 ~ 655.35)
                 elif self.config[id]["data_type"] == "float_uint16":
-                    valueb = round(random.uniform(self.config[id]["min_value"], self.config[id]["max_value"]), 2)
+                    min_value = self.config[id]["min_value"]
+                    max_value = self.config[id]["max_value"]
+                    if min_value < 0:
+                        min_value = 0
+                    if max_value > 655.35:
+                        max_value = 655.35
+                    valueb = round(random.uniform(min_value, max_value), 2)
                     value = int(valueb * 100)
                     payload += "{:04x}".format(value)
                     # print("Value {} -> {:d} = {:04x}".format(valueb, value, value))                
-                elif self.config[id]["data_type"] == "float32_compressed":
-                    # Generates random value between [min_value] and [max_value]
-                    valueb = round(random.uniform(self.config[id]["min_value"], self.config[id]["max_value"]), 2)
-
-                    # Check if it is positive or negative
-                    if valueb >= 0:
-                        payload += "AA"
-                        # From 0 to 655.35
-                        value = int(valueb * 100)
-                    else:
-                        payload += "AF"
-                        # From 0 to 655.35 and convert to positive
-                        value = int(valueb * -100)
-                    payload += "{:04x}".format(value)
-                    # print("Value {} -> {} = {:04x}".format(valueb, value, value))
-                elif self.config[id]["data_type"] == "float32":
+                
+                elif self.config[id]["data_type"] == "float":
                     # Generates random value between [min_value] and [max_value]
                     value = round(random.uniform(self.config[id]["min_value"], self.config[id]["max_value"]), 6)
                     # Convert float64 of Python to float32

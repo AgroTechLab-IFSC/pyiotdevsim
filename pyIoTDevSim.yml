@@ -2,7 +2,7 @@ system:
   debug_level: "DEBUG"
   lora_module: "RHF76-052"
   serial:
-    port: "/dev/ttyUSB0"
+    port: "COM4"
     baudrate: 9600
   lora:
     base_band: "AU920"
@@ -12,10 +12,8 @@ system:
     rxwin2_dr: "DR8"
     auth_mode: "LWABP"
 
-projects: 
-  - AgroTech4All_ATS-01
-  - AgroTech4All_ATS-02
-  - CattleTracker_CT-01
+projects:
+  - TTN-Tester 
 
 CattleTracker_CT-01:
   sampling_period: 300
@@ -201,5 +199,42 @@ AgroTech4All_ATS-02:
   battery_voltage:    
     data_type: float_uint16
     min_value: 4.8
-    max_value: 5.2  
+    max_value: 5.2
+
+TTN-Tester:
+  sampling_period: 10
+  ttn:
+    dev_eui: "70B3D57ED006AD2E"
+    app_eui: "70B3D57ED003A356"
+    dev_addr: "260C2BE0"  
+    nwks_key: "BE24B901A8BE949451D0A79B7489D489"
+    apps_key: "40EA8106EADA8B742E8B8C1A4C2B6F58"
+    app_key: "40EA8106EADA8B742E8B8C1A4C2B6F58"
+  lora:    
+    tx_power: 20
+    uplink_dr: "DR1"  
+    chan0_freq: 917.2
+    chan0_dr: "DR1"
+    chan1_freq: 917.9
+    chan1_dr: "DR1"    
+    adr: "OFF"    
+    repeat: 2
+    retry: 2
+    initial_port: 10
+  sensor_list:
+    - air_temperature
+    - air_humidity
+    - battery_voltage
+  air_temperature:
+    data_type: float_int15
+    min_value: -5.0
+    max_value: 5.0  
+  air_humidity:
+    data_type: float_uint16
+    min_value: 75
+    max_value: 80  
+  battery_voltage:    
+    data_type: float_uint16
+    min_value: 11.0
+    max_value: 13.0
   

@@ -132,7 +132,7 @@ import time
 import threading
 
 # SYSTEM INFORMATION
-VERSION = "0.2.0"
+VERSION = "0.3.0"
 CONFIG_FILE = 'pyIoTDevSim.yml'
 
 def main():
