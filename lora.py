@@ -1,38 +1,31 @@
-## @file lora.py
-#  @author Robson Costa (<mailto:robson.costa@ifsc.edu.br>)
-#  @brief LoRa class.
-#  @version 0.2.0
-#  @since 2020/11/16
-#  @date 2024/02/14
-#  @copyright Copyright &copy; since 2020 <a href="https://agrotechlab.lages.ifsc.edu.br" target="_blank">AgroTechLab</a>.\n
-#  ![LICENSE license](../figs/license.png)<br>
-#  Licensed under the CC BY-NC-SA (<i>Creative Commons Attribution-NonCommercial-ShareAlike</i>) 4.0 International Unported License (the <em>"License"</em>). You may not
-#  use this file except in compliance with the License. You may obtain a copy of the License <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode" target="_blank">here</a>.
-#  Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an <em>"as is" basis, 
-#  without warranties or  conditions of any kind</em>, either express or implied. See the License for the specific language governing permissions 
-#  and limitations under the License.
-
-# Limitações: o base_band deve ser o mesmo para todos os projetos, se a cada projeto for redefinido, o contador de frames sempre irá reiniciar,
-# neste caso, em modo ABP sempre enviará o frame com o contador em 1, resultando na seguinte mensagem no TTN:
-# "cluster failed to handle message: device not found"
-# o modo de autenticação segue o mesmo comportamento
-# a frequencia e DR do RXWin2 e os canais RXWin1 são padronizados pelo TTN e amarrados com a baseband e subband
-# O comportamento em modo OTAA deve ser testado.
 import logging
 import threading
 import lora_constants
 import sys
 
-
 class LoRa:
-    """! The LoRa class.
+    """LoRa class.
+    
     Manages the LoRa operations communicating with LoRa modules.
+
+    Attributes:
+        lock (threading.Lock): Semaphore to use LoRa object.
+        loraModule (str): LoRa module type.
+        serialPort (serial.Serial): Serial object.
+        base_band (str): LoRa base band.
+        lora_class (str): LoRa class.
+        tx_power (int): LoRa transmission power.
     """
+
     def __init__(self, _loraModule, _serialPortObj):
-        """! The class constructor.
-        @param _loraModule The type of LoRa module.
-        @param _serialPortObj The serial port object.
-        @return  An instance of the LoRa class based on a specified lora module initialized at specified serial port.
+        """LoRa class constructor.
+
+        Parameters:
+            _loraModule (str): LoRa module type.
+            _serialPortObj (serial.Serial): Serial object.
+        
+        Returns:
+            None
         """  
         ## Semaphore to use LoRa object
         self.lock = threading.Lock()        
@@ -86,9 +79,13 @@ class LoRa:
     
         
     def checkLoRa(self):
-        """! Check if LoRa module is connected and ready to use.
-        @return True - if successfuly
-        @return False - if failed
+        """Check if LoRa module is connected and ready to use.
+
+        Parameters:
+            None
+        
+        Returns:
+            bool: True - if successfuly / False - if failed
         """
         self.serialPort.write(b"AT\n")
         response = self.serialPort.readline().decode("UTF-8")        
@@ -106,10 +103,14 @@ class LoRa:
                             
         
     def getLoRaMaxPayload(self, loraBaseBand, loraUPDatarate):
-        """! Get the maximum payload size based on base band and uplink data rate.
-        @param loraBaseBand base band
-        @param loraUPDatarate uplink data rate
-        @return Maximum payload size.        
+        """Get the maximum payload size based on base band and uplink data rate.
+
+        Parameters:
+            loraBaseBand (str): LoRa base band.
+            loraUPDatarate (str): Uplink data rate.
+
+        Returns:
+            int: Maximum payload size.
         """
         max_payload = 0
         if loraBaseBand == "EU434" or loraBaseBand == "EU868":
@@ -159,10 +160,10 @@ class LoRa:
     #         pass
     #     else:
     #         logging.warning("Channel 1 at LoRa module not configured")
-        
+
+
     def setLoRaRX1Win(self):
-        """! Enable RX window 1.                
-        """
+        """Enable RX window 1."""
         logging.debug("Enabling LoRa receive window 1")
         cmd = "AT+RXWIN1=ON\n"
         self.serialPort.write(cmd.encode("UTF-8"))
@@ -172,10 +173,16 @@ class LoRa:
         else:
             logging.warning("RX window 1 at LoRa module not enabled") 
 
+
     def setLoRaRX2Win(self, loraRX2Frequency, loraRX2Datarate):
-        """! Sets the RX window 2 parameters.
-        @param loraRX2Frequency RX window 2 frequency
-        @param loraRX2Datarate RX window 2 data rate        
+        """Sets the RX window 2 parameters.
+
+        Parameters:
+            loraRX2Frequency (int): RX window 2 frequency.
+            loraRX2Datarate (str): RX window 2 data rate.
+
+        Returns:
+            None        
         """
         logging.debug("Setting LoRa receive window 2 to %s and %s", loraRX2Frequency, loraRX2Datarate)
         cmd = "AT+RXWIN2="+str(loraRX2Frequency)+","+loraRX2Datarate+"\n"
@@ -186,9 +193,15 @@ class LoRa:
         else:
             logging.warning("Response window 2 at LoRa module not configured") 
 
+
     def setLoRaAuthMode(self, loraAuthMode):
-        """! Sets the authentication mode.
-        @param loraAuthMode authentication mode        
+        """Sets the authentication mode.
+
+        Parameters:
+            loraAuthMode (str): authentication mode
+        
+        Returns:
+            None
         """
         logging.debug("Setting LoRa authentication mode to %s", loraAuthMode)
         cmd = "AT+MODE="+loraAuthMode+"\n"
@@ -199,9 +212,15 @@ class LoRa:
         else:
             logging.warning("Authentication mode at LoRa module not configured")   
     
+
     def setLoRaADR(self, loraADR):
-        """! Enable or disable ADR (Automatic Data Rate).
-        @param loraADR enable (ON) or disable (OFF)
+        """Enable or disable ADR (Automatic Data Rate).
+
+        Parameters:
+            loraADR (str): enable (ON) or disable (OFF)
+        
+        Returns:
+            None
         """
         logging.debug("Setting LoRa ADR to %s", loraADR)
         cmd = "AT+ADR="+loraADR+"\n"
@@ -212,9 +231,15 @@ class LoRa:
         else:
             logging.warning("ADR at LoRa module not configured")
 
+
     def setLoRaUPDatarate(self, loraUPDatarate):
-        """! Sets the uplink data rate.
-        @param loraUPDatarate uplink data rate
+        """Sets the uplink data rate.
+
+        Parameters:
+            loraUPDatarate (str): uplink data rate
+        
+        Returns:
+            None
         """
         logging.debug("Setting LoRa uplink data rate to %s", loraUPDatarate)
         cmd = "AT+DR="+loraUPDatarate+"\n"
@@ -225,9 +250,15 @@ class LoRa:
         else:
             logging.warning("Uplink data rate at LoRa module not configured")
 
+
     def setLoRaTXPower(self, loraTXPower):
-        """! Sets the transmission power (in dBm).
-        @param loraTXPower transmission power (in dBm)
+        """Sets the transmission power (in dBm).
+
+        Parameters:
+            loraTXPower (int): transmission power (in dBm)
+        
+        Returns:
+            None
         """
         logging.debug("Setting LoRa transmission power to %s dBm", loraTXPower)
         cmd = "AT+POWER="+str(loraTXPower)+"\n"
@@ -238,9 +269,15 @@ class LoRa:
         else:
             logging.warning("Transmission power at LoRa module not configured")
 
+
     def setLoRaClass(self, loraClass):
-        """! Sets the LoRa class
-        @param loraClass LoRa class
+        """Sets the LoRa class.
+        
+        Parameters:
+            loraClass (str): LoRa class
+        
+        Returns:
+            None
         """
         logging.debug("Setting LoRa class to %s", loraClass)
         cmd = "AT+CLASS="+loraClass+"\n"
@@ -251,9 +288,15 @@ class LoRa:
         else:
             logging.warning("Class at LoRa module not configured")
 
+
     def setLoRaSubBand(self, loraSubBand):
-        """! Sets the sub-band. This will disable all channels not belonging to the specified sub-band.
-        @param loraSubBand sub-band
+        """Sets the sub-band. This will disable all channels not belonging to the specified sub-band.
+
+        Parameters:
+            loraSubBand (int): sub-band
+        
+        Returns:
+            None
         """
         if (self.loraModule == "RHF76-052"):
             if loraSubBand == 1:                
@@ -295,10 +338,16 @@ class LoRa:
                     else:
                         logging.warning("Failed disabling LoRa channel %s", ch)
         # elif (self.loraModule == "RHF03M003"):
-      
+
+
     def setLoRaBaseBand(self, loraBaseBand):
-        """! Sets the base-band.
-        @param loraBaseBand base-band
+        """Sets the base-band.
+
+        Parameters:
+            loraBaseBand (str): base-band
+        
+        Returns:
+            None
         """
         logging.debug("Setting LoRa base band to %s", loraBaseBand)
         cmd = "AT+DR="+loraBaseBand+"\n"
@@ -309,9 +358,15 @@ class LoRa:
         else:
             logging.warning("Base band at LoRa module not configured")
 
+
     def setDevEUI(self, devEUI):
-        """! Sets the device EUI.
-        @param devEUI device EUI
+        """Sets the device EUI.
+
+        Parameters:
+            devEUI (str): device EUI
+        
+        Returns:
+            None
         """
         logging.debug("Setting TTN device EUI to %s", devEUI)
         cmd = "AT+ID=DevEui,"+devEUI+"\n"
@@ -321,10 +376,16 @@ class LoRa:
             pass
         else:
             logging.warning("Device EUI at LoRa module not configured")
-    
+
+
     def setAppEUI(self, appEUI):
-        """! Sets the application EUI.
-        @param appEUI application EUI
+        """Sets the application EUI.
+
+        Parameters:
+            appEUI (str): application EUI
+
+        Returns:
+            None
         """
         logging.debug("Setting TTN application EUI to %s", appEUI)
         cmd = "AT+ID=AppEui,"+appEUI+"\n"
@@ -335,9 +396,15 @@ class LoRa:
         else:
             logging.warning("Application EUI at LoRa module not configured")
     
+
     def setDevAddr(self, devAddr):
-        """! Sets the device address.
-        @param devAddr device address
+        """Sets the device address.
+
+        Parameters:
+            devAddr (str): device address
+        
+        Returns:
+            None
         """
         logging.debug("Setting TTN device address to %s", devAddr)
         cmd = "AT+ID=DevAddr,"+devAddr+"\n"
@@ -347,10 +414,16 @@ class LoRa:
             pass
         else:
             logging.warning("Device address at LoRa module not configured")
-    
+
+
     def setNwkSKey(self, nwkSKey):
-        """! Sets the network session key.
-        @param nwkSKey network session key.
+        """Sets the network session key.
+        
+        Parameters:
+            nwkSKey network session
+        
+        Returns:
+            None
         """
         logging.debug("Setting TTN network session key to %s", nwkSKey)
         cmd = "AT+KEY=NwkSKey,"+nwkSKey+"\n"
@@ -361,9 +434,15 @@ class LoRa:
         else:
             logging.warning("Network session key at LoRa module not configured")
     
+
     def setAppSKey(self, appSKey):
-        """! Sets the application session key.
-        @param appSKey application session key.
+        """Sets the application session key.
+        
+        Parameters:
+            appSKey application session key.
+        
+        Returns:
+            None
         """
         logging.debug("Setting TTN application session key to %s", appSKey)
         cmd = "AT+KEY=AppSKey,"+appSKey+"\n"
@@ -374,9 +453,15 @@ class LoRa:
         else:
             logging.warning("Application session key at LoRa module not configured")
 
+
     def setAppKey(self, appKey):
-        """! Sets the application key.
-        @param appKey application key.
+        """Sets the application key.
+        
+        Parameters:
+            appKey application key.
+        
+        Returns:
+            None
         """
         logging.debug("Setting TTN application key to %s", appKey)
         cmd = "AT+KEY=AppKey,"+appKey+"\n"
@@ -387,10 +472,15 @@ class LoRa:
         else:
             logging.warning("Application key at LoRa module not configured")
     
+
     def sendJoinRequest(self):
-        """! Sends a join request.
-        @return True - if successfuly joined.
-        @return False - if joined failed.
+        """Sends a join request.
+        
+        Parameters:
+            None
+        
+        Returns:
+            bool: True - if successful / False - if failed
         """
         logging.debug("Sending Lora JOIN request")
         cmd = "AT+Join\n"
@@ -410,10 +500,16 @@ class LoRa:
                 logging.info("Joined already")            
                 return True
 
+
     def sendNoAckMsgHex(self, _loraPort, _loraMsg):
-        """! Sends unconfirmed hexadecimal messages.
-        @param _loraPort port
-        @param _loraMsg hexadecimal message        
+        """Sends unconfirmed hexadecimal messages.
+        
+        Parameters:
+            _loraPort port
+            _loraMsg hexadecimal message
+        
+        Returns:
+            None
         """
         logging.debug("Setting Lora port to %s", _loraPort)
         cmd = "AT+PORT="+str(_loraPort)+"\n"
@@ -432,10 +528,16 @@ class LoRa:
             if "Done" in response:            
                 break
 
+
     def sendAckMsgHex(self, _loraPort, _loraMsg):
-        """! Sends confirmed hexadecimal messages.
-        @param _loraPort port
-        @param _loraMsg hexadecimal message        
+        """Sends confirmed hexadecimal messages.
+
+        Parameters:
+            _loraPort port
+            _loraMsg hexadecimal message
+
+        Returns:
+            None     
         """
         logging.debug("Setting Lora port to %s", _loraPort)
         cmd = "AT+PORT="+str(_loraPort)+"\n"

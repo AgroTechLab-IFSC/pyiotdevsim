@@ -1,16 +1,3 @@
-## @file project.py
-#  @author Robson Costa (<mailto:robson.costa@ifsc.edu.br>)
-#  @brief Project class.
-#  @version 0.2.0
-#  @since 2020/11/16
-#  @date 2024/02/14
-#  @copyright Copyright &copy; since 2020 <a href="https://agrotechlab.lages.ifsc.edu.br" target="_blank">AgroTechLab</a>.\n
-#  ![LICENSE license](../figs/license.png)<br>
-#  Licensed under the CC BY-NC-SA (<i>Creative Commons Attribution-NonCommercial-ShareAlike</i>) 4.0 International Unported License (the <em>"License"</em>). You may not
-#  use this file except in compliance with the License. You may obtain a copy of the License <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode" target="_blank">here</a>.
-#  Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an <em>"as is" basis, 
-#  without warranties or  conditions of any kind</em>, either express or implied. See the License for the specific language governing permissions 
-#  and limitations under the License.
 import threading
 import logging
 import time
@@ -20,48 +7,66 @@ import struct
 import binascii
 
 class Project(threading.Thread):
-    """! The Project class.
+    """Project class.
+    
     Manages the project operations. It's created a thread to each project configured.
+
+    Attributes:
+        name (str): The project name.
+        config (dict): The project configuration.
+        lora (LoRa): The LoRa object.
+        baseBand (str): The LoRa base-band.
+        authMode (str): The LoRa authentication mode.
     """
 
     def __init__(self, name, cfg, loraObj, loraBaseBand, loraAuthMode):
-        """! The class constructor.
-        @param name The project name.
-        @param cfg The project configuration.
-        @param loraObj The LoRa object.
-        @param loraBaseBand The LoRa base-band.
-        @param loraAuthMode The LoRa authentication mode.
-        @return An instance of the Project class.
+        """Project class constructor.
+        
+        Parameters:
+            name (str): The project name.
+            cfg (dict): The project configuration.
+            loraObj (LoRa): The LoRa object.
+            loraBaseBand (str): The LoRa base-band.
+            loraAuthMode (str): The LoRa authentication mode.
         """  
+        
         threading.Thread.__init__(self)        
         
-        ## Projec name
+        # Projec name
         self.name = name
 
-        ## Projec configuration
+        # Projec configuration
         self.config = cfg
 
-        ## LoRa object
+        # LoRa object
         self.lora = loraObj
 
-        ## LoRa base band
+        # LoRa base band
         self.baseBand = loraBaseBand  
 
-        ## LoRa authentication mode
+        # LoRa authentication mode
         self.authMode = loraAuthMode      
 
-    def set_bit(self, number, position):
-        # Cria uma máscara com o bit na posição desejada setado para 1
-        mask = 1 << position
 
-        # Aplica a máscara usando OR bit a bit para setar o bit
+    def set_bit(self, number, position):
+        """Create a mask with a bit setted to 1 at a desired position.
+        
+        Parameters:
+            number (int): The number to set the bit.
+            position (int): The bit position to set.
+
+        Returns:
+            int: The number with the bit setted.
+        """
+        
+        mask = 1 << position
         result = number | mask
 
         return result
 
+
     def run(self):
-        """! The run method.        
-        """  
+        """Run method."""  
         # Waits for a random time to unsynchronize the threads
         time.sleep(random.randint(5,10))
 

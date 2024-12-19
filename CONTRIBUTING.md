@@ -1,4 +1,22 @@
-This respository uses an Angular based commit messages with the following layout 
+# Contributing
+
+All solutions developed by the AgroTechLab team must meet the following standards at each stage of development.
+
+## Source code comments
+
+The source code must be well documented with relevant information about variables, constants, data structures, classes and functions/methods.
+
+For C/C++ source codes, comments must follow the [Doxygen](https://www.doxygen.nl/) style, for Python source codes, comments must follow the [Google](https://google.github.io/styleguide/pyguide.html) style.
+
+## External documentation
+
+The solutions must have external documentation, both for users and developers.
+
+For C/C++ source codes, the external documentation must be created with [Doxygen](https://www.doxygen.nl/) application, for Python source codes, the external documentation must bre created with [Sphinx](https://www.sphinx-doc.org/en/master/) application.
+
+## GitHub commit standard
+
+AgroTechLab uses an Angular based commit messages with the following layout 
 
 > ```type(scope): subject```
 
@@ -9,7 +27,7 @@ This respository uses an Angular based commit messages with the following layout
 The following commit types can be used:
 
 - ```build``` - Used to identify development changes related to the build system (involving scripts, configurations or tools) and package dependencies.
-- ```ci``` - Used to identify development changes related to the continuous integration and deployment system - involving scripts, configurations or tools.
+- ```ci``` - Used to identify development changes related to the continuous integration and deployment system (involving scripts, configurations or tools).
 - ```docs``` - Used to identify documentation changes related to the project - whether intended externally for the end users (in case of a library) or internally for the developers.
 - ```feat``` - Used to identify production changes related to new backward-compatible abilities or functionality (update ```MINOR``` release).
 - ```fix``` - Used to identify production changes related to backward-compatible bug fixes (update ```PATCH``` release).

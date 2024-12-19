@@ -1,3 +1,5 @@
+
+
 #  pyIoTDevSim 
 It is a IoT device simulator that uses a real LoRaWAN&reg; module (connected to serial port) to sent simulated IoT data to TTN&reg; (<a href="https://www.thethingsnetwork.org">The Things Network</a>) infrastructure.<br>
 
@@ -89,6 +91,9 @@ It is a IoT device simulator that uses a real LoRaWAN&reg; module (connected to 
 
 ## Release Notes
 
+### <b>Version 0.4.0 (19/12/2024):</b>
+   - Documentation updated;
+
 ### <b>Version 0.3.0 (02/10/2024):</b>
    - Updated data types;
 
@@ -114,10 +119,8 @@ It is a IoT device simulator that uses a real LoRaWAN&reg; module (connected to 
      - FLOAT32;
    - LOG generation;
 
----
-AgroTechLab (*Laboratório de Desenvolvimento de Tecnologias para o Agronegócio*)  
-IFSC (*Instituto Federal de Santa Catarina*) - Câmpus Lages  
-Rua Heitor Vila Lobos, 225 - São Francisco  
-Lages/SC - Brazil  
-CEP: 88.506-400  
-https://agrotechlab.lages.ifsc.edu.br
+<br><hr><p style="text-align: center;"><b><a href="https://agrotechlab.lages.ifsc.edu.br/">AgroTechLab (<i>Laboratório de Desenvolvimento de Tecnologias para o Agronegócio</i>)</a></b><br>
+<b><a href="https://ifsc.edu.br/web/campus-lages">IFSC (<i>Instituto Federal de Santa Catarina</i>) - Câmpus Lages</a></b><br>
+Rua Heitor Vila Lobos, 225 - São Francisco<br>
+Lages/SC - Brazil<br>
+CEP: 88.506-400</p>
