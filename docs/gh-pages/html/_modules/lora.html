@@ -1,0 +1,724 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>lora &mdash; pyIoTDevSim v0.4.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=97b6c874"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            pyIoTDevSim
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../config_file.html">Configuration file</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules.html">Source Code Docs</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">pyIoTDevSim</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Module code</a></li>
+      <li class="breadcrumb-item active">lora</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for lora</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">threading</span>
+<span class="kn">import</span> <span class="nn">lora_constants</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<div class="viewcode-block" id="LoRa">
+<a class="viewcode-back" href="../lora.html#lora.LoRa">[docs]</a>
+<span class="k">class</span> <span class="nc">LoRa</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;LoRa class.</span>
+<span class="sd">    </span>
+<span class="sd">    Manages the LoRa operations communicating with LoRa modules.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        lock (threading.Lock): Semaphore to use LoRa object.</span>
+<span class="sd">        loraModule (str): LoRa module type.</span>
+<span class="sd">        serialPort (serial.Serial): Serial object.</span>
+<span class="sd">        base_band (str): LoRa base band.</span>
+<span class="sd">        lora_class (str): LoRa class.</span>
+<span class="sd">        tx_power (int): LoRa transmission power.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_loraModule</span><span class="p">,</span> <span class="n">_serialPortObj</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;LoRa class constructor.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            _loraModule (str): LoRa module type.</span>
+<span class="sd">            _serialPortObj (serial.Serial): Serial object.</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            None</span>
+<span class="sd">        &quot;&quot;&quot;</span>  
+        <span class="c1">## Semaphore to use LoRa object</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lock</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Lock</span><span class="p">()</span>        
+
+        <span class="c1">## LoRa module type</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">loraModule</span> <span class="o">=</span> <span class="n">_loraModule</span>
+
+        <span class="c1">## Serial object</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">serialPort</span> <span class="o">=</span> <span class="n">_serialPortObj</span>
+
+        <span class="c1"># # Get and check LoRa base band</span>
+        <span class="c1"># self.base_band = _loraCfg.get(&quot;base_band&quot;)</span>
+        <span class="c1"># if self.base_band not in lora_constants.lora_baseband_ref:</span>
+        <span class="c1">#     logging.error(&quot;Base band parameter in LoRa configuration file is not valid&quot;)</span>
+        <span class="c1">#     sys.exit(&quot;\tERROR: Base band parameter in LoRa configuration file is not valid!!!&quot;)</span>
+
+        <span class="c1"># # Get and check LoRa class</span>
+        <span class="c1"># self.lora_class = _loraCfg.get(&quot;lora_class&quot;)</span>
+        <span class="c1"># if self.lora_class not in lora_constants.lora_class_ref:</span>
+        <span class="c1">#     logging.error(&quot;Class parameter in LoRa configuration file is not valid&quot;)</span>
+        <span class="c1">#     sys.exit(&quot;\tERROR: Class parameter in LoRa configuration file is not valid!!!&quot;)</span>
+
+        <span class="c1"># # Get and check LoRa transmission power</span>
+        <span class="c1"># self.tx_power = _loraCfg.get(&quot;tx_power&quot;)</span>
+        <span class="c1"># if self.base_band == &quot;EU434&quot; or self.base_band == &quot;EU868&quot;:</span>
+        <span class="c1">#     if self.tx_power not in lora_constants.lora_tx_power_868_ref:</span>
+        <span class="c1">#         logging.error(&quot;Transmission power parameter in LoRa configuration file is not valid&quot;)</span>
+        <span class="c1">#         sys.exit(&quot;\tERROR: Transmission power parameter in LoRa configuration file is not valid!!!&quot;)</span>
+        <span class="c1"># elif self.base_band == &quot;US915&quot; or self.base_band == &quot;AU920&quot;:</span>
+        <span class="c1">#     if self.tx_power not in lora_constants.lora_tx_power_915_ref:</span>
+        <span class="c1">#         logging.error(&quot;Transmission power parameter in LoRa configuration file is not valid&quot;)</span>
+        <span class="c1">#         sys.exit(&quot;\tERROR: Transmission power parameter in LoRa configuration file is not valid!!!&quot;)</span>
+
+           
+
+        <span class="c1"># # Get and check ADR (Automatic Data Rate)</span>
+        <span class="c1"># self.adr = _loraCfg.get(&quot;adr&quot;)</span>
+        <span class="c1"># if self.adr not in lora_constants.lora_adr_ref:</span>
+        <span class="c1">#     logging.error(&quot;ADR parameter in LoRa configuration file is not valid&quot;)</span>
+        <span class="c1">#     sys.exit(&quot;\tERROR: ADR parameter in LoRa configuration file is not valid!!!&quot;)</span>
+
+        <span class="c1"># # Get and check Authentication Mode</span>
+        <span class="c1"># self.auth_mode = _loraCfg.get(&quot;auth_mode&quot;)</span>
+        <span class="c1"># if self.auth_mode not in lora_constants.lora_auth_mode_ref:</span>
+        <span class="c1">#     logging.error(&quot;Authentication mode parameter in LoRa configuration file is not valid&quot;)</span>
+        <span class="c1">#     sys.exit(&quot;\tERROR: Authentication mode parameter in LoRa configuration file is not valid!!!&quot;)</span>
+
+        <span class="c1"># self.repeat = _loraCfg.get(&quot;repeat&quot;)</span>
+        <span class="c1"># self.retry = _loraCfg.get(&quot;retry&quot;)</span>
+       
+    
+        
+<div class="viewcode-block" id="LoRa.checkLoRa">
+<a class="viewcode-back" href="../lora.html#lora.LoRa.checkLoRa">[docs]</a>
+    <span class="k">def</span> <span class="nf">checkLoRa</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Check if LoRa module is connected and ready to use.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            None</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            bool: True - if successfuly / False - if failed</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">serialPort</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">b</span><span class="s2">&quot;AT</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">serialPort</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;UTF-8&quot;</span><span class="p">)</span>        
+        <span class="k">if</span> <span class="s2">&quot;OK&quot;</span> <span class="ow">in</span> <span class="n">response</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">serialPort</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">b</span><span class="s2">&quot;AT+VER</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">serialPort</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;UTF-8&quot;</span><span class="p">)</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;: &quot;</span><span class="p">)</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="n">response</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>            
+            <span class="n">response</span> <span class="o">=</span> <span class="n">response</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="nb">len</span><span class="p">(</span><span class="n">response</span><span class="p">)</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>            
+            <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Connected to </span><span class="si">%s</span><span class="s2"> LoRa module with firmware version </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">loraModule</span><span class="p">,</span> <span class="n">response</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;LoRa module is not connected&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span></div>
+
+                            
+        
+<div class="viewcode-block" id="LoRa.getLoRaMaxPayload">
+<a class="viewcode-back" href="../lora.html#lora.LoRa.getLoRaMaxPayload">[docs]</a>
+    <span class="k">def</span> <span class="nf">getLoRaMaxPayload</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">loraBaseBand</span><span class="p">,</span> <span class="n">loraUPDatarate</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the maximum payload size based on base band and uplink data rate.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            loraBaseBand (str): LoRa base band.</span>
+<span class="sd">            loraUPDatarate (str): Uplink data rate.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            int: Maximum payload size.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">max_payload</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">if</span> <span class="n">loraBaseBand</span> <span class="o">==</span> <span class="s2">&quot;EU434&quot;</span> <span class="ow">or</span> <span class="n">loraBaseBand</span> <span class="o">==</span> <span class="s2">&quot;EU868&quot;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">loraUPDatarate</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">lora_constants</span><span class="o">.</span><span class="n">lora_dr_868_ref</span><span class="p">:</span>
+                <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Uplink data rate parameter in LoRa configuration file is not valid&quot;</span><span class="p">)</span>
+                <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">ERROR: Uplink data rate parameter in LoRa configuration file is not valid!!!&quot;</span><span class="p">)</span>
+                        
+            <span class="k">if</span> <span class="p">(</span><span class="n">loraUPDatarate</span> <span class="o">==</span> <span class="s2">&quot;DR0&quot;</span> <span class="ow">or</span> <span class="n">loraUPDatarate</span> <span class="o">==</span> <span class="s2">&quot;DR1&quot;</span> <span class="ow">or</span> <span class="n">loraUPDatarate</span> <span class="o">==</span> <span class="s2">&quot;DR2&quot;</span><span class="p">):</span>
+                <span class="n">max_payload</span> <span class="o">=</span> <span class="mi">51</span>
+            <span class="k">elif</span> <span class="p">(</span><span class="n">loraUPDatarate</span> <span class="o">==</span> <span class="s2">&quot;DR3&quot;</span><span class="p">):</span>
+                <span class="n">max_payload</span> <span class="o">=</span> <span class="mi">115</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">loraUPDatarate</span> <span class="o">==</span> <span class="s2">&quot;DR4&quot;</span> <span class="ow">or</span> <span class="n">loraUPDatarate</span> <span class="o">==</span> <span class="s2">&quot;DR5&quot;</span> <span class="ow">or</span> <span class="n">loraUPDatarate</span> <span class="o">==</span> <span class="s2">&quot;DR6&quot;</span> <span class="ow">or</span> <span class="n">loraUPDatarate</span> <span class="o">==</span> <span class="s2">&quot;DR7&quot;</span><span class="p">):</span>
+                <span class="n">max_payload</span> <span class="o">=</span> <span class="mi">242</span>                
+
+        <span class="k">if</span> <span class="n">loraBaseBand</span> <span class="o">==</span> <span class="s2">&quot;US915&quot;</span> <span class="ow">or</span> <span class="n">loraBaseBand</span> <span class="o">==</span> <span class="s2">&quot;AU915&quot;</span> <span class="ow">or</span> <span class="n">loraBaseBand</span> <span class="o">==</span> <span class="s2">&quot;AU920&quot;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">loraUPDatarate</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">lora_constants</span><span class="o">.</span><span class="n">lora_dr_915_ref</span><span class="p">:</span>
+                <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Uplink data rate parameter in LoRa configuration file is not valid&quot;</span><span class="p">)</span>
+                <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">ERROR: Uplink data rate parameter in LoRa configuration file is not valid!!!&quot;</span><span class="p">)</span>                   
+            
+            <span class="k">if</span> <span class="p">(</span><span class="n">loraUPDatarate</span> <span class="o">==</span> <span class="s2">&quot;DR0&quot;</span><span class="p">):</span>
+                <span class="n">max_payload</span> <span class="o">=</span> <span class="mi">11</span>                
+            <span class="k">elif</span> <span class="p">(</span><span class="n">loraUPDatarate</span> <span class="o">==</span> <span class="s2">&quot;DR1&quot;</span><span class="p">):</span>
+                <span class="n">max_payload</span> <span class="o">=</span> <span class="mi">53</span>                
+            <span class="k">elif</span> <span class="p">(</span><span class="n">loraUPDatarate</span> <span class="o">==</span> <span class="s2">&quot;DR2&quot;</span><span class="p">):</span>
+                <span class="n">max_payload</span> <span class="o">=</span> <span class="mi">126</span>                
+            <span class="k">elif</span> <span class="p">(</span><span class="n">loraUPDatarate</span> <span class="o">==</span> <span class="s2">&quot;DR3&quot;</span> <span class="ow">or</span> <span class="n">loraUPDatarate</span> <span class="o">==</span> <span class="s2">&quot;DR4&quot;</span><span class="p">):</span>
+                <span class="n">max_payload</span> <span class="o">=</span> <span class="mi">242</span>
+
+        <span class="k">return</span> <span class="n">max_payload</span></div>
+
+
+    <span class="c1">#     # Setup LoRa channel 0</span>
+    <span class="c1">#     logging.debug(&quot;Setting LoRa channel 0 to %s and %s&quot;, self.chan0_freq, self.chan0_dr)</span>
+    <span class="c1">#     cmd = &quot;AT+CH=0,&quot;+str(self.chan0_freq)+&quot;,&quot;+self.chan0_dr+&quot;\n&quot;</span>
+    <span class="c1">#     self.serialPort.write(cmd.encode(&quot;UTF-8&quot;))</span>
+    <span class="c1">#     response = self.serialPort.readline().decode(&quot;UTF-8&quot;)        </span>
+    <span class="c1">#     if self.chan0_dr in response:            </span>
+    <span class="c1">#         pass</span>
+    <span class="c1">#     else:</span>
+    <span class="c1">#         logging.warning(&quot;Channel 0 at LoRa module not configured&quot;)</span>
+
+    <span class="c1">#     # Setup LoRa channel 1</span>
+    <span class="c1">#     logging.debug(&quot;Setting LoRa channel 1 to %s and %s&quot;, self.chan1_freq, self.chan1_dr)</span>
+    <span class="c1">#     cmd = &quot;AT+CH=1,&quot;+str(self.chan1_freq)+&quot;,&quot;+self.chan1_dr+&quot;\n&quot;</span>
+    <span class="c1">#     self.serialPort.write(cmd.encode(&quot;UTF-8&quot;))</span>
+    <span class="c1">#     response = self.serialPort.readline().decode(&quot;UTF-8&quot;)        </span>
+    <span class="c1">#     if self.chan1_dr in response:            </span>
+    <span class="c1">#         pass</span>
+    <span class="c1">#     else:</span>
+    <span class="c1">#         logging.warning(&quot;Channel 1 at LoRa module not configured&quot;)</span>
+
+
+<div class="viewcode-block" id="LoRa.setLoRaRX1Win">
+<a class="viewcode-back" href="../lora.html#lora.LoRa.setLoRaRX1Win">[docs]</a>
+    <span class="k">def</span> <span class="nf">setLoRaRX1Win</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Enable RX window 1.&quot;&quot;&quot;</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Enabling LoRa receive window 1&quot;</span><span class="p">)</span>
+        <span class="n">cmd</span> <span class="o">=</span> <span class="s2">&quot;AT+RXWIN1=ON</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">serialPort</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">cmd</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;UTF-8&quot;</span><span class="p">))</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">serialPort</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;UTF-8&quot;</span><span class="p">)</span>        
+        <span class="k">if</span> <span class="s2">&quot;RXWIN1: ON&quot;</span> <span class="ow">in</span> <span class="n">response</span><span class="p">:</span>            
+            <span class="k">pass</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;RX window 1 at LoRa module not enabled&quot;</span><span class="p">)</span> </div>
+
+
+
+<div class="viewcode-block" id="LoRa.setLoRaRX2Win">
+<a class="viewcode-back" href="../lora.html#lora.LoRa.setLoRaRX2Win">[docs]</a>
+    <span class="k">def</span> <span class="nf">setLoRaRX2Win</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">loraRX2Frequency</span><span class="p">,</span> <span class="n">loraRX2Datarate</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sets the RX window 2 parameters.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            loraRX2Frequency (int): RX window 2 frequency.</span>
+<span class="sd">            loraRX2Datarate (str): RX window 2 data rate.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            None        </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Setting LoRa receive window 2 to </span><span class="si">%s</span><span class="s2"> and </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">loraRX2Frequency</span><span class="p">,</span> <span class="n">loraRX2Datarate</span><span class="p">)</span>
+        <span class="n">cmd</span> <span class="o">=</span> <span class="s2">&quot;AT+RXWIN2=&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">loraRX2Frequency</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot;,&quot;</span><span class="o">+</span><span class="n">loraRX2Datarate</span><span class="o">+</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">serialPort</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">cmd</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;UTF-8&quot;</span><span class="p">))</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">serialPort</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;UTF-8&quot;</span><span class="p">)</span>        
+        <span class="k">if</span> <span class="n">loraRX2Datarate</span> <span class="ow">in</span> <span class="n">response</span><span class="p">:</span>            
+            <span class="k">pass</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Response window 2 at LoRa module not configured&quot;</span><span class="p">)</span> </div>
+
+
+
+<div class="viewcode-block" id="LoRa.setLoRaAuthMode">
+<a class="viewcode-back" href="../lora.html#lora.LoRa.setLoRaAuthMode">[docs]</a>
+    <span class="k">def</span> <span class="nf">setLoRaAuthMode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">loraAuthMode</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sets the authentication mode.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            loraAuthMode (str): authentication mode</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Setting LoRa authentication mode to </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">loraAuthMode</span><span class="p">)</span>
+        <span class="n">cmd</span> <span class="o">=</span> <span class="s2">&quot;AT+MODE=&quot;</span><span class="o">+</span><span class="n">loraAuthMode</span><span class="o">+</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">serialPort</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">cmd</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;UTF-8&quot;</span><span class="p">))</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">serialPort</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;UTF-8&quot;</span><span class="p">)</span>       
+        <span class="k">if</span> <span class="n">loraAuthMode</span> <span class="ow">in</span> <span class="n">response</span><span class="p">:</span>            
+            <span class="k">pass</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Authentication mode at LoRa module not configured&quot;</span><span class="p">)</span>   </div>
+
+    
+
+<div class="viewcode-block" id="LoRa.setLoRaADR">
+<a class="viewcode-back" href="../lora.html#lora.LoRa.setLoRaADR">[docs]</a>
+    <span class="k">def</span> <span class="nf">setLoRaADR</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">loraADR</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Enable or disable ADR (Automatic Data Rate).</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            loraADR (str): enable (ON) or disable (OFF)</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Setting LoRa ADR to </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">loraADR</span><span class="p">)</span>
+        <span class="n">cmd</span> <span class="o">=</span> <span class="s2">&quot;AT+ADR=&quot;</span><span class="o">+</span><span class="n">loraADR</span><span class="o">+</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">serialPort</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">cmd</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;UTF-8&quot;</span><span class="p">))</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">serialPort</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;UTF-8&quot;</span><span class="p">)</span>        
+        <span class="k">if</span> <span class="n">loraADR</span> <span class="ow">in</span> <span class="n">response</span><span class="p">:</span>            
+            <span class="k">pass</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;ADR at LoRa module not configured&quot;</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="LoRa.setLoRaUPDatarate">
+<a class="viewcode-back" href="../lora.html#lora.LoRa.setLoRaUPDatarate">[docs]</a>
+    <span class="k">def</span> <span class="nf">setLoRaUPDatarate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">loraUPDatarate</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sets the uplink data rate.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            loraUPDatarate (str): uplink data rate</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Setting LoRa uplink data rate to </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">loraUPDatarate</span><span class="p">)</span>
+        <span class="n">cmd</span> <span class="o">=</span> <span class="s2">&quot;AT+DR=&quot;</span><span class="o">+</span><span class="n">loraUPDatarate</span><span class="o">+</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">serialPort</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">cmd</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;UTF-8&quot;</span><span class="p">))</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">serialPort</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;UTF-8&quot;</span><span class="p">)</span>        
+        <span class="k">if</span> <span class="n">loraUPDatarate</span> <span class="ow">in</span> <span class="n">response</span><span class="p">:</span>            
+            <span class="k">pass</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Uplink data rate at LoRa module not configured&quot;</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="LoRa.setLoRaTXPower">
+<a class="viewcode-back" href="../lora.html#lora.LoRa.setLoRaTXPower">[docs]</a>
+    <span class="k">def</span> <span class="nf">setLoRaTXPower</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">loraTXPower</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sets the transmission power (in dBm).</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            loraTXPower (int): transmission power (in dBm)</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Setting LoRa transmission power to </span><span class="si">%s</span><span class="s2"> dBm&quot;</span><span class="p">,</span> <span class="n">loraTXPower</span><span class="p">)</span>
+        <span class="n">cmd</span> <span class="o">=</span> <span class="s2">&quot;AT+POWER=&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">loraTXPower</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">serialPort</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">cmd</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;UTF-8&quot;</span><span class="p">))</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">serialPort</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;UTF-8&quot;</span><span class="p">)</span>        
+        <span class="k">if</span> <span class="nb">str</span><span class="p">(</span><span class="n">loraTXPower</span><span class="p">)</span> <span class="ow">in</span> <span class="n">response</span><span class="p">:</span>            
+            <span class="k">pass</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Transmission power at LoRa module not configured&quot;</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="LoRa.setLoRaClass">
+<a class="viewcode-back" href="../lora.html#lora.LoRa.setLoRaClass">[docs]</a>
+    <span class="k">def</span> <span class="nf">setLoRaClass</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">loraClass</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sets the LoRa class.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters:</span>
+<span class="sd">            loraClass (str): LoRa class</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Setting LoRa class to </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">loraClass</span><span class="p">)</span>
+        <span class="n">cmd</span> <span class="o">=</span> <span class="s2">&quot;AT+CLASS=&quot;</span><span class="o">+</span><span class="n">loraClass</span><span class="o">+</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">serialPort</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">cmd</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;UTF-8&quot;</span><span class="p">))</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">serialPort</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;UTF-8&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">loraClass</span> <span class="ow">in</span> <span class="n">response</span><span class="p">:</span>            
+            <span class="k">pass</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Class at LoRa module not configured&quot;</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="LoRa.setLoRaSubBand">
+<a class="viewcode-back" href="../lora.html#lora.LoRa.setLoRaSubBand">[docs]</a>
+    <span class="k">def</span> <span class="nf">setLoRaSubBand</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">loraSubBand</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sets the sub-band. This will disable all channels not belonging to the specified sub-band.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            loraSubBand (int): sub-band</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">loraModule</span> <span class="o">==</span> <span class="s2">&quot;RHF76-052&quot;</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">loraSubBand</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>                
+                <span class="k">for</span> <span class="n">ch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">72</span><span class="p">):</span>
+                    <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Disabling LoRa channel </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">ch</span><span class="p">)</span>
+                    <span class="n">cmd</span> <span class="o">=</span> <span class="s2">&quot;AT+CH=&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">ch</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot;, 0</span><span class="se">\n</span><span class="s2">&quot;</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">serialPort</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">cmd</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;UTF-8&quot;</span><span class="p">))</span>
+                    <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">serialPort</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;UTF-8&quot;</span><span class="p">)</span>        
+                    <span class="k">if</span> <span class="nb">str</span><span class="p">(</span><span class="n">ch</span><span class="p">)</span> <span class="ow">in</span> <span class="n">response</span><span class="p">:</span>            
+                        <span class="k">pass</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Failed disabling LoRa channel </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">ch</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">loraSubBand</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>                
+                <span class="k">for</span> <span class="n">ch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">8</span><span class="p">):</span>
+                    <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Disabling LoRa channel </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">ch</span><span class="p">)</span>
+                    <span class="n">cmd</span> <span class="o">=</span> <span class="s2">&quot;AT+CH=&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">ch</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot;, 0</span><span class="se">\n</span><span class="s2">&quot;</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">serialPort</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">cmd</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;UTF-8&quot;</span><span class="p">))</span>
+                    <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">serialPort</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;UTF-8&quot;</span><span class="p">)</span>        
+                    <span class="k">if</span> <span class="nb">str</span><span class="p">(</span><span class="n">ch</span><span class="p">)</span> <span class="ow">in</span> <span class="n">response</span><span class="p">:</span>            
+                        <span class="k">pass</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Failed disabling LoRa channel </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">ch</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">ch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">65</span><span class="p">):</span>
+                    <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Disabling LoRa channel </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">ch</span><span class="p">)</span>
+                    <span class="n">cmd</span> <span class="o">=</span> <span class="s2">&quot;AT+CH=&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">ch</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot;, 0</span><span class="se">\n</span><span class="s2">&quot;</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">serialPort</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">cmd</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;UTF-8&quot;</span><span class="p">))</span>
+                    <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">serialPort</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;UTF-8&quot;</span><span class="p">)</span>        
+                    <span class="k">if</span> <span class="nb">str</span><span class="p">(</span><span class="n">ch</span><span class="p">)</span> <span class="ow">in</span> <span class="n">response</span><span class="p">:</span>            
+                        <span class="k">pass</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Failed disabling LoRa channel </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">ch</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">ch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">66</span><span class="p">,</span> <span class="mi">72</span><span class="p">):</span>
+                    <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Disabling LoRa channel </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">ch</span><span class="p">)</span>
+                    <span class="n">cmd</span> <span class="o">=</span> <span class="s2">&quot;AT+CH=&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">ch</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot;, 0</span><span class="se">\n</span><span class="s2">&quot;</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">serialPort</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">cmd</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;UTF-8&quot;</span><span class="p">))</span>
+                    <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">serialPort</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;UTF-8&quot;</span><span class="p">)</span>        
+                    <span class="k">if</span> <span class="nb">str</span><span class="p">(</span><span class="n">ch</span><span class="p">)</span> <span class="ow">in</span> <span class="n">response</span><span class="p">:</span>            
+                        <span class="k">pass</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Failed disabling LoRa channel </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">ch</span><span class="p">)</span></div>
+
+        <span class="c1"># elif (self.loraModule == &quot;RHF03M003&quot;):</span>
+
+
+<div class="viewcode-block" id="LoRa.setLoRaBaseBand">
+<a class="viewcode-back" href="../lora.html#lora.LoRa.setLoRaBaseBand">[docs]</a>
+    <span class="k">def</span> <span class="nf">setLoRaBaseBand</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">loraBaseBand</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sets the base-band.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            loraBaseBand (str): base-band</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Setting LoRa base band to </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">loraBaseBand</span><span class="p">)</span>
+        <span class="n">cmd</span> <span class="o">=</span> <span class="s2">&quot;AT+DR=&quot;</span><span class="o">+</span><span class="n">loraBaseBand</span><span class="o">+</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">serialPort</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">cmd</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;UTF-8&quot;</span><span class="p">))</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">serialPort</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;UTF-8&quot;</span><span class="p">)</span>        
+        <span class="k">if</span> <span class="n">loraBaseBand</span> <span class="ow">in</span> <span class="n">response</span><span class="p">:</span>            
+            <span class="k">pass</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Base band at LoRa module not configured&quot;</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="LoRa.setDevEUI">
+<a class="viewcode-back" href="../lora.html#lora.LoRa.setDevEUI">[docs]</a>
+    <span class="k">def</span> <span class="nf">setDevEUI</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">devEUI</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sets the device EUI.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            devEUI (str): device EUI</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Setting TTN device EUI to </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">devEUI</span><span class="p">)</span>
+        <span class="n">cmd</span> <span class="o">=</span> <span class="s2">&quot;AT+ID=DevEui,&quot;</span><span class="o">+</span><span class="n">devEUI</span><span class="o">+</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">serialPort</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">cmd</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;UTF-8&quot;</span><span class="p">))</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">serialPort</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;UTF-8&quot;</span><span class="p">)</span>        
+        <span class="k">if</span> <span class="s2">&quot;DevEui,&quot;</span> <span class="ow">in</span> <span class="n">response</span><span class="p">:</span>            
+            <span class="k">pass</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Device EUI at LoRa module not configured&quot;</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="LoRa.setAppEUI">
+<a class="viewcode-back" href="../lora.html#lora.LoRa.setAppEUI">[docs]</a>
+    <span class="k">def</span> <span class="nf">setAppEUI</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">appEUI</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sets the application EUI.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            appEUI (str): application EUI</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Setting TTN application EUI to </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">appEUI</span><span class="p">)</span>
+        <span class="n">cmd</span> <span class="o">=</span> <span class="s2">&quot;AT+ID=AppEui,&quot;</span><span class="o">+</span><span class="n">appEUI</span><span class="o">+</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">serialPort</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">cmd</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;UTF-8&quot;</span><span class="p">))</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">serialPort</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;UTF-8&quot;</span><span class="p">)</span>        
+        <span class="k">if</span> <span class="s2">&quot;AppEui,&quot;</span> <span class="ow">in</span> <span class="n">response</span><span class="p">:</span>            
+            <span class="k">pass</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Application EUI at LoRa module not configured&quot;</span><span class="p">)</span></div>
+
+    
+
+<div class="viewcode-block" id="LoRa.setDevAddr">
+<a class="viewcode-back" href="../lora.html#lora.LoRa.setDevAddr">[docs]</a>
+    <span class="k">def</span> <span class="nf">setDevAddr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">devAddr</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sets the device address.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            devAddr (str): device address</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Setting TTN device address to </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">devAddr</span><span class="p">)</span>
+        <span class="n">cmd</span> <span class="o">=</span> <span class="s2">&quot;AT+ID=DevAddr,&quot;</span><span class="o">+</span><span class="n">devAddr</span><span class="o">+</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">serialPort</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">cmd</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;UTF-8&quot;</span><span class="p">))</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">serialPort</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;UTF-8&quot;</span><span class="p">)</span>        
+        <span class="k">if</span> <span class="s2">&quot;DevAddr,&quot;</span> <span class="ow">in</span> <span class="n">response</span><span class="p">:</span>            
+            <span class="k">pass</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Device address at LoRa module not configured&quot;</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="LoRa.setNwkSKey">
+<a class="viewcode-back" href="../lora.html#lora.LoRa.setNwkSKey">[docs]</a>
+    <span class="k">def</span> <span class="nf">setNwkSKey</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nwkSKey</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sets the network session key.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters:</span>
+<span class="sd">            nwkSKey network session</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Setting TTN network session key to </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">nwkSKey</span><span class="p">)</span>
+        <span class="n">cmd</span> <span class="o">=</span> <span class="s2">&quot;AT+KEY=NwkSKey,&quot;</span><span class="o">+</span><span class="n">nwkSKey</span><span class="o">+</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">serialPort</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">cmd</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;UTF-8&quot;</span><span class="p">))</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">serialPort</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;UTF-8&quot;</span><span class="p">)</span>        
+        <span class="k">if</span> <span class="s2">&quot;NWKSKEY&quot;</span> <span class="ow">in</span> <span class="n">response</span><span class="p">:</span>            
+            <span class="k">pass</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Network session key at LoRa module not configured&quot;</span><span class="p">)</span></div>
+
+    
+
+<div class="viewcode-block" id="LoRa.setAppSKey">
+<a class="viewcode-back" href="../lora.html#lora.LoRa.setAppSKey">[docs]</a>
+    <span class="k">def</span> <span class="nf">setAppSKey</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">appSKey</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sets the application session key.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters:</span>
+<span class="sd">            appSKey application session key.</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Setting TTN application session key to </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">appSKey</span><span class="p">)</span>
+        <span class="n">cmd</span> <span class="o">=</span> <span class="s2">&quot;AT+KEY=AppSKey,&quot;</span><span class="o">+</span><span class="n">appSKey</span><span class="o">+</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">serialPort</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">cmd</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;UTF-8&quot;</span><span class="p">))</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">serialPort</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;UTF-8&quot;</span><span class="p">)</span>        
+        <span class="k">if</span> <span class="s2">&quot;APPSKEY&quot;</span> <span class="ow">in</span> <span class="n">response</span><span class="p">:</span>            
+            <span class="k">pass</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Application session key at LoRa module not configured&quot;</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="LoRa.setAppKey">
+<a class="viewcode-back" href="../lora.html#lora.LoRa.setAppKey">[docs]</a>
+    <span class="k">def</span> <span class="nf">setAppKey</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">appKey</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sets the application key.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters:</span>
+<span class="sd">            appKey application key.</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Setting TTN application key to </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">appKey</span><span class="p">)</span>
+        <span class="n">cmd</span> <span class="o">=</span> <span class="s2">&quot;AT+KEY=AppKey,&quot;</span><span class="o">+</span><span class="n">appKey</span><span class="o">+</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">serialPort</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">cmd</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;UTF-8&quot;</span><span class="p">))</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">serialPort</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;UTF-8&quot;</span><span class="p">)</span>        
+        <span class="k">if</span> <span class="s2">&quot;AppKey,&quot;</span> <span class="ow">in</span> <span class="n">response</span><span class="p">:</span>            
+            <span class="k">pass</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Application key at LoRa module not configured&quot;</span><span class="p">)</span></div>
+
+    
+
+<div class="viewcode-block" id="LoRa.sendJoinRequest">
+<a class="viewcode-back" href="../lora.html#lora.LoRa.sendJoinRequest">[docs]</a>
+    <span class="k">def</span> <span class="nf">sendJoinRequest</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sends a join request.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters:</span>
+<span class="sd">            None</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            bool: True - if successful / False - if failed</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Sending Lora JOIN request&quot;</span><span class="p">)</span>
+        <span class="n">cmd</span> <span class="o">=</span> <span class="s2">&quot;AT+Join</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">serialPort</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">cmd</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;UTF-8&quot;</span><span class="p">))</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">serialPort</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;UTF-8&quot;</span><span class="p">)</span>                
+        <span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">serialPort</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;UTF-8&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+            <span class="k">if</span> <span class="s2">&quot;failed&quot;</span> <span class="ow">in</span> <span class="n">response</span><span class="p">:</span>
+                <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Join failed&quot;</span><span class="p">)</span>
+                <span class="k">return</span> <span class="kc">False</span>
+            <span class="k">elif</span> <span class="s2">&quot;DevAddr&quot;</span> <span class="ow">in</span> <span class="n">response</span><span class="p">:</span>
+                <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Network joined&quot;</span><span class="p">)</span>            
+                <span class="k">return</span> <span class="kc">True</span>
+            <span class="k">elif</span> <span class="s2">&quot;Joined&quot;</span> <span class="ow">in</span> <span class="n">response</span><span class="p">:</span>
+                <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Joined already&quot;</span><span class="p">)</span>            
+                <span class="k">return</span> <span class="kc">True</span></div>
+
+
+
+<div class="viewcode-block" id="LoRa.sendNoAckMsgHex">
+<a class="viewcode-back" href="../lora.html#lora.LoRa.sendNoAckMsgHex">[docs]</a>
+    <span class="k">def</span> <span class="nf">sendNoAckMsgHex</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_loraPort</span><span class="p">,</span> <span class="n">_loraMsg</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sends unconfirmed hexadecimal messages.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters:</span>
+<span class="sd">            _loraPort port</span>
+<span class="sd">            _loraMsg hexadecimal message</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Setting Lora port to </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">_loraPort</span><span class="p">)</span>
+        <span class="n">cmd</span> <span class="o">=</span> <span class="s2">&quot;AT+PORT=&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">_loraPort</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">serialPort</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">cmd</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;UTF-8&quot;</span><span class="p">))</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">serialPort</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;UTF-8&quot;</span><span class="p">)</span>                
+        <span class="k">if</span> <span class="s2">&quot;PORT&quot;</span> <span class="ow">in</span> <span class="n">response</span><span class="p">:</span>            
+            <span class="k">pass</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;LoRa port at LoRa module not configured&quot;</span><span class="p">)</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Sending no ack hexadecimal message: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">_loraMsg</span><span class="p">)</span>
+        <span class="n">cmd</span> <span class="o">=</span> <span class="s2">&quot;AT+MSGHEX=</span><span class="se">\&quot;</span><span class="s2">&quot;</span><span class="o">+</span><span class="n">_loraMsg</span><span class="o">+</span><span class="s2">&quot;</span><span class="se">\&quot;\n</span><span class="s2">&quot;</span>              
+        <span class="bp">self</span><span class="o">.</span><span class="n">serialPort</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">cmd</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;UTF-8&quot;</span><span class="p">))</span>
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">serialPort</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;UTF-8&quot;</span><span class="p">)</span>
+            <span class="c1"># print(response)</span>
+            <span class="k">if</span> <span class="s2">&quot;Done&quot;</span> <span class="ow">in</span> <span class="n">response</span><span class="p">:</span>            
+                <span class="k">break</span></div>
+
+
+
+<div class="viewcode-block" id="LoRa.sendAckMsgHex">
+<a class="viewcode-back" href="../lora.html#lora.LoRa.sendAckMsgHex">[docs]</a>
+    <span class="k">def</span> <span class="nf">sendAckMsgHex</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_loraPort</span><span class="p">,</span> <span class="n">_loraMsg</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sends confirmed hexadecimal messages.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            _loraPort port</span>
+<span class="sd">            _loraMsg hexadecimal message</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            None     </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Setting Lora port to </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">_loraPort</span><span class="p">)</span>
+        <span class="n">cmd</span> <span class="o">=</span> <span class="s2">&quot;AT+PORT=&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">_loraPort</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">serialPort</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">cmd</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;UTF-8&quot;</span><span class="p">))</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">serialPort</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;UTF-8&quot;</span><span class="p">)</span>                
+        <span class="k">if</span> <span class="s2">&quot;PORT&quot;</span> <span class="ow">in</span> <span class="n">response</span><span class="p">:</span>            
+            <span class="k">pass</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;LoRa port at LoRa module not configured&quot;</span><span class="p">)</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Sending ack hexadecimal message: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">_loraMsg</span><span class="p">)</span>
+        <span class="n">cmd</span> <span class="o">=</span> <span class="s2">&quot;AT+CMSGHEX=</span><span class="se">\&quot;</span><span class="s2">&quot;</span><span class="o">+</span><span class="n">_loraMsg</span><span class="o">+</span><span class="s2">&quot;</span><span class="se">\&quot;\n</span><span class="s2">&quot;</span>        
+        <span class="bp">self</span><span class="o">.</span><span class="n">serialPort</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">cmd</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;UTF-8&quot;</span><span class="p">))</span>
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">serialPort</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;UTF-8&quot;</span><span class="p">)</span>
+            <span class="c1"># print(response)</span>
+            <span class="k">if</span> <span class="s2">&quot;Done&quot;</span> <span class="ow">in</span> <span class="n">response</span><span class="p">:</span>            
+                <span class="k">break</span>    </div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, AgroTechLab.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

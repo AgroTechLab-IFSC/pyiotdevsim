@@ -1,0 +1,172 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>pyiotdevsim &mdash; pyIoTDevSim v0.4.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=97b6c874"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            pyIoTDevSim
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../config_file.html">Configuration file</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules.html">Source Code Docs</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">pyIoTDevSim</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Module code</a></li>
+      <li class="breadcrumb-item active">pyiotdevsim</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for pyiotdevsim</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">serial</span>
+<span class="kn">import</span> <span class="nn">config</span>
+<span class="kn">import</span> <span class="nn">lora</span>
+<span class="kn">import</span> <span class="nn">project</span>
+
+<span class="c1"># SYSTEM INFORMATION</span>
+<span class="n">VERSION</span> <span class="o">=</span> <span class="s2">&quot;0.4.0&quot;</span>
+<span class="n">CONFIG_FILE</span> <span class="o">=</span> <span class="s1">&#39;pyIoTDevSim.yml&#39;</span>
+<span class="n">LOG_FILE</span> <span class="o">=</span> <span class="s1">&#39;pyIoTDevSim.log&#39;</span>
+
+<div class="viewcode-block" id="main">
+<a class="viewcode-back" href="../pyiotdevsim.html#pyiotdevsim.main">[docs]</a>
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Main function.&quot;&quot;&quot;</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Starting pyIoTDevSim </span><span class="si">{</span><span class="n">VERSION</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Starting pyIoTDevSim </span><span class="si">{</span><span class="n">VERSION</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Reading configuration file </span><span class="si">{</span><span class="n">CONFIG_FILE</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">Reading configuration file... &quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">cfgObj</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">Config</span><span class="p">(</span><span class="n">cfgFile</span><span class="o">=</span><span class="n">CONFIG_FILE</span><span class="p">)</span>    
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;[OK]&quot;</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t\t</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">cfgObj</span><span class="o">.</span><span class="n">projects</span><span class="p">)</span><span class="si">}</span><span class="s2"> project(s) found: </span><span class="si">{</span><span class="n">cfgObj</span><span class="o">.</span><span class="n">projects</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># Open a serial port to communicate with LoRa module</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Opening serial port at </span><span class="si">{</span><span class="n">cfgObj</span><span class="o">.</span><span class="n">getSerialPort</span><span class="p">()</span><span class="si">}</span><span class="s2"> with baudrate </span><span class="si">{</span><span class="n">cfgObj</span><span class="o">.</span><span class="n">getSerialBaudrate</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">Opening serial port at </span><span class="si">{</span><span class="n">cfgObj</span><span class="o">.</span><span class="n">getSerialPort</span><span class="p">()</span><span class="si">}</span><span class="s2"> with baudrate </span><span class="si">{</span><span class="n">cfgObj</span><span class="o">.</span><span class="n">getSerialBaudrate</span><span class="p">()</span><span class="si">}</span><span class="s2">... &quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">serialPortObj</span> <span class="o">=</span> <span class="n">serial</span><span class="o">.</span><span class="n">Serial</span><span class="p">(</span><span class="n">cfgObj</span><span class="o">.</span><span class="n">getSerialPort</span><span class="p">(),</span> <span class="n">cfgObj</span><span class="o">.</span><span class="n">getSerialBaudrate</span><span class="p">())</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[OK]&quot;</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">serial</span><span class="o">.</span><span class="n">SerialException</span><span class="p">:</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Serial port not available!&quot;</span><span class="p">)</span> 
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="s2">&quot;[ERROR]</span><span class="se">\n\t\t</span><span class="s2">Serial port not available!!!&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Create LoRa communication object</span>
+    <span class="n">loraObj</span> <span class="o">=</span> <span class="n">lora</span><span class="o">.</span><span class="n">LoRa</span><span class="p">(</span><span class="n">cfgObj</span><span class="o">.</span><span class="n">getLoRaModule</span><span class="p">(),</span> <span class="n">serialPortObj</span><span class="p">)</span>    
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">Checking LoRa module... &quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">loraObj</span><span class="o">.</span><span class="n">checkLoRa</span><span class="p">()</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;[OK]&quot;</span><span class="p">)</span>    
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="s2">&quot;[ERROR]</span><span class="se">\n\t\t</span><span class="s2">LoRa module not connected!!!&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Configuring LoRa common parameters</span>
+    <span class="n">loraObj</span><span class="o">.</span><span class="n">setLoRaBaseBand</span><span class="p">(</span><span class="n">cfgObj</span><span class="o">.</span><span class="n">getLoRaBaseBand</span><span class="p">())</span>
+    <span class="n">loraObj</span><span class="o">.</span><span class="n">setLoRaSubBand</span><span class="p">(</span><span class="n">cfgObj</span><span class="o">.</span><span class="n">getLoRaSubBand</span><span class="p">())</span>
+    <span class="n">loraObj</span><span class="o">.</span><span class="n">setLoRaClass</span><span class="p">(</span><span class="n">cfgObj</span><span class="o">.</span><span class="n">getLoRaClass</span><span class="p">())</span>
+    <span class="n">loraObj</span><span class="o">.</span><span class="n">setLoRaRX1Win</span><span class="p">()</span>    
+    <span class="n">loraObj</span><span class="o">.</span><span class="n">setLoRaRX2Win</span><span class="p">(</span><span class="n">cfgObj</span><span class="o">.</span><span class="n">getLoRaRXWin2Freq</span><span class="p">(),</span> <span class="n">cfgObj</span><span class="o">.</span><span class="n">getLoRaRXWin2DR</span><span class="p">())</span>
+    <span class="n">loraObj</span><span class="o">.</span><span class="n">setLoRaAuthMode</span><span class="p">(</span><span class="n">cfgObj</span><span class="o">.</span><span class="n">getLoRaAuthMode</span><span class="p">())</span>    
+
+    <span class="c1"># Create project(s) objects in thread format and start</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">Creating and launching project(s) thread(s)...&quot;</span><span class="p">)</span>
+    <span class="n">projVect</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="nb">id</span> <span class="ow">in</span> <span class="n">cfgObj</span><span class="o">.</span><span class="n">projects</span><span class="p">:</span>
+        <span class="n">projVect</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">project</span><span class="o">.</span><span class="n">Project</span><span class="p">(</span><span class="nb">id</span><span class="p">,</span> <span class="n">cfgObj</span><span class="o">.</span><span class="n">getProjectConfig</span><span class="p">(</span><span class="nb">id</span><span class="p">),</span> <span class="n">loraObj</span><span class="p">,</span> <span class="n">cfgObj</span><span class="o">.</span><span class="n">getLoRaBaseBand</span><span class="p">(),</span> <span class="n">cfgObj</span><span class="o">.</span><span class="n">getLoRaAuthMode</span><span class="p">()))</span>
+        <span class="n">projVect</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+        <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>    </div>
+
+                
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Main function (entry point).&quot;&quot;&quot;</span>
+
+    <span class="c1"># Set logging configuration</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">LOG_FILE</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%(asctime)s</span><span class="s1"> </span><span class="si">%(levelname)s</span><span class="s1"> - </span><span class="si">%(message)s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+    
+    <span class="c1"># Call main function</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, AgroTechLab.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
