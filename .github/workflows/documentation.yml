@@ -15,7 +15,7 @@ jobs:
           python-version: '3.13'
       - name: Install dependencies
         run: |
-          pip install sphinx sphinx_rtd_theme myst_parser
+          pip install sphinx sphinx_rtd_theme myst_parser numpy ruamel.yaml pyserial
       - name: Sphinx build
         run: |
           sphinx-build -M html docs/source docs/build
