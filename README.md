@@ -1,3 +1,13 @@
+![GitHub Release](https://img.shields.io/github/v/release/agrotechlab-ifsc/pyiotdevsim)
+![GitHub top language](https://img.shields.io/github/languages/top/agrotechlab-ifsc/pyiotdevsim)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/t/agrotechlab-ifsc/pyiotdevsim)
+![GitHub issue custom search in repo](https://img.shields.io/github/issues-search/agrotechlab-ifsc/pyiotdevsim?query=is%3Aopen&label=issues%20open)
+![GitHub followers](https://img.shields.io/github/followers/agrotechlab-ifsc)
+![GitHub forks](https://img.shields.io/github/forks/agrotechlab-ifsc/pyiotdevsim)
+![GitHub Repo stars](https://img.shields.io/github/stars/agrotechlab-ifsc/pyiotdevsim)
+![GitHub watchers](https://img.shields.io/github/watchers/agrotechlab-ifsc/pyiotdevsim)
+![GitHub License](https://img.shields.io/github/license/agrotechlab-ifsc/pyiotdevsim)
+![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/agrotechlab-ifsc/pyiotdevsim/total)
 
 
 #  pyIoTDevSim 
