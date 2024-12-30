@@ -21,7 +21,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Source Code Docs" href="modules.html" />
-    <link rel="prev" title="Introduction" href="introduction.html" /> 
+    <link rel="prev" title="Changelog" href="changelog.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -43,9 +43,10 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Table of Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="authors_license.html">Authors and License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Configuration file</a><ul class="simple">
 </ul>
 </li>
@@ -165,25 +166,25 @@ bellow (in this case Project C is defined but not will be enabled):</p>
 must be the same. The <code class="docutils literal notranslate"><span class="pre">data_type</span></code> will define the data type and payload size used to compose LoRa message (all messages are sent
 using hexadecimal format). The following data types can be used:</p>
 <blockquote>
-<div><ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">int8</span></code></p>
-<blockquote>
 <div><ul class="simple">
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">int8</span></code>:</dt><dd><ul>
 <li><p><strong>range:</strong> -128 to 127</p></li>
 <li><p><strong>size:</strong> 1 byte</p></li>
 </ul>
-</div></blockquote>
+</dd>
+</dl>
 </li>
-<li><p><code class="docutils literal notranslate"><span class="pre">uint8</span></code></p>
-<blockquote>
-<div><ul class="simple">
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">uint8</span></code>:</dt><dd><ul>
 <li><p><strong>range:</strong> 0 to 255</p></li>
 <li><p><strong>size:</strong> 1 byte</p></li>
 </ul>
-</div></blockquote>
+</dd>
+</dl>
 </li>
 <li><dl class="simple">
-<dt><code class="docutils literal notranslate"><span class="pre">int16</span></code></dt><dd><ul class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">int16</span></code>:</dt><dd><ul>
 <li><p><strong>range:</strong> -32768 to 32767</p></li>
 <li><p><strong>size:</strong> 2 bytes</p></li>
 </ul>
@@ -191,57 +192,57 @@ using hexadecimal format). The following data types can be used:</p>
 </dl>
 </li>
 <li><dl class="simple">
-<dt><code class="docutils literal notranslate"><span class="pre">uint16</span></code></dt><dd><ul class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">uint16</span></code>:</dt><dd><ul>
 <li><p><strong>range:</strong> 0 to 65535</p></li>
 <li><p><strong>size:</strong> 2 bytes</p></li>
 </ul>
 </dd>
 </dl>
 </li>
-<li><p><code class="docutils literal notranslate"><span class="pre">int32</span></code></p>
-<blockquote>
-<div><ul class="simple">
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">int32</span></code>:</dt><dd><ul>
 <li><p><strong>range:</strong> -2147483648 to 2147483647</p></li>
 <li><p><strong>size:</strong> 4 bytes</p></li>
 </ul>
-</div></blockquote>
+</dd>
+</dl>
 </li>
-<li><p><code class="docutils literal notranslate"><span class="pre">uint32</span></code></p>
-<blockquote>
-<div><ul class="simple">
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">uint32</span></code>:</dt><dd><ul>
 <li><p><strong>range:</strong> 0 to 4294967295</p></li>
 <li><p><strong>size:</strong> 4 bytes</p></li>
 </ul>
-</div></blockquote>
+</dd>
+</dl>
 </li>
-<li><p><code class="docutils literal notranslate"><span class="pre">float_uint16</span></code></p>
-<blockquote>
-<div><ul class="simple">
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">float_uint16</span></code>:</dt><dd><ul>
 <li><p><strong>range:</strong> 0 to 655.35</p></li>
 <li><p><strong>size:</strong> 2 bytes</p></li>
 <li><p><strong>limitation:</strong> only 2 digits of precision</p></li>
 <li><p><strong>operation:</strong> value * 100</p></li>
 </ul>
-</div></blockquote>
+</dd>
+</dl>
 </li>
-<li><p><code class="docutils literal notranslate"><span class="pre">float_int15</span></code></p>
-<blockquote>
-<div><ul class="simple">
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">float_int15</span></code>:</dt><dd><ul>
 <li><p><strong>range:</strong> -327.67 to 327.67</p></li>
 <li><p><strong>size:</strong> 2 bytes</p></li>
 <li><p><strong>limitation:</strong> 1 bit of sign and 15 bits of value; only 2 digits of precision</p></li>
 <li><p><strong>operation:</strong> value * 100</p></li>
 </ul>
-</div></blockquote>
+</dd>
+</dl>
 </li>
-<li><p><code class="docutils literal notranslate"><span class="pre">float</span></code></p>
-<blockquote>
-<div><ul class="simple">
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">float</span></code>:</dt><dd><ul>
 <li><p><strong>range:</strong> -3.4E+38 to +3.4E+38</p></li>
 <li><p><strong>size:</strong> 4 bytes</p></li>
 <li><p><strong>operation:</strong> sign bit, 8 bits exponent, 23 bits mantissa</p></li>
 </ul>
-</div></blockquote>
+</dd>
+</dl>
 </li>
 </ul>
 </div></blockquote>
@@ -254,7 +255,7 @@ using hexadecimal format). The following data types can be used:</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="introduction.html" class="btn btn-neutral float-left" title="Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="changelog.html" class="btn btn-neutral float-left" title="Changelog" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="modules.html" class="btn btn-neutral float-right" title="Source Code Docs" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

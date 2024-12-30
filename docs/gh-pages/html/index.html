@@ -20,7 +20,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Introduction" href="introduction.html" /> 
+    <link rel="next" title="Authors and License" href="authors_license.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -42,9 +42,10 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Table of Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="authors_license.html">Authors and License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
 <li class="toctree-l1"><a class="reference internal" href="config_file.html">Configuration file</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modules.html">Source Code Docs</a></li>
 </ul>
@@ -75,10 +76,59 @@
              
   <section id="pyiotdevsim">
 <h1>pyIoTDevSim<a class="headerlink" href="#pyiotdevsim" title="Link to this heading"></a></h1>
+<p><strong>pyIoTDevSim</strong> is a IoT device simulator developed by <a class="reference external" href="https://agrotechlab.lages.ifsc.edu.br">AgroTechLab</a> (<em>Technology Development
+Laboratory for Agribusiness</em>) of <a class="reference external" href="https://www.ifsc.edu.br">IFSC</a> (<em>Federal Institute of Santa Catarina</em>).</p>
+<p>It uses a real LoRaWAN module (connected to serial port) to sent simulated IoT data to <a class="reference external" href="https://www.thethingsnetwork.org">TTN (The Things Network)</a> infrastructure. Its objective is to accelerate the development of IoT solutions, allowing the
+validation of the communication infrastructure, data validation/formatting and storage and visualization system in parallel to the
+development of hardware and firmware projects.</p>
+<img alt="_images/scheme.png" src="_images/scheme.png" />
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p><strong>pyIoTDevSim</strong> uses UART and the AT protocol to communicate with LoRaWAN modules. Therefore, it is only compatible with
+LoRaWAN modems, i.e. it does not implement the LoRaWAN (L2) protocol.</p>
+<p>Currently <strong>pyIoTDevSim</strong> is compatible with following LoRaWAN modules:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>RisingHF <a class="reference external" href="https://wiki.risinghf.com/en/01/01/04/01/#description">RHF76-052x</a>;</p></li>
+<li><p>RisingHF <a class="reference external" href="https://wiki.risinghf.com/en/01/01/06/01/">RHF0M003</a>;</p></li>
+</ul>
+</div></blockquote>
+</div>
+<p><strong>pyIoTDevSim</strong> can be configured using a YAML file (<code class="docutils literal notranslate"><span class="pre">pyIoTDevSim.yml</span></code>), where the system and projects parameters are defined. More
+information about the configuration file can be found <a class="reference external" href="config_file.html">Configuration file</a> section.</p>
+<p>When <strong>pyIoTDevSim</strong> is executed, it reads the configuration file and starts the communication with the LoRaWAN module. All operations
+are logged in the console and in a log file (<code class="docutils literal notranslate"><span class="pre">pyIoTDevSim.log</span></code>).</p>
+<section id="versions-support">
+<h2>Versions support<a class="headerlink" href="#versions-support" title="Link to this heading"></a></h2>
+<p>Updates and new features are constantly being added to <strong>pyIoTDevSim</strong>. The following table shows the supported versions:</p>
+<table class="docutils align-center">
+<colgroup>
+<col style="width: 33.3%" />
+<col style="width: 33.3%" />
+<col style="width: 33.3%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Version</p></th>
+<th class="head"><p>Security</p></th>
+<th class="head"><p>New features</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0.x.x</p></td>
+<td><p>Yes</p></td>
+<td><p>Yes</p></td>
+</tr>
+</tbody>
+</table>
 <div class="toctree-wrapper compound" id="mastertoc">
-<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<p class="caption" role="heading"><span class="caption-text">Table of Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a><ul class="simple">
+<li class="toctree-l1"><a class="reference internal" href="authors_license.html">Authors and License</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="authors_license.html#authors">Authors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="authors_license.html#license">License</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a><ul class="simple">
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="config_file.html">Configuration file</a><ul class="simple">
@@ -95,12 +145,13 @@
 </ul>
 </div>
 </section>
+</section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="introduction.html" class="btn btn-neutral float-right" title="Introduction" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="authors_license.html" class="btn btn-neutral float-right" title="Authors and License" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

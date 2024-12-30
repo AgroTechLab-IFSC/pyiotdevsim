@@ -1,10 +1,10 @@
 Configuration file
-------------------
+==================
 
  The ``pyIoTDevSim.yml`` is the configuration file searched by **pyIoTDevSim** to sets system, LoRa and projects parameters.
  It uses a YAML format and all sections and keys parameters must be defined in lower case mode.
  Two main sections are defined:
- 
+
    - ``system`` - common LoRa parameters, LoRa module interface and the debug level used;
    - ``projects`` - list the projects enabled to run;
 
@@ -69,42 +69,43 @@ Configuration file
  must be the same. The ``data_type`` will define the data type and payload size used to compose LoRa message (all messages are sent 
  using hexadecimal format). The following data types can be used:
 
-   - ``int8``
-
+   - ``int8``:
       - **range:** -128 to 127
       - **size:** 1 byte
-   - ``uint8``
 
+   - ``uint8``:
       - **range:** 0 to 255
       - **size:** 1 byte
-   - ``int16``
+
+   - ``int16``:
       - **range:** -32768 to 32767
       - **size:** 2 bytes
-   - ``uint16``
+
+   - ``uint16``:
       - **range:** 0 to 65535
       - **size:** 2 bytes
-   - ``int32``
 
+   - ``int32``:
       - **range:** -2147483648 to 2147483647
       - **size:** 4 bytes
-   - ``uint32``
 
+   - ``uint32``:
       - **range:** 0 to 4294967295
       - **size:** 4 bytes
-   - ``float_uint16``
 
+   - ``float_uint16``:
       - **range:** 0 to 655.35
       - **size:** 2 bytes
       - **limitation:** only 2 digits of precision
       - **operation:** value * 100
-   - ``float_int15``
 
+   - ``float_int15``:
       - **range:** -327.67 to 327.67
       - **size:** 2 bytes
       - **limitation:** 1 bit of sign and 15 bits of value; only 2 digits of precision
       - **operation:** value * 100
-   - ``float``
 
+   - ``float``:
       - **range:** -3.4E+38 to +3.4E+38
       - **size:** 4 bytes
       - **operation:** sign bit, 8 bits exponent, 23 bits mantissa

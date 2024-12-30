@@ -13,6 +13,7 @@ sys.path.insert(0, os.path.abspath('../../'))
 project = 'pyIoTDevSim'
 copyright = '2024, AgroTechLab'
 author = 'AgroTechLab'
+show_authors = True
 release = 'v0.4.0'
 
 # -- General configuration ---------------------------------------------------
