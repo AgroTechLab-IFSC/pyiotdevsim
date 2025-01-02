@@ -4,7 +4,7 @@ The AgroTechLab repositories are constantly updated by the AgroTechLab team. How
 
 ## Requirements check-list
 
-Please check if your Pull Request fulfills these requirements:
+Please, check if your Pull Request fulfills these requirements:
 - [ ] Do you agree with the license of this repository?
 - [ ] The commit message follows the AgroTechLab guidelines (described at CONTRIBUTING.md)?
 - [ ] Have you performed a self-review of your code?
@@ -15,17 +15,15 @@ Please check if your Pull Request fulfills these requirements:
 
 ## Description
 
-Please include a summary of the changes and the related issue. Please also include relevant motivation and context. List any dependencies that are required for this change.
+Please, include a summary of the changes and the related issue. Please also include relevant motivation and context. List any dependencies that are required for this change.
 
 
 ## Type of change
 
-Please delete options that are not relevant.
-
+Please, mark the option that better define the type of change:
 - [ ] Bug fix (non-breaking change which fixes an issue)
 - [ ] New feature (non-breaking change which adds functionality)
 - [ ] Breaking change (fix or feature that would cause existing functionality to not work as expected)
-- [ ] This change requires a documentation update
 
 # How Has This Been Tested?
 
