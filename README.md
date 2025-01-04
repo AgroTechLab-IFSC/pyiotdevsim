@@ -1,3 +1,4 @@
+<a href="https://trackgit.com"><img src="https://us-central1-trackgit-analytics.cloudfunctions.net/token/ping/m5iryaxtfeawx2puf55m" alt="trackgit-views" /></a>
 ![GitHub Release](https://img.shields.io/github/v/release/agrotechlab-ifsc/pyiotdevsim)
 ![GitHub top language](https://img.shields.io/github/languages/top/agrotechlab-ifsc/pyiotdevsim)
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/t/agrotechlab-ifsc/pyiotdevsim)
