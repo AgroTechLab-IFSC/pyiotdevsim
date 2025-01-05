@@ -19,7 +19,7 @@ Laboratory for Agribusiness*)</a> of <a href="https://www.ifsc.edu.br">IFSC (*Fe
 It uses a real LoRaWAN module (connected to serial port) to sent simulated IoT data to <a href="https://www.thethingsnetwork.org">TTN (The Things Network)</a> infrastructure. Its objective is to accelerate the development of IoT solutions, allowing the validation of the communication infrastructure, data validation/formatting and storage and visualization system in parallel to the 
 development of hardware and firmware projects.
 
-More detail can be found at <a href="https://agrotechlab-ifsc.github.io/pyiotdevsim">pyIoTDevSim Documentation page</a>.
+More details can be found on the <a href="https://agrotechlab-ifsc.github.io/pyiotdevsim">pyIoTDevSim Documentation page</a>.
 
 ![SCHEME schematic connection](./docs/figs/scheme.png "Connection scheme")<br>
 
