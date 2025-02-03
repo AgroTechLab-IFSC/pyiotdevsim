@@ -1,6 +1,6 @@
 alabaster==1.0.0
-babel==2.16.0
-certifi==2024.12.14
+babel==2.17.0
+certifi==2025.1.31
 charset-normalizer==3.4.1
 colorama==0.4.6
 docutils==0.21.2
@@ -8,12 +8,12 @@ idna==3.10
 imagesize==1.4.1
 Jinja2==3.1.5
 MarkupSafe==3.0.2
-numpy==2.2.1
+numpy==2.2.2
 packaging==24.2
-Pygments==2.18.0
+Pygments==2.19.1
 pyserial==3.5
 requests==2.32.3
-ruamel.yaml==0.18.7
+ruamel.yaml==0.18.10
 ruamel.yaml.clib==0.2.12
 serpent==1.41
 snowballstemmer==2.2.0
